@@ -1,0 +1,26 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="false" level="WARNING" enabled_by_default="false">
+      <option name="ignoredPackages">
+        <list>
+          <option value="jinja2" />
+          <option value="pyqt6-sip" />
+          <option value="scipy" />
+          <option value="matplotlib" />
+          <option value="numpy" />
+          <option value="PySide6" />
+          <option value="cartopy" />
+          <option value="folium" />
+          <option value="netCDF4" />
+          <option value="pandas" />
+          <option value="offline_folium" />
+          <option value="imageio" />
+          <option value="setuptools" />
+          <option value="openpyxl" />
+          <option value="cftime" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
