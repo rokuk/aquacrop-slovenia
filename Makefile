@@ -26,18 +26,17 @@ clean:
 	find . -type d -name "__pycache__" -delete
 
 
-## Lint using flake8, black, and isort (use `make format` to do formatting)
+## Lint using ruff (use `make format` to do formatting)
 .PHONY: lint
 lint:
-	flake8 src
-	isort --check --diff src
-	black --check src
+	ruff format --check
+	ruff check
 
-## Format source code with black
+## Format source code with ruff
 .PHONY: format
 format:
-	isort src
-	black src
+	ruff check --fix
+	ruff format
 
 
 
@@ -62,7 +61,7 @@ create_environment:
 ## Make dataset
 .PHONY: data
 data: requirements
-	$(PYTHON_INTERPRETER) src/dataset.py
+	$(PYTHON_INTERPRETER) project_name/dataset.py
 
 
 #################################################################################

@@ -2,13 +2,36 @@
 name = "aquacrop-slovenia"
 version = "0.1.0"
 description = "Add your description here"
+authors = [
+  { name = "Rok Kuk" },
+]
+license = { file = "LICENSE" }
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "cartopy>=0.23.0",
     "ipykernel>=7.2.0",
+    "jinja2>=3.1.6",
     "loguru>=0.7.3",
     "matplotlib>=3.10.9",
+    "netCDF4>=1.7.0",
     "numpy>=2.4.4",
+    "pandas>=2.2.0",
+    "ruff>=0.15.12",
+    "scipy>=1.17.1",
     "setuptools>=82.0.1",
     "tqdm>=4.67.3",
+    "xarray>=2024.1.0",
 ]
+
+[tool.ruff]
+line-length = 99
+src = ["aquacrop_slovenia"]
+include = ["pyproject.toml", "aquacrop_slovenia/**/*.py"]
+
+[tool.ruff.lint]
+extend-select = ["I"]  # Add import sorting
+
+[tool.ruff.lint.isort]
+known-first-party = ["aquacrop_slovenia"]
+force-sort-within-sections = true
