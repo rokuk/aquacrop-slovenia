@@ -4,7 +4,8 @@ Calibration of Aquacrop for Slovenian locations.
 
 ## Workflow
 
-1. run the Extract Climate Data notebook
+1. Run the Extract Weather notebooks
+2. Run the Transform Yield Data notebook
 
 ## Project Organization
 

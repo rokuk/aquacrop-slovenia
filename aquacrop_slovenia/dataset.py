@@ -206,7 +206,7 @@ def extract_all_timeseries(target_lat: float, target_lon: float, location_name: 
     location_name:
         Short label used as the filename prefix (e.g. "ljubljana").
     """
-    files = discover_files(config.CLIMATE_DIR)
+    files = discover_files(config.RAW_CLIMATE_DIR)
     groups = group_files(files)
     model_mapping = build_model_mapping(groups)
     logger.info(f"Found {len(groups)} model/scenario groups, {len(model_mapping) - 1} RCM models")
