@@ -9,6 +9,7 @@ license = { file = "LICENSE" }
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "aquacrop>=3.0",
     "cartopy>=0.23.0",
     "dask>=2026.3.0",
     "datashader>=0.19.0",
