@@ -1,4 +1,4 @@
-# aquacrop-slovenia documentation!
+# aquacrop-slovenia documentation
 
 ## Description
 

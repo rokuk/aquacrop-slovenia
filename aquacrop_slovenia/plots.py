@@ -62,7 +62,7 @@ def plot_grid_points(
     -------
     plt.Figure
     """
-    climate_dir = climate_dir or config.CLIMATE_DIR
+    climate_dir = climate_dir or config.EXTERNAL_CLIMATE_DIR
     lat2d, lon2d, valid_mask = get_grid_coords(climate_dir)
 
     # Nearest valid cell only
