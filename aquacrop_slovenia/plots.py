@@ -11,7 +11,7 @@ import pandas as pd
 import xarray as xr
 
 from aquacrop_slovenia import config
-from aquacrop_slovenia.dataset import _lat_lon_arrays
+from aquacrop_slovenia.climate_data import _lat_lon_arrays
 
 # Lambert Conformal Conic centred on Slovenia — preserves shape well at this scale
 _PROJECTION = ccrs.LambertConformal(

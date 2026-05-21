@@ -9,7 +9,6 @@ license = { file = "LICENSE" }
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "aquacrop>=3.0",
     "cartopy>=0.23.0",
     "dask>=2026.3.0",
     "datashader>=0.19.0",
@@ -21,6 +20,8 @@ dependencies = [
     "netCDF4>=1.7.0",
     "numpy>=2.4.4",
     "pandas>=2.2.0",
+    "pandas-stubs~=2.2.2",
+    "pyaquacrop>=0.1.4",
     "pyarrow>=24.0.0",
     "ruff>=0.15.12",
     "scipy>=1.17.1",
