@@ -1,5 +1,5 @@
 # Data
-data/
+data/external/climate
 
 # Virtual environment files
 .venv/
