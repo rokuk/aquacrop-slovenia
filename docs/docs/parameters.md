@@ -6,11 +6,12 @@ The file crop_maize_defaults contains the default values for the parameters. Mos
 
 These parameters were set and are assumed to be valid.
 
-| Type       | Parameter     | Value | Notes             |
-|------------|---------------|-------|-------------------|
-| Crop-Maize | base_temp     | 10    |                   |
-| Crop-Maize | upper_temp    | 30    |                   |
-| Crop-Maize | plant_density | 80000 | Aleš: 75000-85000 |
+| Type       | Parameter     | Value                       | Notes               |
+|------------|---------------|-----------------------------|---------------------|
+| Crop-Maize | base_temp     | 10                          | not 8 degrees!      |
+| Crop-Maize | upper_temp    | 30                          |                     |
+| Crop-Maize | plant_density | 80000                       | Aleš: 75000-85000   |
+| Crop-Maize | harvest_index | 0.431 jablje, 0.477 rakican | average measured HI |
 
 TODO!!!!!!!!!!! preveri GDD crop cyle length v literaturi za naš tip
 
@@ -22,3 +23,7 @@ TODO!!!!!!!!!!! in reality there is some weed management - check if suitabliy mo
 ## Notes
 
 Defaults value for max_canopy_cover is 0.96, na KIS pravijo cca 0.9 (0.8-0.95)!!!
+
+Check what is the dry matter content of biomass, adjust parameter!!!
+
+Is groundwater relevant for Rakican???? Need to add it!

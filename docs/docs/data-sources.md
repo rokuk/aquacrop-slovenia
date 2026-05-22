@@ -1,6 +1,10 @@
 Data sources
 ===============
 
+## CO2 data
+
+Historical CO2 data was downloaded from the Scripps Institution of Oceanography (SIO) [CO2 data](https://scrippsco2.ucsd.edu/data/atmospheric-co2-data/averaged-products/). We used the MLO and SPO yearly averages.
+
 ## Meteorological data
 
 Meteorological data for the historical period was provided by the Slovenian Environmental Agency (ARSO). It was measured at the following stations:

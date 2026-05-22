@@ -1,5 +1,6 @@
 # Data
 data/external/climate
+data/interim/mapdata
 
 # Virtual environment files
 .venv/

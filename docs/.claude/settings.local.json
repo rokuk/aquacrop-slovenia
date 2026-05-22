@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Read(//c/Users/rokku/Documents/Code/aquacrop-slovenia/**)",
-      "Bash(.venvScriptspython.exe -c ' *)"
+      "Bash(.venvScriptspython.exe -c ' *)",
+      "Bash(..venvScriptspython.exe -c ' *)"
     ]
   }
 }
