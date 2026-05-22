@@ -299,3 +299,134 @@ def plot_all_period_statistics(
     """Create one figure per variable showing mean/min/max across 30-year periods."""
     variables = yearly_summary.columns.get_level_values(0).unique()
     return [plot_period_statistics(yearly_summary, var, figsize) for var in variables]
+
+
+def plot_yield_timeseries_comparison(
+    model: pd.DataFrame,
+    truth: pd.DataFrame,
+) -> plt.Figure:
+    """Plot modelled vs observed yield over time on the same axes.
+
+    Parameters
+    ----------
+    model:
+        results["season"] DataFrame; must contain "Year1" and "Y(dry)" columns.
+    truth:
+        DataFrame from get_yield(); must contain "year" and "yield" columns.
+    """
+    fig, ax = plt.subplots()
+    ax.plot(model["Year1"], model["Y(dry)"], marker="o", markersize=4, linewidth=1.2, label="Model Y(dry)")
+    ax.plot(truth["year"], truth["yield"], marker="s", markersize=4, linewidth=1.2, label="Observed yield")
+    ax.set_xlabel("Year")
+    ax.set_ylabel("Dry yield (t ha⁻¹)")
+    ax.set_title("Modelled vs observed maize dry yield")
+    ax.legend()
+    fig.tight_layout()
+
+
+def plot_yield_scatter(
+    model: pd.DataFrame,
+    truth: pd.DataFrame,
+) -> plt.Figure:
+    """Scatter plot of observed yield (x) vs modelled yield (y) with 1:1 diagonal.
+
+    Parameters
+    ----------w
+    model:
+        results["season"] DataFrame; must contain "Year1" and "Y(dry)" columns.
+    truth:
+        DataFrame from get_yield(); must contain "year" and "yield" columns.
+    """
+    merged = pd.merge(
+        model[["Year1", "Y(dry)"]].rename(columns={"Year1": "year", "Y(dry)": "modelled"}),
+        truth.rename(columns={"yield": "observed"}),
+        on="year",
+    )
+    fig, ax = plt.subplots()
+    ax.scatter(merged["observed"], merged["modelled"], s=40, zorder=3)
+
+    lo = min(merged["modelled"].min(), merged["observed"].min())
+    hi = max(merged["modelled"].max(), merged["observed"].max())
+    pad = (hi - lo) * 0.05
+    diag = [lo - pad, hi + pad]
+    ax.plot(diag, diag, color="gray", linewidth=1, linestyle="--")
+
+    ax.set_xlabel("Observed yield (t ha⁻¹)")
+    ax.set_ylabel("Model Y(dry) (t ha⁻¹)")
+    ax.set_title("Modelled vs observed yield")
+    fig.tight_layout()
+    return fig
+
+
+def plot_observed_yield(
+    yield_df: pd.DataFrame,
+    figsize: tuple[float, float] = (16, 4),
+) -> list[plt.Figure]:
+    """One figure per location: grain yield over time, one subplot per fertilization, coloured by management.
+
+    Parameters
+    ----------
+    yield_df:
+        Long-form DataFrame with columns: location, year, management, fertilization, product, yield.
+        Typically the processed maize.pkl loaded into a DataFrame.
+    """
+    import matplotlib.lines as mlines
+
+    managements = sorted(yield_df["management"].unique())
+    fertilizations = sorted(yield_df["fertilization"].unique())
+    locations_list = sorted(yield_df["location"].unique())
+
+    colors = dict(zip(managements, ["tab:blue", "tab:orange", "tab:green"]))
+    color_handles = [
+        mlines.Line2D([], [], color=colors[m], linewidth=1.5, label=f"Management {m}")
+        for m in managements
+    ]
+
+    figs = []
+    for loc in locations_list:
+        fig, axes = plt.subplots(1, len(fertilizations), figsize=figsize, sharey=True)
+        for ax, fert in zip(axes, fertilizations):
+            sub = yield_df[
+                (yield_df["location"] == loc)
+                & (yield_df["fertilization"] == fert)
+                & (yield_df["product"] == "grain")
+            ]
+            for mgmt in managements:
+                s = sub[sub["management"] == mgmt]
+                if s.empty:
+                    continue
+                ax.plot(s["year"], s["yield"], color=colors[mgmt], marker="o", markersize=3, linewidth=1.2)
+            ax.set_title(fert)
+            if ax is axes[0]:
+                ax.set_ylabel("Yield (t ha⁻¹)")
+            ax.tick_params(axis="x", rotation=30)
+
+        fig.legend(handles=color_handles, loc="upper right", fontsize=9)
+        fig.suptitle(f"Maize grain yield — {loc.capitalize()}", fontsize=13)
+        fig.tight_layout()
+        figs.append(fig)
+    return figs
+
+
+def plot_gdd_and_yield(gdd_by_year: pd.Series, season_df: pd.DataFrame, title: str = "Annual GDD and Maize Dry Yield"):
+    """Dual-axis bar/line plot: GDD bars (left) and dry yield line (right)."""
+    season = season_df.set_index("Year1") if "Year1" in season_df.columns else season_df
+
+    fig, ax1 = plt.subplots(figsize=(12, 5))
+
+    ax1.bar(gdd_by_year.index, gdd_by_year.values, color="tab:orange", alpha=0.6, label="GDD")
+    ax1.set_ylabel("GDD (°C·day)", color="tab:orange")
+    ax1.tick_params(axis="y", labelcolor="tab:orange")
+
+    ax2 = ax1.twinx()
+    ax2.plot(season.index, season["Y(dry)"], marker="o", color="tab:blue", label="Yield (dry)")
+    ax2.set_ylabel("Dry yield (t/ha)", color="tab:blue")
+    ax2.tick_params(axis="y", labelcolor="tab:blue")
+
+    lines1, labels1 = ax1.get_legend_handles_labels()
+    lines2, labels2 = ax2.get_legend_handles_labels()
+    ax1.legend(lines1 + lines2, labels1 + labels2, loc="upper left")
+
+    ax1.set_xlabel("Year")
+    plt.title(title)
+    plt.tight_layout()

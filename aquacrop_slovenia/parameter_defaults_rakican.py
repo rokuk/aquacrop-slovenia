@@ -1,12 +1,14 @@
-maize_params = {
+from aquacrop import SoilLayer
+
+rakican_maize_params = {
     # Basic classifications
     'crop_type': 2,  # forage crop
     'is_sown': True,
-    'cycle_determination': 0,  # by growing degree-days
+    'cycle_determination': 1,  # by growing degree-days
     'adjust_for_eto': True,
 
     # Temperature parameters
-    'base_temp': 8.0,
+    'base_temp': 10.0,
     'upper_temp': 30.0,
     'gdd_cycle_length': 1700,
     'dormancy_eto_threshold': 50,
@@ -88,12 +90,12 @@ maize_params = {
     'water_productivity': 33.7,
     'water_productivity_yield_formation': 100,
     'co2_response_strength': 50,
-    'harvest_index': 0.48, # TODO mogoče izračunati iz podatkov zrnje,slama
+    'harvest_index': 0.477, # calculated based on the mean harvest index of all years for treatment A-N0 in rakican
     'water_stress_hi_increase': 0,
     'veg_growth_impact_hi': 7.0,
     'stomatal_closure_impact_hi': 3.0,
     'max_hi_increase': 15,
-    'dry_matter_content': 90, # TODO preveri ali mogoče oceniti iz podatkov zrnje,slama
+    'dry_matter_content': 90, # TODO preveri ali mogoče dobiti od KIS
 
     # Perennial crop parameters
     'is_perennial': False,
@@ -120,3 +122,58 @@ maize_params = {
     'end_days_required': 0,
     'end_occurrences': 0
 }
+
+rakican_soil_layers=[
+    SoilLayer(
+        thickness=1.5,
+        sat=38.0,
+        fc=16.0,
+        wp=8.0,
+        ksat=2200.0,
+        penetrability=100,
+        gravel=0,
+        cra=-0.333200,
+        crb=0.365805,
+        description="loamy sand"
+    ),
+    SoilLayer(
+        thickness=1.5,
+        sat=38.0,
+        fc=16.0,
+        wp=8.0,
+        ksat=2200.0,
+        penetrability=100,
+        gravel=10,
+        cra=-0.333200,
+        crb=0.365805,
+        description="loamy sand"
+    ),
+    SoilLayer(
+        thickness=1.5,
+        sat=38.0,
+        fc=16.0,
+        wp=8.0,
+        ksat=2200.0,
+        penetrability=100,
+        gravel=50,
+        cra=-0.333200,
+        crb=0.365805,
+        description="loamy sand"
+    ),
+    SoilLayer(
+        thickness=1.5,
+        sat=0.5,
+        fc=0.3,
+        wp=0.1,
+        ksat=0.0,
+        penetrability=0,
+        gravel=0,
+        cra=-9.0,
+        crb=9.0,
+        description="impermeable"
+    ),
+]
+
+rakican_curve_number=46
+
+rakican_readily_evaporable_water=5
