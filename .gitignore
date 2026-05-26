@@ -1,6 +1,9 @@
 # Data
 data/external/climate
 data/interim/mapdata
+models/testing
+models/testing2
+models/testing3
 
 # Virtual environment files
 .venv/
