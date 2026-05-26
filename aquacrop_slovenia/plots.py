@@ -355,12 +355,11 @@ def plot_yield_scatter(
     ax.set_ylabel("Model Y(dry) (t ha⁻¹)")
     ax.set_title("Modelled vs observed yield")
     fig.tight_layout()
-    return fig
 
 
 def plot_observed_yield(
     yield_df: pd.DataFrame,
-    figsize: tuple[float, float] = (16, 4),
+    quantity: str,
 ) -> list[plt.Figure]:
     """One figure per location: grain yield over time, one subplot per fertilization, coloured by management.
 
@@ -369,6 +368,8 @@ def plot_observed_yield(
     yield_df:
         Long-form DataFrame with columns: location, year, management, fertilization, product, yield.
         Typically the processed maize.pkl loaded into a DataFrame.
+    quantity:
+        grain, straw, biomass or hi
     """
     import matplotlib.lines as mlines
 
@@ -384,12 +385,12 @@ def plot_observed_yield(
 
     figs = []
     for loc in locations_list:
-        fig, axes = plt.subplots(1, len(fertilizations), figsize=figsize, sharey=True)
+        fig, axes = plt.subplots(1, len(fertilizations), figsize=(16,4), sharey=True)
         for ax, fert in zip(axes, fertilizations):
             sub = yield_df[
                 (yield_df["location"] == loc)
                 & (yield_df["fertilization"] == fert)
-                & (yield_df["product"] == "grain")
+                & (yield_df["product"] == quantity)
             ]
             for mgmt in managements:
                 s = sub[sub["management"] == mgmt]
@@ -402,7 +403,7 @@ def plot_observed_yield(
             ax.tick_params(axis="x", rotation=30)
 
         fig.legend(handles=color_handles, loc="upper right", fontsize=9)
-        fig.suptitle(f"Maize grain yield — {loc.capitalize()}", fontsize=13)
+        fig.suptitle(f"Maize {quantity} yield — {loc.capitalize()}", fontsize=13)
         fig.tight_layout()
         figs.append(fig)
     return figs

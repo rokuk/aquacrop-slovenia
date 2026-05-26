@@ -12,6 +12,7 @@ from tqdm import tqdm
 import xarray as xr
 
 from aquacrop_slovenia import config
+from aquacrop_slovenia.yield_projections import get_model_scenario_combinations
 
 VARIABLES: list[str] = ["pr", "tas", "tasmax", "tasmin", "evspsblpot"]
 
@@ -29,7 +30,7 @@ class FileInfo:
     end: str
 
 
-def parse_filename(path: Path, scenario_hint: str) -> FileInfo:
+def parse_filename(path: Path) -> FileInfo:
     """Parse a NetCDF filename into a FileInfo.
 
     Handles two naming patterns split on '_day_':
@@ -51,17 +52,16 @@ def parse_filename(path: Path, scenario_hint: str) -> FileInfo:
             start=start,
             end=end,
         )
-    else:
-        # RCM: [var, 12km, GCM, scenario, run, RCM, version]
-        return FileInfo(
-            path=path,
-            variable=tokens[0],
-            gcm=tokens[2],
-            rcm=tokens[5],
-            scenario=tokens[3],
-            start=start,
-            end=end,
-        )
+    # RCM: [var, 12km, GCM, scenario, run, RCM, version]
+    return FileInfo(
+        path=path,
+        variable=tokens[0],
+        gcm=tokens[2],
+        rcm=tokens[5],
+        scenario=tokens[3],
+        start=start,
+        end=end,
+    )
 
 
 def discover_files(climate_dir: Path) -> list[FileInfo]:
@@ -72,7 +72,7 @@ def discover_files(climate_dir: Path) -> list[FileInfo]:
         if not subdir.exists():
             continue
         for nc_path in sorted(subdir.glob("*.nc")):
-            files.append(parse_filename(nc_path, scenario))
+            files.append(parse_filename(nc_path))
     logger.info(f"Discovered {len(files)} NetCDF files in {climate_dir}")
     return files
 
@@ -141,9 +141,9 @@ def extract_variable_timeseries(
     combined = xr.concat(arrays, dim="time")
     # Convert non-standard calendars (e.g. 365day in HadGEM2-ES) using xarray's
     # convert_calendar to standard gregorian calendar, 29th of February is dropped.
-    combined = combined.convert_calendar("standard", use_cftime=False)
+    combined = combined.convert_calendar("standard", use_cftime=False) # TODO check
     series = combined.to_series()
-    series.index = pd.DatetimeIndex(series.index).normalize()
+    series.index = pd.DatetimeIndex(series.index).normalize() # TODO check normalize
     series.name = variable
     return series
 
@@ -239,4 +239,22 @@ def extract_all_timeseries(target_lat: float, target_lon: float, location_name: 
                 df.index = pd.DatetimeIndex(new_index)
         out_path = config.INTERIM_CLIMATE_DIR / make_output_filename(location_name, model_name, scenario)
         df.to_csv(out_path)
-        logger.info(f"Saved {out_path.name} ({len(df)} rows)")
+        logger.debug(f"Saved {out_path.name} ({len(df)} rows)")
+
+
+def prepare_climate_data(location: str) -> None:
+    combinations = get_model_scenario_combinations(location)
+
+    for model, scenario in combinations:
+        logger.info(f"Preparing climate data for {location} with {model} and {scenario}")
+
+        path = config.INTERIM_CLIMATE_DIR / f"{location}_{model}_{scenario}.csv"
+        df = pd.read_csv(path, index_col="time", parse_dates=True)
+        temperatures = list(zip(df["tasmin"] - 273.15, df["tasmax"] - 273.15))
+        eto_values = (df["evspsblpot"] * 86400).tolist()
+        rainfall_values = (df["pr"] * 86400).tolist()
+        pickle_tuple = (temperatures, eto_values, rainfall_values)
+
+        out_path = config.PROCESSED_CLIMATE_DIR / f"{location}_{model}_{scenario}.pkl"
+        pd.to_pickle(pickle_tuple, out_path)
+        logger.debug(f"Saved {out_path.name}")
