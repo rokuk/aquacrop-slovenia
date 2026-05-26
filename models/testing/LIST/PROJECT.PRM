@@ -1,4 +1,4 @@
-AquaCrop simulation for JabljeMaize.CRO
+AquaCrop simulation for jabljemaize.CRO
       7.1       : AquaCrop Version (August 2023)
       1         : Year number of cultivation (Seeding/planting year)
   33604         : First day of simulation period - 01 January 1993
@@ -6,16 +6,16 @@ AquaCrop simulation for JabljeMaize.CRO
   33726         : First day of cropping period - 03 May 1993
   33886         : Last day of cropping period - 10 October 1993
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -24,7 +24,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -33,7 +33,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -53,16 +53,16 @@ AquaCrop simulation for JabljeMaize.CRO
   34091         : First day of cropping period - 03 May 1994
   34251         : Last day of cropping period - 10 October 1994
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -71,7 +71,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -80,7 +80,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -100,16 +100,16 @@ AquaCrop simulation for JabljeMaize.CRO
   34456         : First day of cropping period - 03 May 1995
   34616         : Last day of cropping period - 10 October 1995
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -118,7 +118,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -127,7 +127,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -147,16 +147,16 @@ AquaCrop simulation for JabljeMaize.CRO
   34822         : First day of cropping period - 03 May 1996
   34982         : Last day of cropping period - 10 October 1996
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -165,7 +165,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -174,7 +174,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -194,16 +194,16 @@ AquaCrop simulation for JabljeMaize.CRO
   35187         : First day of cropping period - 03 May 1997
   35347         : Last day of cropping period - 10 October 1997
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -212,7 +212,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -221,7 +221,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -241,16 +241,16 @@ AquaCrop simulation for JabljeMaize.CRO
   35552         : First day of cropping period - 03 May 1998
   35712         : Last day of cropping period - 10 October 1998
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -259,7 +259,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -268,7 +268,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -288,16 +288,16 @@ AquaCrop simulation for JabljeMaize.CRO
   35917         : First day of cropping period - 03 May 1999
   36077         : Last day of cropping period - 10 October 1999
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -306,7 +306,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -315,7 +315,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -335,16 +335,16 @@ AquaCrop simulation for JabljeMaize.CRO
   36283         : First day of cropping period - 03 May 2000
   36443         : Last day of cropping period - 10 October 2000
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -353,7 +353,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -362,7 +362,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -382,16 +382,16 @@ AquaCrop simulation for JabljeMaize.CRO
   36648         : First day of cropping period - 03 May 2001
   36808         : Last day of cropping period - 10 October 2001
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -400,7 +400,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -409,7 +409,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -429,16 +429,16 @@ AquaCrop simulation for JabljeMaize.CRO
   37013         : First day of cropping period - 03 May 2002
   37173         : Last day of cropping period - 10 October 2002
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -447,7 +447,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -456,7 +456,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -476,16 +476,16 @@ AquaCrop simulation for JabljeMaize.CRO
   37378         : First day of cropping period - 03 May 2003
   37538         : Last day of cropping period - 10 October 2003
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -494,7 +494,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -503,7 +503,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -523,16 +523,16 @@ AquaCrop simulation for JabljeMaize.CRO
   37744         : First day of cropping period - 03 May 2004
   37904         : Last day of cropping period - 10 October 2004
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -541,7 +541,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -550,7 +550,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -570,16 +570,16 @@ AquaCrop simulation for JabljeMaize.CRO
   38109         : First day of cropping period - 03 May 2005
   38269         : Last day of cropping period - 10 October 2005
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -588,7 +588,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -597,7 +597,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -617,16 +617,16 @@ AquaCrop simulation for JabljeMaize.CRO
   38474         : First day of cropping period - 03 May 2006
   38634         : Last day of cropping period - 10 October 2006
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -635,7 +635,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -644,7 +644,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -664,16 +664,16 @@ AquaCrop simulation for JabljeMaize.CRO
   38839         : First day of cropping period - 03 May 2007
   38999         : Last day of cropping period - 10 October 2007
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -682,7 +682,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -691,7 +691,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -711,16 +711,16 @@ AquaCrop simulation for JabljeMaize.CRO
   39205         : First day of cropping period - 03 May 2008
   39365         : Last day of cropping period - 10 October 2008
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -729,7 +729,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -738,7 +738,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -758,16 +758,16 @@ AquaCrop simulation for JabljeMaize.CRO
   39570         : First day of cropping period - 03 May 2009
   39730         : Last day of cropping period - 10 October 2009
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -776,7 +776,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -785,7 +785,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -805,16 +805,16 @@ AquaCrop simulation for JabljeMaize.CRO
   39935         : First day of cropping period - 03 May 2010
   40095         : Last day of cropping period - 10 October 2010
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -823,7 +823,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -832,7 +832,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -852,16 +852,16 @@ AquaCrop simulation for JabljeMaize.CRO
   40300         : First day of cropping period - 03 May 2011
   40460         : Last day of cropping period - 10 October 2011
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -870,7 +870,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -879,7 +879,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -899,16 +899,16 @@ AquaCrop simulation for JabljeMaize.CRO
   40666         : First day of cropping period - 03 May 2012
   40826         : Last day of cropping period - 10 October 2012
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -917,7 +917,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -926,7 +926,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -946,16 +946,16 @@ AquaCrop simulation for JabljeMaize.CRO
   41031         : First day of cropping period - 03 May 2013
   41191         : Last day of cropping period - 10 October 2013
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -964,7 +964,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -973,7 +973,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -993,16 +993,16 @@ AquaCrop simulation for JabljeMaize.CRO
   41396         : First day of cropping period - 03 May 2014
   41556         : Last day of cropping period - 10 October 2014
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -1011,7 +1011,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -1020,7 +1020,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -1040,16 +1040,16 @@ AquaCrop simulation for JabljeMaize.CRO
   41761         : First day of cropping period - 03 May 2015
   41921         : Last day of cropping period - 10 October 2015
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -1058,7 +1058,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -1067,7 +1067,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -1087,16 +1087,16 @@ AquaCrop simulation for JabljeMaize.CRO
   42127         : First day of cropping period - 03 May 2016
   42287         : Last day of cropping period - 10 October 2016
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -1105,7 +1105,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -1114,7 +1114,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -1134,16 +1134,16 @@ AquaCrop simulation for JabljeMaize.CRO
   42857         : First day of cropping period - 03 May 2018
   43017         : Last day of cropping period - 10 October 2018
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -1152,7 +1152,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -1161,7 +1161,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -1181,16 +1181,16 @@ AquaCrop simulation for JabljeMaize.CRO
   43222         : First day of cropping period - 03 May 2019
   43382         : Last day of cropping period - 10 October 2019
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -1199,7 +1199,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -1208,7 +1208,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -1228,16 +1228,16 @@ AquaCrop simulation for JabljeMaize.CRO
   43588         : First day of cropping period - 03 May 2020
   43748         : Last day of cropping period - 10 October 2020
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -1246,7 +1246,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -1255,7 +1255,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -1275,16 +1275,16 @@ AquaCrop simulation for JabljeMaize.CRO
   43953         : First day of cropping period - 03 May 2021
   44113         : Last day of cropping period - 10 October 2021
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -1293,7 +1293,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -1302,7 +1302,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -1322,16 +1322,16 @@ AquaCrop simulation for JabljeMaize.CRO
   44318         : First day of cropping period - 03 May 2022
   44478         : Last day of cropping period - 10 October 2022
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -1340,7 +1340,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -1349,7 +1349,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)
@@ -1369,16 +1369,16 @@ AquaCrop simulation for JabljeMaize.CRO
   44683         : First day of cropping period - 03 May 2023
   44843         : Last day of cropping period - 10 October 2023
 -- 1. Climate (CLI) file
-   Jablje.CLI
+   jablje.CLI
    './DATA/'
    1.1 Temperature (Tnx or TMP) file
-   Jablje.Tnx
+   jablje.Tnx
    './DATA/'
    1.2 Reference ET (ETo) file
-   Jablje.ETo
+   jablje.ETo
    './DATA/'
    1.3 Rain (PLU) file
-   Jablje.PLU
+   jablje.PLU
    './DATA/'
    1.4 Atmospheric CO2 concentration (CO2) file
    MaunaLoa.CO2
@@ -1387,7 +1387,7 @@ AquaCrop simulation for JabljeMaize.CRO
    (None)
    './DATA/'
 -- 3. Crop (CRO) file
-   JabljeMaize.CRO
+   jabljemaize.CRO
    './DATA/'
 -- 4. Irrigation management (IRR) file
    (None)
@@ -1396,7 +1396,7 @@ AquaCrop simulation for JabljeMaize.CRO
    OptimalFieldManagement.MAN
    './DATA/'
 -- 6. Soil profile (SOL) file
-   JabljeSoil.SOL
+   jabljesoil.SOL
    './DATA/'
 -- 7. Groundwater table (GWT) file
    (None)

@@ -304,22 +304,43 @@ def plot_all_period_statistics(
 def plot_yield_timeseries_comparison(
     model: pd.DataFrame,
     truth: pd.DataFrame,
+    varname: str,
 ) -> plt.Figure:
     """Plot modelled vs observed yield over time on the same axes.
 
     Parameters
     ----------
     model:
-        results["season"] DataFrame; must contain "Year1" and "Y(dry)" columns.
+        results["season"] DataFrame; must contain "Year1" and varname columns.
     truth:
         DataFrame from get_yield(); must contain "year" and "yield" columns.
     """
     fig, ax = plt.subplots()
-    ax.plot(model["Year1"], model["Y(dry)"], marker="o", markersize=4, linewidth=1.2, label="Model Y(dry)")
-    ax.plot(truth["year"], truth["yield"], marker="s", markersize=4, linewidth=1.2, label="Observed yield")
+    ax.plot(model["Year1"], model[varname], marker="o", markersize=4, linewidth=1.2, label="Model")
+    ax.plot(truth["year"], truth["yield"], marker="s", markersize=4, linewidth=1.2, label="Observed")
     ax.set_xlabel("Year")
-    ax.set_ylabel("Dry yield (t ha⁻¹)")
-    ax.set_title("Modelled vs observed maize dry yield")
+    ax.set_title(f"Modelled vs observed maize {varname}")
+    ax.legend()
+    fig.tight_layout()
+
+def plot_yield_timeseries_residuals(
+    model: pd.DataFrame,
+    truth: pd.DataFrame,
+    varname: str,
+) -> plt.Figure:
+    """Plot modelled vs observed yield over time on the same axes.
+
+    Parameters
+    ----------
+    model:
+        results["season"] DataFrame; must contain "Year1" and varname columns.
+    truth:
+        DataFrame from get_yield(); must contain "year" and "yield" columns.
+    """
+    fig, ax = plt.subplots()
+    ax.plot(model["Year1"], model[varname]-truth["yield"], marker="o", markersize=4, linewidth=1.2, label="residuals")
+    ax.set_xlabel("Year")
+    ax.set_title(f"Modelled minus observed maize {varname}")
     ax.legend()
     fig.tight_layout()
 

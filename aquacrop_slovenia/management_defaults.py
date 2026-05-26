@@ -1,4 +1,4 @@
-# Default management with no fertility stress
+# Default management with no fertility stress, runoff ajusted for row crops
 from aquacrop import FieldManagement
 
 optimal_management = FieldManagement(

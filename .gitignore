@@ -1,5 +1,7 @@
 # Data
 data/external/climate
+data/processed/climate
+data/processed/co2
 data/interim/mapdata
 models/testing
 models/testing2

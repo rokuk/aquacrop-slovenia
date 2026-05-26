@@ -90,7 +90,7 @@ rakican_maize_params = {
     'water_productivity': 33.7,
     'water_productivity_yield_formation': 100,
     'co2_response_strength': 50,
-    'harvest_index': 0.48, # was calculated based on the mean harvest index of all years for treatment A-N0 in rakican, now default
+    'harvest_index': 0.48,
     'water_stress_hi_increase': 0,
     'veg_growth_impact_hi': 7.0,
     'stomatal_closure_impact_hi': 3.0,
@@ -125,7 +125,7 @@ rakican_maize_params = {
 
 rakican_soil_layers=[
     SoilLayer(
-        thickness=1.5,
+        thickness=0.6,
         sat=38.0,
         fc=16.0,
         wp=8.0,
@@ -137,7 +137,7 @@ rakican_soil_layers=[
         description="loamy sand"
     ),
     SoilLayer(
-        thickness=1.5,
+        thickness=0.4,
         sat=38.0,
         fc=16.0,
         wp=8.0,
@@ -149,7 +149,7 @@ rakican_soil_layers=[
         description="loamy sand"
     ),
     SoilLayer(
-        thickness=1.5,
+        thickness=0.5,
         sat=38.0,
         fc=16.0,
         wp=8.0,
@@ -161,7 +161,7 @@ rakican_soil_layers=[
         description="loamy sand"
     ),
     SoilLayer(
-        thickness=1.5,
+        thickness=1,
         sat=0.5,
         fc=0.3,
         wp=0.1,

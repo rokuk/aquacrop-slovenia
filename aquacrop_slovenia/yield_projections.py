@@ -1,5 +1,6 @@
 from datetime import date
 
+import pandas as pd
 from aquacrop import Weather, Crop, Soil, AquaCrop, InitialConditions
 
 from aquacrop_slovenia import config
@@ -119,3 +120,37 @@ def run_all_projections(location):
         print(f"Running projection for {location} with {model} and {scenario}")
         projections[(model, scenario)] = run_model_projection(location, model, scenario)
     return projections
+
+
+PERIODS: dict[str, tuple[int, int]] = {
+    "1981-2010": (1981, 2010),
+    "2011-2040": (2011, 2040),
+    "2041-2070": (2041, 2070),
+    "2071-2100": (2071, 2100),
+}
+
+
+def compute_period_statistics(result: pd.DataFrame) -> pd.DataFrame:
+    """Compute summary statistics for each standard 30-year period.
+
+    Parameters
+    ----------
+    result:
+        DataFrame with columns "Year1" and "Y(dry)" as returned by run_model_projection.
+
+    Returns
+    -------
+    DataFrame indexed by period label with columns Mean, Std, Min, Median, Max.
+    """
+    rows = []
+    for label, (start, end) in PERIODS.items():
+        s = result.loc[(result["Year1"] >= start) & (result["Year1"] <= end), "Y(dry)"]
+        rows.append({
+            "Period": label,
+            "Mean": s.mean(),
+            "Std": s.std(),
+            "Min": s.min(),
+            "Median": s.median(),
+            "Max": s.max(),
+        })
+    return pd.DataFrame(rows).set_index("Period")

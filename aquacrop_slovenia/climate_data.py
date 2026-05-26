@@ -236,7 +236,7 @@ def extract_all_timeseries(target_lat: float, target_lon: float, location_name: 
             if len(positions) == 2:
                 new_index = df.index.tolist()
                 new_index[positions[0]] = pd.Timestamp("2099-12-25")
-                df.index = pd.DatetimeIndex(new_index)
+                df.index = pd.DatetimeIndex(new_index, name=df.index.name)
         out_path = config.INTERIM_CLIMATE_DIR / make_output_filename(location_name, model_name, scenario)
         df.to_csv(out_path)
         logger.debug(f"Saved {out_path.name} ({len(df)} rows)")
