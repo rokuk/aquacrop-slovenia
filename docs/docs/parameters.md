@@ -6,11 +6,16 @@ The file crop_maize_defaults contains the default values for the parameters. Mos
 
 These parameters were changed from the default Aquacrop file Maize.GDD and are assumed to be valid.
 
-| Type       | Parameter     | Value                       | Notes               |
-|------------|---------------|-----------------------------|---------------------|
-| Crop-Maize | base_temp     | 10                          | not 8 degrees!      |
-| Crop-Maize | upper_temp    | 30                          |                     |
-| Crop-Maize | plant_density | 80000                       | Aleš: 75000-85000   |
+| Type       | Parameter         | Value | Notes             |
+|------------|-------------------|-------|-------------------|
+| Crop-Maize | base_temp         | 10    | not 8 degrees!    |
+| Crop-Maize | upper_temp        | 30    |                   |
+| Crop-Maize | plant_density     | 80000 | Aleš: 75000-85000 |
+| Crop-Maize | runoff_adjustment | 10    | Vir:              |
+
+V diplomi Vučko K. UL BF agro 2009 so podatki o tleh:
+FC do 135 cm 21.7 V%, PWP do 135 cm 9.3 V% za Rakičan
+FC do 140 cm 36.3 V%, PWP do 140 cm 14.1 V% za Jablje
 
 TODO! preveri GDD crop cyle length v literaturi za naš tip
 

@@ -317,11 +317,14 @@ def plot_yield_timeseries_comparison(
     """
     fig, ax = plt.subplots()
     ax.plot(model["Year1"], model[varname], marker="o", markersize=4, linewidth=1.2, label="Model")
-    ax.plot(truth["year"], truth["yield"], marker="s", markersize=4, linewidth=1.2, label="Observed")
+    ax.plot(
+        truth["year"], truth["yield"], marker="s", markersize=4, linewidth=1.2, label="Observed"
+    )
     ax.set_xlabel("Year")
     ax.set_title(f"Modelled vs observed maize {varname}")
     ax.legend()
     fig.tight_layout()
+
 
 def plot_yield_timeseries_residuals(
     model: pd.DataFrame,
@@ -338,7 +341,14 @@ def plot_yield_timeseries_residuals(
         DataFrame from get_yield(); must contain "year" and "yield" columns.
     """
     fig, ax = plt.subplots()
-    ax.plot(model["Year1"], model[varname]-truth["yield"], marker="o", markersize=4, linewidth=1.2, label="residuals")
+    ax.plot(
+        model["Year1"],
+        model[varname] - truth["yield"],
+        marker="o",
+        markersize=4,
+        linewidth=1.2,
+        label="residuals",
+    )
     ax.set_xlabel("Year")
     ax.set_title(f"Modelled minus observed maize {varname}")
     ax.legend()
@@ -406,7 +416,7 @@ def plot_observed_yield(
 
     figs = []
     for loc in locations_list:
-        fig, axes = plt.subplots(1, len(fertilizations), figsize=(16,4), sharey=True)
+        fig, axes = plt.subplots(1, len(fertilizations), figsize=(16, 4), sharey=True)
         for ax, fert in zip(axes, fertilizations):
             sub = yield_df[
                 (yield_df["location"] == loc)
@@ -417,7 +427,14 @@ def plot_observed_yield(
                 s = sub[sub["management"] == mgmt]
                 if s.empty:
                     continue
-                ax.plot(s["year"], s["yield"], color=colors[mgmt], marker="o", markersize=3, linewidth=1.2)
+                ax.plot(
+                    s["year"],
+                    s["yield"],
+                    color=colors[mgmt],
+                    marker="o",
+                    markersize=3,
+                    linewidth=1.2,
+                )
             ax.set_title(fert)
             if ax is axes[0]:
                 ax.set_ylabel("Yield (t ha⁻¹)")
@@ -430,7 +447,9 @@ def plot_observed_yield(
     return figs
 
 
-def plot_gdd_and_yield(gdd_by_year: pd.Series, season_df: pd.DataFrame, title: str = "Annual GDD and Maize Dry Yield"):
+def plot_gdd_and_yield(
+    gdd_by_year: pd.Series, season_df: pd.DataFrame, title: str = "Annual GDD and Maize Dry Yield"
+):
     """Dual-axis bar/line plot: GDD bars (left) and dry yield line (right)."""
     season = season_df.set_index("Year1") if "Year1" in season_df.columns else season_df
 

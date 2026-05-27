@@ -6,10 +6,19 @@ from aquacrop import Weather, Crop, Soil, AquaCrop, InitialConditions
 from aquacrop_slovenia import config
 from aquacrop_slovenia.intial_conditions_defaults import intial_cond_params
 from aquacrop_slovenia.management_defaults import optimal_management
-from aquacrop_slovenia.parameter_defaults_jablje import jablje_soil_layers, jablje_maize_params, jablje_curve_number, \
-    jablje_readily_evaporable_water
+from aquacrop_slovenia.parameter_defaults_jablje import (
+    jablje_soil_layers,
+    jablje_maize_params,
+    jablje_curve_number,
+    jablje_readily_evaporable_water,
+)
 from aquacrop_slovenia.reading_data import get_co2_for_aquacrop, get_climate
-from aquacrop_slovenia.parameter_defaults_rakican import rakican_soil_layers, rakican_curve_number, rakican_readily_evaporable_water, rakican_maize_params
+from aquacrop_slovenia.parameter_defaults_rakican import (
+    rakican_soil_layers,
+    rakican_curve_number,
+    rakican_readily_evaporable_water,
+    rakican_maize_params,
+)
 
 
 def setup_model(working_dir, location, model, scenario, crop, soil):
@@ -25,7 +34,8 @@ def setup_model(working_dir, location, model, scenario, crop, soil):
             "planting_date": date(year, 4, 20),  # TODO temporary
             "is_seeding_year": True,
         }
-        for year in range(1981, end_year + 1)]
+        for year in range(1981, end_year + 1)
+    ]
 
     temperatures, eto, precip = get_climate(location, model, scenario)
 
@@ -40,13 +50,13 @@ def setup_model(working_dir, location, model, scenario, crop, soil):
         first_day=1,
         first_month=1,
         first_year=1981,
-        co2_records=co2_concentrations
+        co2_records=co2_concentrations,
     )
 
     default_initial_conditions = InitialConditions(
         name="DefaultInitialConditions",
         description="Default initial conditions with AquaCrop calculated defaults",
-        params=intial_cond_params
+        params=intial_cond_params,
     )
 
     simulation = AquaCrop(
@@ -60,7 +70,7 @@ def setup_model(working_dir, location, model, scenario, crop, soil):
         need_daily_output=False,
         need_seasonal_output=True,
         need_harvest_output=False,
-        need_evaluation_output=False
+        need_evaluation_output=False,
     )
 
     return simulation
@@ -71,27 +81,27 @@ def run_model_projection(location, model, scenario):
         crop = Crop(
             name="Rakican Maize",
             description="Rakican maize uncalibrated",
-            params=rakican_maize_params
+            params=rakican_maize_params,
         )
         soil = Soil(
             name="Rakican Soil",
             description="Rakican silt loam soil uncalibrated",
             soil_layers=rakican_soil_layers,
             curve_number=rakican_curve_number,
-            readily_evaporable_water=rakican_readily_evaporable_water
+            readily_evaporable_water=rakican_readily_evaporable_water,
         )
     elif location == "jablje":
         crop = Crop(
             name="Jablje Maize",
             description="Jablje maize uncalibrated",
-            params=jablje_maize_params
+            params=jablje_maize_params,
         )
         soil = Soil(
             name="Jablje Soil",
             description="Jablje silt loam soil uncalibrated",
             soil_layers=jablje_soil_layers,
             curve_number=jablje_curve_number,
-            readily_evaporable_water=jablje_readily_evaporable_water
+            readily_evaporable_water=jablje_readily_evaporable_water,
         )
     else:
         print("incorrect location")
@@ -107,7 +117,7 @@ def get_model_scenario_combinations(location: str) -> list[tuple[str, str]]:
     pattern = f"{location}_model*_rcp*.csv"
     combinations = []
     for path in sorted(config.INTERIM_CLIMATE_DIR.glob(pattern)):
-        parts = path.stem.split("_") # filename: {location}_{model}_{scenario}
+        parts = path.stem.split("_")  # filename: {location}_{model}_{scenario}
         model = parts[1]
         scenario = parts[2]
         combinations.append((model, scenario))
@@ -145,12 +155,14 @@ def compute_period_statistics(result: pd.DataFrame) -> pd.DataFrame:
     rows = []
     for label, (start, end) in PERIODS.items():
         s = result.loc[(result["Year1"] >= start) & (result["Year1"] <= end), "Y(dry)"]
-        rows.append({
-            "Period": label,
-            "Mean": s.mean(),
-            "Std": s.std(),
-            "Min": s.min(),
-            "Median": s.median(),
-            "Max": s.max(),
-        })
+        rows.append(
+            {
+                "Period": label,
+                "Mean": s.mean(),
+                "Std": s.std(),
+                "Min": s.min(),
+                "Median": s.median(),
+                "Max": s.max(),
+            }
+        )
     return pd.DataFrame(rows).set_index("Period")

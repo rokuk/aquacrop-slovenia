@@ -141,9 +141,9 @@ def extract_variable_timeseries(
     combined = xr.concat(arrays, dim="time")
     # Convert non-standard calendars (e.g. 365day in HadGEM2-ES) using xarray's
     # convert_calendar to standard gregorian calendar, 29th of February is dropped.
-    combined = combined.convert_calendar("standard", use_cftime=False) # TODO check
+    combined = combined.convert_calendar("standard", use_cftime=False)  # TODO check
     series = combined.to_series()
-    series.index = pd.DatetimeIndex(series.index).normalize() # TODO check normalize
+    series.index = pd.DatetimeIndex(series.index).normalize()  # TODO check normalize
     series.name = variable
     return series
 
@@ -231,13 +231,17 @@ def extract_all_timeseries(target_lat: float, target_lon: float, location_name: 
         model_name = reverse[(gcm, rcm)]
         logger.info(f"Processing {model_name} ({gcm} / {rcm or 'obs'}) / {scenario}")
         df = extract_group(gfiles, target_lat, target_lon)
-        if model_name == "model4" and scenario == "rcp45": # in this case, the date for 2099-12-25 is not calculated correctly, so we set it manually
+        if (
+            model_name == "model4" and scenario == "rcp45"
+        ):  # in this case, the date for 2099-12-25 is not calculated correctly, so we set it manually
             positions = [i for i, d in enumerate(df.index) if d == pd.Timestamp("2099-12-26")]
             if len(positions) == 2:
                 new_index = df.index.tolist()
                 new_index[positions[0]] = pd.Timestamp("2099-12-25")
                 df.index = pd.DatetimeIndex(new_index, name=df.index.name)
-        out_path = config.INTERIM_CLIMATE_DIR / make_output_filename(location_name, model_name, scenario)
+        out_path = config.INTERIM_CLIMATE_DIR / make_output_filename(
+            location_name, model_name, scenario
+        )
         df.to_csv(out_path)
         logger.debug(f"Saved {out_path.name} ({len(df)} rows)")
 

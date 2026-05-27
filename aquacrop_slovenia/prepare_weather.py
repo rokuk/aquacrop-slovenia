@@ -13,9 +13,7 @@ def load_station_weather(
         eto_values: list of reference evapotranspiration values in mm/day
         rainfall_values: list of precipitation values in mm
     """
-    df: pd.DataFrame = pd.read_pickle(
-        config.PROCESSED_WEATHER_DIR / f"station_{station_id}.pkl"
-    )
+    df: pd.DataFrame = pd.read_pickle(config.PROCESSED_WEATHER_DIR / f"station_{station_id}.pkl")
     temperatures = list(zip(df["tmin"], df["tmax"]))
     eto_values = df["etp"].tolist()
     rainfall_values = df["pad"].tolist()
