@@ -1,4 +1,4 @@
-from aquacrop import SoilLayer
+from aquacrop import SoilLayer, FieldManagement
 
 jablje_maize_params = {
     # Basic classifications
@@ -128,3 +128,21 @@ jablje_soil_layers = [
 jablje_curve_number = 61
 
 jablje_readily_evaporable_water = 11
+
+optimal_management = FieldManagement(
+    name="Optimal Field Management",
+    description="Optimal field management with no fertility stress, runoff adjustment for row crops",
+    params={
+        "fertility_stress": 0,
+        "mulch_cover": 0,
+        "mulch_effect": 50,
+        "bund_height": 0.00,
+        "surface_runoff_affected": 0,
+        "runoff_adjustment": 10,
+        "weed_cover_initial": 0,
+        "weed_cover_increase": 0,
+        "weed_shape_factor": 100.00,
+        "weed_replacement": 100,
+        "multiple_cuttings": False,
+    },
+)

@@ -1,4 +1,4 @@
-from aquacrop import SoilLayer
+from aquacrop import SoilLayer, GroundWater, FieldManagement
 
 rakican_maize_params = {
     # Basic classifications
@@ -114,6 +114,57 @@ rakican_soil_layers = [
     SoilLayer(
         thickness=0.6,
         sat=38.0,
+        fc=21.7,
+        wp=9.3,
+        ksat=2200.0,
+        penetrability=100,
+        gravel=0,
+        cra=-0.333200,
+        crb=0.365805,
+        description="loamy sand",
+    ),
+    SoilLayer(
+        thickness=0.75,
+        sat=38.0,
+        fc=21.7,
+        wp=9.3,
+        ksat=2200.0,
+        penetrability=100,
+        gravel=20,
+        cra=-0.333200,
+        crb=0.365805,
+        description="loamy sand",
+    ),
+    SoilLayer(
+        thickness=1.65,
+        sat=38.0,
+        fc=21.7,
+        wp=9.3,
+        ksat=2200.0,
+        penetrability=100,
+        gravel=50,
+        cra=-0.333200,
+        crb=0.365805,
+        description="loamy sand",
+    ),
+    SoilLayer(
+        thickness=0.1,
+        sat=0.5,
+        fc=0.3,
+        wp=0.1,
+        ksat=0.0,
+        penetrability=0,
+        gravel=0,
+        cra=-9.0,
+        crb=9.0,
+        description="impermeable",
+    )
+]
+
+rakican_soil_layers_old = [
+    SoilLayer(
+        thickness=0.6,
+        sat=38.0,
         fc=16.0,
         wp=8.0,
         ksat=2200.0,
@@ -158,9 +209,101 @@ rakican_soil_layers = [
         cra=-9.0,
         crb=9.0,
         description="impermeable",
+    )
+]
+
+rakican_soil_layers_podrobno = [
+    SoilLayer(
+        thickness=0.22,
+        sat=50.0,
+        fc=33.8,
+        wp=26.8,
+        ksat=35.0,
+        penetrability=100,
+        gravel=0,
+        cra=-0.569100,
+        crb=-1.613423,
+        description="loamy sand",
     ),
+    SoilLayer(
+        thickness=0.15,
+        sat=38.0,
+        fc=30.3,
+        wp=25.8,
+        ksat=2200.0,
+        penetrability=100,
+        gravel=0,
+        cra=-0.655700,
+        crb=0.838797,
+        description="loamy sand",
+    ),
+    SoilLayer(
+        thickness=0.25,
+        sat=50.0,
+        fc=30.5,
+        wp=22.9,
+        ksat=125.0,
+        penetrability=100,
+        gravel=0,
+        cra=-0.572700,
+        crb=-0.859573,
+        description="loamy sand",
+    ),
+    SoilLayer(
+        thickness=0.88,
+        sat=50.0,
+        fc=32.7,
+        wp=23.9,
+        ksat=125.0,
+        penetrability=100,
+        gravel=50,
+        cra=-0.572700,
+        crb=-0.859573,
+        description="loamy sand",
+    ),
+    SoilLayer(
+        thickness=1,
+        sat=0.5,
+        fc=0.3,
+        wp=0.1,
+        ksat=0.0,
+        penetrability=0,
+        gravel=0,
+        cra=-9.0,
+        crb=9.0,
+        description="impermeable",
+    )
 ]
 
 rakican_curve_number = 46
 
-rakican_readily_evaporable_water = 5
+rakican_readily_evaporable_water = 7
+
+deep_groundwater = GroundWater(
+    name="DeepGroundwater",
+    description="Fixed deep groundwater table at 2.9 m depth",
+    params={
+        'groundwater_type': 1,  # Fixed groundwater table
+        'groundwater_observations': [
+            {'day': 1, 'depth': 2.9, 'ec': 0.0}
+        ]
+    }
+)
+
+optimal_management = FieldManagement(
+    name="Optimal Field Management",
+    description="Optimal field management with no fertility stress, runoff adjustment for row crops",
+    params={
+        "fertility_stress": 0,
+        "mulch_cover": 0,
+        "mulch_effect": 50,
+        "bund_height": 0.00,
+        "surface_runoff_affected": 0,
+        "runoff_adjustment": 10,
+        "weed_cover_initial": 0,
+        "weed_cover_increase": 0,
+        "weed_shape_factor": 100.00,
+        "weed_replacement": 100,
+        "multiple_cuttings": False,
+    },
+)

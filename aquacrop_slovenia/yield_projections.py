@@ -5,12 +5,12 @@ from aquacrop import Weather, Crop, Soil, AquaCrop, InitialConditions
 
 from aquacrop_slovenia import config
 from aquacrop_slovenia.intial_conditions_defaults import intial_cond_params
-from aquacrop_slovenia.management_defaults import optimal_management
 from aquacrop_slovenia.parameter_defaults_jablje import (
     jablje_soil_layers,
     jablje_maize_params,
     jablje_curve_number,
     jablje_readily_evaporable_water,
+    optimal_management,
 )
 from aquacrop_slovenia.reading_data import get_co2_for_aquacrop, get_climate
 from aquacrop_slovenia.parameter_defaults_rakican import (
