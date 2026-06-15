@@ -1,5 +1,5 @@
 # Calibration
 
-Year 2017 is excluded because data for ET is missing in a large part of the year.
+For Jablje, year 2017 is excluded, because data for ET is missing for most of the vegetation period.
 
-For Rakičan years 1998 and 2023 are also excluded because of missing yield data.
+For Rakičan, years 1998 and 2023 are excluded because of missing yield data.

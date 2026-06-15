@@ -320,6 +320,7 @@ def plot_yield_timeseries_comparison(
     ax.plot(
         truth["year"], truth["yield"], marker="s", markersize=4, linewidth=1.2, label="Observed"
     )
+    ax.set_ylim(bottom=0)
     ax.set_xlabel("Year")
     ax.set_title(f"Modelled vs observed maize {varname}")
     ax.legend()
@@ -376,11 +377,12 @@ def plot_yield_scatter(
     fig, ax = plt.subplots()
     ax.scatter(merged["observed"], merged["modelled"], s=40, zorder=3)
 
-    lo = min(merged["modelled"].min(), merged["observed"].min())
     hi = max(merged["modelled"].max(), merged["observed"].max())
-    pad = (hi - lo) * 0.05
-    diag = [lo - pad, hi + pad]
+    diag = [0, hi]
     ax.plot(diag, diag, color="gray", linewidth=1, linestyle="--")
+    ax.set_xlim(left=0)
+    ax.set_ylim(bottom=0)
+    ax.grid(True, which="both", axis="both", linewidth=0.5, color="gray", alpha=0.5)
 
     ax.set_xlabel("Observed yield (t ha⁻¹)")
     ax.set_ylabel("Model Y(dry) (t ha⁻¹)")

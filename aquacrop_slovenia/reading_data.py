@@ -35,9 +35,11 @@ def get_yield_for_comparison(
 ) -> pd.DataFrame:
     """Like get_yield, but excludes years that are not simulated by the model due to missing et or yield data."""
     df = get_yield(location, product, management, fertilization)
-    exclude = {2017}
+    exclude = set()
     if location == "rakican":
         exclude |= {1998, 2023}
+    elif location == "jablje":
+        exclude |= {2017}
     return df[~df["year"].isin(exclude)].reset_index(drop=True)
 
 
