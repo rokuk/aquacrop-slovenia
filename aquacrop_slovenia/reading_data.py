@@ -37,7 +37,7 @@ def get_yield_for_comparison(
     df = get_yield(location, product, management, fertilization)
     exclude = set()
     if location == "rakican":
-        exclude |= {1998, 2023}
+        exclude |= {1998, 2023, 2017}
     elif location == "jablje":
         exclude |= {2017}
     return df[~df["year"].isin(exclude)].reset_index(drop=True)

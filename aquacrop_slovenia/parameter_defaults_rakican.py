@@ -1,4 +1,4 @@
-from aquacrop import SoilLayer, GroundWater, FieldManagement
+from aquacrop import SoilLayer, GroundWater, FieldManagement, InitialConditions
 
 rakican_maize_params = {
     # Basic classifications
@@ -79,12 +79,12 @@ rakican_maize_params = {
     "water_productivity": 33.7,
     "water_productivity_yield_formation": 100,
     "co2_response_strength": 50,
-    "harvest_index": 0.48,
+    "harvest_index": 0.51, # Povprečje na podlagi meritev biomase in zrnja za Rakican A-N1,2,3
     "water_stress_hi_increase": 0,
     "veg_growth_impact_hi": 7.0,
     "stomatal_closure_impact_hi": 3.0,
     "max_hi_increase": 15,
-    "dry_matter_content": 90,  # TODO preveri ali mogoče dobiti od KIS
+    "dry_matter_content": 83,  # Na podlagi meritev v tabelah KIS FAO300 Rakican 2024
     # Perennial crop parameters
     "is_perennial": False,
     "first_year_min_rooting": 0.00,
@@ -110,9 +110,9 @@ rakican_maize_params = {
     "end_occurrences": 0,
 }
 
-rakican_soil_layers = [
+rakican_soil_layers = [ # FC in WP na podlagi zbornika, ocena gravel na podlagi opisa KIS
     SoilLayer(
-        thickness=0.6,
+        thickness=1,
         sat=38.0,
         fc=21.7,
         wp=9.3,
@@ -124,7 +124,7 @@ rakican_soil_layers = [
         description="loamy sand",
     ),
     SoilLayer(
-        thickness=0.75,
+        thickness=0.5,
         sat=38.0,
         fc=21.7,
         wp=9.3,
@@ -136,7 +136,7 @@ rakican_soil_layers = [
         description="loamy sand",
     ),
     SoilLayer(
-        thickness=1.65,
+        thickness=0.5,
         sat=38.0,
         fc=21.7,
         wp=9.3,
@@ -285,7 +285,7 @@ deep_groundwater = GroundWater(
     params={
         'groundwater_type': 1,  # Fixed groundwater table
         'groundwater_observations': [
-            {'day': 1, 'depth': 2.9, 'ec': 0.0}
+            {'day': 1, 'depth': 1.8, 'ec': 0.0}
         ]
     }
 )
@@ -306,4 +306,22 @@ optimal_management = FieldManagement(
         "weed_replacement": 100,
         "multiple_cuttings": False,
     },
+)
+
+rakican_intial_cond = InitialConditions(
+    name="FieldCapacityInitial Rakičan",
+    description="Initial soil water content at field capacity",
+    params = {
+        "initial_canopy_cover": -9.00,  # Default calculated by AquaCrop
+        "initial_biomass": 0.000,
+        "initial_rooting_depth": -9.00,  # Default calculated by AquaCrop
+        "water_layer": 0.0,
+        "water_layer_ec": 0.00,
+        "soil_water_content_type": 0,  # For specific layers
+        "soil_data": [
+            {'thickness': 1.0, 'water_content': 21.7, 'ec': 0.00},
+            {'thickness': 0.5, 'water_content': 21.7, 'ec': 0.00},
+            {'thickness': 0.5, 'water_content': 21.7, 'ec': 0.00},
+        ]
+    }
 )

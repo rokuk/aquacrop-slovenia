@@ -6,12 +6,14 @@ The file crop_maize_defaults contains the default values for the parameters. Mos
 
 These parameters were changed from the default Aquacrop file Maize.GDD and are assumed to be valid.
 
-| Type       | Parameter         | Value | Notes             |
-|------------|-------------------|-------|-------------------|
-| Crop-Maize | base_temp         | 10    | not 8 degrees!    |
-| Crop-Maize | upper_temp        | 30    |                   |
-| Crop-Maize | plant_density     | 80000 | Aleš: 75000-85000 |
-| Crop-Maize | runoff_adjustment | 10    | Vir:              |
+| Type       | Parameter          | Value | Notes                                                                               |
+|------------|--------------------|-------|-------------------------------------------------------------------------------------|
+| Crop-Maize | base_temp          | 10    | not 8 degrees!                                                                      |
+| Crop-Maize | upper_temp         | 30    |                                                                                     |
+| Crop-Maize | plant_density      | 80000 | Aleš: 75000-85000                                                                   |
+| Crop-Maize | runoff_adjustment  | 10    |                                                                                     |
+| Crop-Maize | dry_matter_content | 0.83  | Calculated as average based on KIS measurements (tables for FAO 300 Rakičan 2024)   |
+| Crop-Maize | harvest_index      | 0.51  | Calculated average over median of biomass and yield over years for Rakican A,B,C-N3 |
 
 ## Soil parameters
 
@@ -48,11 +50,14 @@ TODO! preveri GDD crop cyle length v literaturi za naš tip
 For soil parameters we use the default values from Aquacrop's SlitLoam file. Na KIS pravijo, da je v Jabljah slit loam.
 
 For field management we use the default Aquacrop values without mulches, no effect on runoff and perfect weed management.
-TODO! in reality there is some weed management - check if suitably modeled
+
+## Initial conditions
+
+The soil water content initial conditions are set to field capacity.
 
 ## Notes
 
-Defaults value for max_canopy_cover is 0.96, na KIS pravijo cca 0.9 (0.8-0.95)!
+Default value for max_canopy_cover is 0.96, na KIS pravijo cca 0.9 (0.8-0.95)!
 
 Check what is the dry matter content of biomass, adjust parameter!
 

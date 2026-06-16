@@ -1,4 +1,4 @@
-from aquacrop import SoilLayer, FieldManagement
+from aquacrop import SoilLayer, FieldManagement, InitialConditions
 
 jablje_maize_params = {
     # Basic classifications
@@ -145,4 +145,22 @@ optimal_management = FieldManagement(
         "weed_replacement": 100,
         "multiple_cuttings": False,
     },
+)
+
+jablje_intial_cond = InitialConditions(
+    name="FieldCapacityInitial Rakičan",
+    description="Initial soil water content at field capacity",
+    params = {
+        "initial_canopy_cover": -9.00,  # Default calculated by AquaCrop
+        "initial_biomass": 0.000,
+        "initial_rooting_depth": -9.00,  # Default calculated by AquaCrop
+        "water_layer": 0.0,
+        "water_layer_ec": 0.00,
+        "soil_water_content_type": 0,  # For specific layers
+        "soil_data": [
+            {'water_content': 33.0, 'ec': 0.00},
+            {'water_content': 33.0, 'ec': 0.00},
+            {'water_content': 33.0, 'ec': 0.00},
+        ]
+    }
 )

@@ -4,13 +4,13 @@ import pandas as pd
 from aquacrop import Weather, Crop, Soil, AquaCrop, InitialConditions
 
 from aquacrop_slovenia import config
-from aquacrop_slovenia.intial_conditions_defaults import intial_cond_params
 from aquacrop_slovenia.parameter_defaults_jablje import (
     jablje_soil_layers,
     jablje_maize_params,
     jablje_curve_number,
     jablje_readily_evaporable_water,
     optimal_management,
+    jablje_intial_cond
 )
 from aquacrop_slovenia.reading_data import get_co2_for_aquacrop, get_climate
 from aquacrop_slovenia.parameter_defaults_rakican import (
@@ -18,6 +18,7 @@ from aquacrop_slovenia.parameter_defaults_rakican import (
     rakican_curve_number,
     rakican_readily_evaporable_water,
     rakican_maize_params,
+    rakican_intial_cond
 )
 
 
@@ -53,18 +54,21 @@ def setup_model(working_dir, location, model, scenario, crop, soil):
         co2_records=co2_concentrations,
     )
 
-    default_initial_conditions = InitialConditions(
-        name="DefaultInitialConditions",
-        description="Default initial conditions with AquaCrop calculated defaults",
-        params=intial_cond_params,
-    )
+    if location == "jablje":
+        initial_conditions = jablje_intial_cond
+    elif location == "rakican":
+        initial_conditions = rakican_intial_cond
+    else:
+        print("incorrect location")
+        raise Exception
+
 
     simulation = AquaCrop(
         simulation_periods=simulation_periods,
         crop=crop,
         soil=soil,
         management=optimal_management,
-        initial_conditions=default_initial_conditions,
+        initial_conditions=initial_conditions,
         climate=weather,
         working_dir=working_dir,
         need_daily_output=False,
