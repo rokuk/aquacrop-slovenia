@@ -1,13 +1,13 @@
-from aquacrop import SoilLayer, FieldManagement, InitialConditions
+from aquacrop import SoilLayer, FieldManagement, InitialConditions, GroundWater
 
 jablje_maize_params = {
     # Basic classifications
     "crop_type": 2,  # forage crop
     "is_sown": True,
-    "cycle_determination": 1,  # by growing degree-days
+    "cycle_determination": 0,  # by growing degree-days
     "adjust_for_eto": True,
     # Temperature parameters
-    "base_temp": 10.0,
+    "base_temp": 8.0,
     "upper_temp": 30.0,
     "gdd_cycle_length": 1700,
     "dormancy_eto_threshold": 50,
@@ -50,21 +50,21 @@ jablje_maize_params = {
     # Canopy development parameters
     "canopy_cover_per_seedling": 6.50,
     "canopy_regrowth_size": 6.50,
-    "plant_density": 80000,
+    "plant_density": 85900,
     "max_canopy_cover": 0.96,
     "canopy_growth_coefficient": 0.16312,
     "canopy_thinning_years": -9,
     "canopy_thinning_shape": -9,
     "canopy_decline_coefficient": 0.11691,
     # Crop cycle parameters (Calendar days)
-    "days_emergence": 6,
-    "days_max_rooting": 108,
-    "days_senescence": 107,
-    "days_maturity": 132,
-    "days_flowering": 66,
-    "days_flowering_length": 13,
-    "days_crop_determinancy": 1,
-    "days_hi_start": 61,
+    "days_emergence": 360,
+    "days_max_rooting": 360,
+    "days_senescence": 360,
+    "days_maturity": 360,
+    "days_flowering": 360,
+    "days_flowering_length": 360,
+    "days_crop_determinancy": 360,
+    "days_hi_start": 360,
     # Crop cycle parameters (Growing degree days)
     "gdd_emergence": 80,
     "gdd_max_rooting": 1409,
@@ -79,12 +79,12 @@ jablje_maize_params = {
     "water_productivity": 33.7,
     "water_productivity_yield_formation": 100,
     "co2_response_strength": 50,
-    "harvest_index": 0.48,
+    "harvest_index": 0.51, # Povprečje na podlagi meritev biomase in zrnja za Jablje A-N1,2,3
     "water_stress_hi_increase": 0,
     "veg_growth_impact_hi": 7.0,
     "stomatal_closure_impact_hi": 3.0,
     "max_hi_increase": 15,
-    "dry_matter_content": 90,  # TODO preveri ali mogoče oceniti iz podatkov zrnje,slama
+    "dry_matter_content": 76, # Na podlagi meritev v tabelah KIS FAO300 Jablje 2024
     # Perennial crop parameters
     "is_perennial": False,
     "first_year_min_rooting": 0.00,
@@ -112,7 +112,7 @@ jablje_maize_params = {
 
 jablje_soil_layers = [
     SoilLayer(
-        thickness=4,
+        thickness=4.0,
         sat=46.0,
         fc=33.0,
         wp=13.0,
@@ -129,7 +129,18 @@ jablje_curve_number = 61
 
 jablje_readily_evaporable_water = 11
 
-optimal_management = FieldManagement(
+jablje_groundwater = GroundWater(
+    name="DeepGroundwater",
+    description="Fixed deep groundwater table at given depth",
+    params={
+        'groundwater_type': 1,  # Fixed groundwater table
+        'groundwater_observations': [
+            {'day': 1, 'depth': 2.5, 'ec': 0.0}
+        ]
+    }
+)
+
+jablje_optimal_management = FieldManagement(
     name="Optimal Field Management",
     description="Optimal field management with no fertility stress, runoff adjustment for row crops",
     params={
@@ -138,7 +149,7 @@ optimal_management = FieldManagement(
         "mulch_effect": 50,
         "bund_height": 0.00,
         "surface_runoff_affected": 0,
-        "runoff_adjustment": 10,
+        "runoff_adjustment": 15,
         "weed_cover_initial": 0,
         "weed_cover_increase": 0,
         "weed_shape_factor": 100.00,
@@ -147,8 +158,8 @@ optimal_management = FieldManagement(
     },
 )
 
-jablje_intial_cond = InitialConditions(
-    name="FieldCapacityInitial Rakičan",
+jablje_initial_cond = InitialConditions(
+    name="FieldCapacityInitial Jablje",
     description="Initial soil water content at field capacity",
     params = {
         "initial_canopy_cover": -9.00,  # Default calculated by AquaCrop
@@ -158,9 +169,7 @@ jablje_intial_cond = InitialConditions(
         "water_layer_ec": 0.00,
         "soil_water_content_type": 0,  # For specific layers
         "soil_data": [
-            {'water_content': 33.0, 'ec': 0.00},
-            {'water_content': 33.0, 'ec': 0.00},
-            {'water_content': 33.0, 'ec': 0.00},
+            {'thickness': 4.0, 'water_content': 33.0, 'ec': 0.00}
         ]
     }
 )

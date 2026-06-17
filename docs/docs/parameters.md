@@ -6,14 +6,16 @@ The file crop_maize_defaults contains the default values for the parameters. Mos
 
 These parameters were changed from the default Aquacrop file Maize.GDD and are assumed to be valid.
 
-| Type       | Parameter          | Value | Notes                                                                               |
-|------------|--------------------|-------|-------------------------------------------------------------------------------------|
-| Crop-Maize | base_temp          | 10    | not 8 degrees!                                                                      |
-| Crop-Maize | upper_temp         | 30    |                                                                                     |
-| Crop-Maize | plant_density      | 80000 | Aleš: 75000-85000                                                                   |
-| Crop-Maize | runoff_adjustment  | 10    |                                                                                     |
-| Crop-Maize | dry_matter_content | 0.83  | Calculated as average based on KIS measurements (tables for FAO 300 Rakičan 2024)   |
-| Crop-Maize | harvest_index      | 0.51  | Calculated average over median of biomass and yield over years for Rakican A,B,C-N3 |
+| Type               | Parameter          | Value | Notes                                                                               |
+|--------------------|--------------------|-------|-------------------------------------------------------------------------------------|
+| Crop-Maize         | base_temp          | 8     | Default for Aquacrop's MaizeGDD, not 10 degrees!                                    |
+| Crop-Maize         | upper_temp         | 30    |                                                                                     |
+| Crop-Maize         | plant_density      | 85900 | Aleš: 85900 (75000-85000)                                                           |
+| Crop-Maize         | runoff_adjustment  | 10    |                                                                                     |
+| Crop-Maize-Rakican | dry_matter_content | 83    | Calculated as average based on KIS measurements (tables for FAO 300 Rakičan 2024)   |
+| Crop-Maize-Rakican | harvest_index      | 0.51  | Calculated average over median of biomass and yield over years for Rakican A,B,C-N3 |
+| Crop-Maize-Jablje  | dry_matter_content | 76    | Calculated as average based on KIS measurements (tables for FAO 300 Jablje 2024)    |
+| Crop-Maize-Jablje  | harvest_index      | 0.51  | Calculated average over median of biomass and yield over years for Jablje A,B,C-N3  |
 
 ## Soil parameters
 

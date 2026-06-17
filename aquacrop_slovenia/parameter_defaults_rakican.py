@@ -4,10 +4,10 @@ rakican_maize_params = {
     # Basic classifications
     "crop_type": 2,  # forage crop
     "is_sown": True,
-    "cycle_determination": 1,  # by growing degree-days
+    "cycle_determination": 0,  # by growing degree-days
     "adjust_for_eto": True,
     # Temperature parameters
-    "base_temp": 10.0,
+    "base_temp": 8.0,
     "upper_temp": 30.0,
     "gdd_cycle_length": 1700,
     "dormancy_eto_threshold": 50,
@@ -50,7 +50,7 @@ rakican_maize_params = {
     # Canopy development parameters
     "canopy_cover_per_seedling": 6.50,
     "canopy_regrowth_size": 6.50,
-    "plant_density": 80000,
+    "plant_density": 85900,
     "max_canopy_cover": 0.96,
     "canopy_growth_coefficient": 0.16312,
     "canopy_thinning_years": -9,
@@ -279,9 +279,9 @@ rakican_curve_number = 46
 
 rakican_readily_evaporable_water = 7
 
-deep_groundwater = GroundWater(
+rakican_groundwater = GroundWater(
     name="DeepGroundwater",
-    description="Fixed deep groundwater table at 2.9 m depth",
+    description="Fixed deep groundwater table at given depth",
     params={
         'groundwater_type': 1,  # Fixed groundwater table
         'groundwater_observations': [
@@ -290,7 +290,7 @@ deep_groundwater = GroundWater(
     }
 )
 
-optimal_management = FieldManagement(
+rakican_optimal_management = FieldManagement(
     name="Optimal Field Management",
     description="Optimal field management with no fertility stress, runoff adjustment for row crops",
     params={
@@ -299,7 +299,7 @@ optimal_management = FieldManagement(
         "mulch_effect": 50,
         "bund_height": 0.00,
         "surface_runoff_affected": 0,
-        "runoff_adjustment": 10,
+        "runoff_adjustment": 20,
         "weed_cover_initial": 0,
         "weed_cover_increase": 0,
         "weed_shape_factor": 100.00,
@@ -308,7 +308,7 @@ optimal_management = FieldManagement(
     },
 )
 
-rakican_intial_cond = InitialConditions(
+rakican_initial_cond = InitialConditions(
     name="FieldCapacityInitial Rakičan",
     description="Initial soil water content at field capacity",
     params = {

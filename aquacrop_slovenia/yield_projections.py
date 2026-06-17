@@ -1,7 +1,7 @@
 from datetime import date
 
 import pandas as pd
-from aquacrop import Weather, Crop, Soil, AquaCrop, InitialConditions
+from aquacrop import Weather, Crop, Soil, AquaCrop
 
 from aquacrop_slovenia import config
 from aquacrop_slovenia.parameter_defaults_jablje import (
@@ -9,8 +9,8 @@ from aquacrop_slovenia.parameter_defaults_jablje import (
     jablje_maize_params,
     jablje_curve_number,
     jablje_readily_evaporable_water,
-    optimal_management,
-    jablje_intial_cond
+    jablje_optimal_management,
+    jablje_initial_cond
 )
 from aquacrop_slovenia.reading_data import get_co2_for_aquacrop, get_climate
 from aquacrop_slovenia.parameter_defaults_rakican import (
@@ -18,7 +18,8 @@ from aquacrop_slovenia.parameter_defaults_rakican import (
     rakican_curve_number,
     rakican_readily_evaporable_water,
     rakican_maize_params,
-    rakican_intial_cond
+    rakican_initial_cond,
+    rakican_optimal_management
 )
 
 
@@ -27,16 +28,6 @@ def setup_model(working_dir, location, model, scenario, crop, soil):
         end_year = 2099
     else:
         end_year = 2100
-
-    simulation_periods = [
-        {
-            "start_date": date(year, 1, 1),
-            "end_date": date(year, 10, 10),  # TODO temporary
-            "planting_date": date(year, 4, 20),  # TODO temporary
-            "is_seeding_year": True,
-        }
-        for year in range(1981, end_year + 1)
-    ]
 
     temperatures, eto, precip = get_climate(location, model, scenario)
 
@@ -55,9 +46,29 @@ def setup_model(working_dir, location, model, scenario, crop, soil):
     )
 
     if location == "jablje":
-        initial_conditions = jablje_intial_cond
+        initial_conditions = jablje_initial_cond
+        management = jablje_optimal_management
+        simulation_periods = [
+            {
+                "start_date": date(year, 1, 1),
+                "end_date": date(year, 10, 10),
+                "planting_date": date(year, 5, 3),
+                "is_seeding_year": True,
+            }
+            for year in range(1993, 2024) if year not in [2017]
+        ]
     elif location == "rakican":
-        initial_conditions = rakican_intial_cond
+        initial_conditions = rakican_initial_cond
+        management = rakican_optimal_management
+        simulation_periods = [
+            {
+                "start_date": date(year, 1, 1),
+                "end_date": date(year, 10, 10),  # TODO
+                "planting_date": date(year, 4, 20),  # TODO
+                "is_seeding_year": True,
+            }
+            for year in range(1993, 2024) if year not in [1998, 2023, 2017]
+        ]
     else:
         print("incorrect location")
         raise Exception
@@ -67,7 +78,7 @@ def setup_model(working_dir, location, model, scenario, crop, soil):
         simulation_periods=simulation_periods,
         crop=crop,
         soil=soil,
-        management=optimal_management,
+        management=management,
         initial_conditions=initial_conditions,
         climate=weather,
         working_dir=working_dir,
