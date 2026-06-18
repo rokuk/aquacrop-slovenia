@@ -12,6 +12,7 @@ These parameters were changed from the default Aquacrop file Maize.GDD and are a
 | Crop-Maize         | upper_temp         | 30    |                                                                                     |
 | Crop-Maize         | plant_density      | 85900 | Aleš: 85900 (75000-85000)                                                           |
 | Crop-Maize         | runoff_adjustment  | 10    |                                                                                     |
+| Crop-Maize         | max_canopy_cover   | 90    | Aleš: 90 (80-95) %                                                                  |
 | Crop-Maize-Rakican | dry_matter_content | 83    | Calculated as average based on KIS measurements (tables for FAO 300 Rakičan 2024)   |
 | Crop-Maize-Rakican | harvest_index      | 0.51  | Calculated average over median of biomass and yield over years for Rakican A,B,C-N3 |
 | Crop-Maize-Jablje  | dry_matter_content | 76    | Calculated as average based on KIS measurements (tables for FAO 300 Jablje 2024)    |

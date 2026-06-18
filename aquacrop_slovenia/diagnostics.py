@@ -40,14 +40,26 @@ def nse(predictions, targets):
 
 # Kling-Gupta efficiency
 def kge(predictions, targets):
-    r = pearsonr(predictions, targets)[0]
-    alpha = np.std(predictions) / np.std(targets)
-    beta = np.mean(predictions) / np.mean(targets)
+    r = kge_r(predictions, targets)
+    alpha = kge_alpha(predictions, targets)
+    beta = kge_beta(predictions, targets)
     return 1 - np.sqrt((r-1)**2 + (alpha-1)**2 + (beta-1)**2)
 
 # Modified Kling-Gupta efficiency (Kling et al., 2012)
 def mkge(predictions, targets):
-    r = pearsonr(predictions, targets)[0]
-    beta = np.mean(predictions) / np.mean(targets)
-    alpha = (np.std(predictions) / np.std(targets)) / beta
+    r = kge_r(predictions, targets)
+    beta = kge_beta(predictions, targets)
+    alpha = mkge_alpha(predictions, targets)
     return 1 - np.sqrt((r-1)**2 + (alpha-1)**2 + (beta-1)**2)
+
+def kge_r(predictions, targets):
+    return pearsonr(predictions, targets)[0]
+
+def kge_beta(predictions, targets):
+    return np.mean(predictions) / np.mean(targets)
+
+def kge_alpha(predictions, targets):
+    return np.std(predictions) / np.std(targets)
+
+def mkge_alpha(predictions, targets):
+    return (np.std(predictions) / np.std(targets)) / kge_beta(predictions, targets)

@@ -1,3 +1,5 @@
+import shutil
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import date
 
 import pandas as pd
@@ -23,7 +25,7 @@ from aquacrop_slovenia.parameter_defaults_rakican import (
 )
 
 
-def setup_model(working_dir, location, model, scenario, crop, soil):
+def setup_model_for_projections(working_dir, location, model, scenario, crop, soil):
     if model == "model4":
         end_year = 2099
     else:
@@ -55,7 +57,7 @@ def setup_model(working_dir, location, model, scenario, crop, soil):
                 "planting_date": date(year, 5, 3),
                 "is_seeding_year": True,
             }
-            for year in range(1993, 2024) if year not in [2017]
+            for year in range(1981, end_year + 1)
         ]
     elif location == "rakican":
         initial_conditions = rakican_initial_cond
@@ -63,11 +65,11 @@ def setup_model(working_dir, location, model, scenario, crop, soil):
         simulation_periods = [
             {
                 "start_date": date(year, 1, 1),
-                "end_date": date(year, 10, 10),  # TODO
-                "planting_date": date(year, 4, 20),  # TODO
+                "end_date": date(year, 10, 10),
+                "planting_date": date(year, 4, 20),
                 "is_seeding_year": True,
             }
-            for year in range(1993, 2024) if year not in [1998, 2023, 2017]
+            for year in range(1981, end_year + 1)
         ]
     else:
         print("incorrect location")
@@ -122,8 +124,12 @@ def run_model_projection(location, model, scenario):
         print("incorrect location")
         raise Exception
 
-    simulation = setup_model(config.MODELS_DIR / "testing3", location, model, scenario, crop, soil)
-    results = simulation.run()
+    working_dir = config.RAMDISK_DIR / f"proj_{location}_{model}_{scenario}"
+    try:
+        simulation = setup_model_for_projections(working_dir, location, model, scenario, crop, soil)
+        results = simulation.run()
+    finally:
+        shutil.rmtree(working_dir, ignore_errors=True)
     return results["season"][["Year1", "Y(dry)"]]
 
 
@@ -139,11 +145,20 @@ def get_model_scenario_combinations(location: str) -> list[tuple[str, str]]:
     return combinations
 
 
-def run_all_projections(location):
+def run_all_projections(location, max_workers=None):
+    combinations = get_model_scenario_combinations(location)
     projections = {}
-    for model, scenario in get_model_scenario_combinations(location):
-        print(f"Running projection for {location} with {model} and {scenario}")
-        projections[(model, scenario)] = run_model_projection(location, model, scenario)
+
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = {
+            executor.submit(run_model_projection, location, model, scenario): (model, scenario)
+            for model, scenario in combinations
+        }
+        for future in as_completed(futures):
+            model, scenario = futures[future]
+            print(f"Completed {location} {model} {scenario}")
+            projections[(model, scenario)] = future.result()
+
     return projections
 
 
