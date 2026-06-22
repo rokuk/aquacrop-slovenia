@@ -57,14 +57,14 @@ rakican_maize_params = {
     "canopy_thinning_shape": -9,
     "canopy_decline_coefficient": 0.11691,
     # Crop cycle parameters (Calendar days)
-    "days_emergence": 360,
-    "days_max_rooting": 360,
-    "days_senescence": 360,
-    "days_maturity": 360,
-    "days_flowering": 360,
-    "days_flowering_length": 360,
+    "days_emergence": 6,
+    "days_max_rooting": 108,
+    "days_senescence": 107,
+    "days_maturity": 132,
+    "days_flowering": 66,
+    "days_flowering_length": 13,
     "days_crop_determinancy": 1,
-    "days_hi_start": 360,
+    "days_hi_start": 61,
     # Crop cycle parameters (Growing degree days)
     "gdd_emergence": 38,
     "gdd_max_rooting": 1207,
@@ -79,7 +79,7 @@ rakican_maize_params = {
     "water_productivity": 33.7,
     "water_productivity_yield_formation": 100,
     "co2_response_strength": 50,
-    "harvest_index": 0.51, # Povprečje na podlagi meritev biomase in zrnja za Rakican A-N1,2,3
+    "harvest_index": 0.51, # Povprecje na podlagi meritev biomase in zrnja za Rakican A-N1,2,3
     "water_stress_hi_increase": 0,
     "veg_growth_impact_hi": 7.0,
     "stomatal_closure_impact_hi": 3.0,
@@ -309,7 +309,7 @@ rakican_optimal_management = FieldManagement(
 )
 
 rakican_initial_cond = InitialConditions(
-    name="FieldCapacityInitial Rakičan",
+    name="FieldCapacityInitial Rakican",
     description="Initial soil water content at field capacity",
     params = {
         "initial_canopy_cover": -9.00,  # Default calculated by AquaCrop
