@@ -114,8 +114,8 @@ jablje_soil_layers = [
     SoilLayer(
         thickness=4.0,
         sat=46.0,
-        fc=33.0,
-        wp=13.0,
+        fc=36.3, # based on Deset let trajnih poskusov IOSDV v Sloveniji, Jablje in Rakičan
+        wp=14.1,
         ksat=575.0,
         penetrability=100,
         gravel=0,
@@ -135,7 +135,7 @@ jablje_groundwater = GroundWater(
     params={
         'groundwater_type': 1,  # Fixed groundwater table
         'groundwater_observations': [
-            {'day': 1, 'depth': 2.2, 'ec': 0.0}
+            {'day': 1, 'depth': 2.5, 'ec': 0.0}
         ]
     }
 )
