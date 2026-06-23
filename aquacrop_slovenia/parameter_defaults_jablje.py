@@ -135,7 +135,7 @@ jablje_groundwater = GroundWater(
     params={
         'groundwater_type': 1,  # Fixed groundwater table
         'groundwater_observations': [
-            {'day': 1, 'depth': 2.5, 'ec': 0.0}
+            {'day': 1, 'depth': 2.2, 'ec': 0.0}
         ]
     }
 )
