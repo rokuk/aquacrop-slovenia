@@ -8,7 +8,7 @@ These parameters were changed from the default Aquacrop file Maize.GDD and are a
 
 | Type               | Parameter          | Value | Notes                                                                               |
 |--------------------|--------------------|-------|-------------------------------------------------------------------------------------|
-| Crop-Maize         | base_temp          | 8     | Default for Aquacrop's MaizeGDD, not 10 degrees!                                    |
+| Crop-Maize         | base_temp          | 10    |                                                                                     |
 | Crop-Maize         | upper_temp         | 30    |                                                                                     |
 | Crop-Maize         | plant_density      | 85900 | Aleš: 85900 (75000-85000)                                                           |
 | Crop-Maize         | runoff_adjustment  | 10    |                                                                                     |
@@ -17,6 +17,8 @@ These parameters were changed from the default Aquacrop file Maize.GDD and are a
 | Crop-Maize-Rakican | harvest_index      | 0.51  | Calculated average over median of biomass and yield over years for Rakican A,B,C-N3 |
 | Crop-Maize-Jablje  | dry_matter_content | 76    | Calculated as average based on KIS measurements (tables for FAO 300 Jablje 2024)    |
 | Crop-Maize-Jablje  | harvest_index      | 0.51  | Calculated average over median of biomass and yield over years for Jablje A,B,C-N3  |
+
+Growing degree days (GDD) are calculated using the default calendar days at each location. GDDs between phenological phases are averaged over the years. Those averages are used as Aquacrop parameters.
 
 ## Soil parameters
 
@@ -45,6 +47,15 @@ Al, 22-37 cm, svetlo rjavi meljasti pesek pod ornico, FK 30.3 %V (45 mm)
 Bt, 37-62 cm, intenzivno rjave do rdečerjave barve, meljasta ilovica, FK 30.5 %V (76 mm)
 Bv, 62-89 cm, intenzivno rjav ilovnat melj, FK 32.7 %V (88 mm)
 Cv, 89-135 cm+, pretežno prodnat skelet, FK 4 %V (20 mm)
+
+## Groundwater
+(Vir: Deset let trajnih poskusov IOSDV v Sloveniji, Jablje in Rakičan 1993-2003: zbornik posveta, Žalec 12. december 2003, ISBN 961-90884-2-5)
+JABLJE
+Gladina podtalnice je na globini 2.5 - 3 m. Ob dolgotrajnejšem deževju se glaina podtalnice zaradi premajhne odtočne sposobnosti vodnih kanalov in slabe pronicnosti tal za krajši čas (1-2 dneva) dvigne do površja tal.
+
+RAKIČAN
+Odvisno od letnega časa leži raven podtalnice 2 - 3 m pod površino tal.
+
 
 ## Other parameters
 

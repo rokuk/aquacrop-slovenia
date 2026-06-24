@@ -2,14 +2,14 @@ from aquacrop import SoilLayer, FieldManagement, InitialConditions, GroundWater
 
 jablje_maize_params = {
     # Basic classifications
-    "crop_type": 2,  # forage crop
+    "crop_type": 2,  # fruit/grain crop
     "is_sown": True,
     "cycle_determination": 0,  # by growing degree-days
     "adjust_for_eto": True,
     # Temperature parameters
-    "base_temp": 8.0,
+    "base_temp": 10.0,
     "upper_temp": 30.0,
-    "gdd_cycle_length": 1320,
+    "gdd_cycle_length": 1058,
     "dormancy_eto_threshold": 50,
     # Crop water stress parameters
     "p_upper_canopy": 0.14,
@@ -51,7 +51,7 @@ jablje_maize_params = {
     "canopy_cover_per_seedling": 6.50,
     "canopy_regrowth_size": 6.50,
     "plant_density": 85900,
-    "max_canopy_cover": 0.90,
+    "max_canopy_cover": 0.90, # Srednja ocena KIS
     "canopy_growth_coefficient": 0.16312,
     "canopy_thinning_years": -9,
     "canopy_thinning_shape": -9,
@@ -66,15 +66,15 @@ jablje_maize_params = {
     "days_crop_determinancy": 1,
     "days_hi_start": 61,
     # Crop cycle parameters (Growing degree days)
-    "gdd_emergence": 29,
-    "gdd_max_rooting": 1084,
-    "gdd_senescence": 1072,
-    "gdd_maturity": 1320,
-    "gdd_flowering": 508,
-    "gdd_flowering_length": 150,
+    "gdd_emergence": 18,
+    "gdd_max_rooting": 870,
+    "gdd_senescence": 860,
+    "gdd_maturity": 1058,
+    "gdd_flowering": 450,
+    "gdd_flowering_length": 124,
     "cgc_gdd": 0.012494,
     "cdc_gdd": 0.010000,
-    "gdd_hi_start": 512,
+    "gdd_hi_start": 401,
     # Biomass and yield parameters
     "water_productivity": 33.7,
     "water_productivity_yield_formation": 100,

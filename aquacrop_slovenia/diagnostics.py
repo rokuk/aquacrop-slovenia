@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from scipy.stats import pearsonr
+from sklearn.metrics import root_mean_squared_error, r2_score
 
 from aquacrop_slovenia import config
 
@@ -52,14 +53,37 @@ def mkge(predictions, targets):
     alpha = mkge_alpha(predictions, targets)
     return 1 - np.sqrt((r-1)**2 + (alpha-1)**2 + (beta-1)**2)
 
+
 def kge_r(predictions, targets):
     return pearsonr(predictions, targets)[0]
+
 
 def kge_beta(predictions, targets):
     return np.mean(predictions) / np.mean(targets)
 
+
 def kge_alpha(predictions, targets):
     return np.std(predictions) / np.std(targets)
 
+
 def mkge_alpha(predictions, targets):
     return (np.std(predictions) / np.std(targets)) / kge_beta(predictions, targets)
+
+
+def print_metrics(seasonal, observed_df, modeled_col, label):
+    merged = observed_df.merge(
+        seasonal[["Year1", modeled_col]].rename(columns={"Year1": "year", modeled_col: "modeled"}),
+        on="year",
+    )
+    y_obs = merged["yield"].values
+    y_mod = merged["modeled"].values
+    print(f"=== {label} ===")
+    print(f"  RMSE:       {root_mean_squared_error(y_obs, y_mod):.4f}")
+    print(f"  R2:         {r2_score(y_obs, y_mod):.4f}")
+    print(f"  NSE:        {nse(y_mod, y_obs):.4f}")
+    print(f"  KGE:        {kge(y_mod, y_obs):.4f}")
+    print(f"  mKGE:       {mkge(y_mod, y_obs):.4f}")
+    print(f"  KGE_r:      {kge_r(y_mod, y_obs):.4f}")
+    print(f"  KGE_beta:   {kge_beta(y_mod, y_obs):.4f}")
+    print(f"  KGE_alpha:  {kge_alpha(y_mod, y_obs):.4f}")
+    print(f"  mKGE_alpha: {mkge_alpha(y_mod, y_obs):.4f}")

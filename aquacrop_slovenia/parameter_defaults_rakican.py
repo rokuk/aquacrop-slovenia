@@ -7,9 +7,9 @@ rakican_maize_params = {
     "cycle_determination": 0,  # by growing degree-days
     "adjust_for_eto": True,
     # Temperature parameters
-    "base_temp": 8.0,
+    "base_temp": 10.0,
     "upper_temp": 30.0,
-    "gdd_cycle_length": 1466,
+    "gdd_cycle_length": 1152,
     "dormancy_eto_threshold": 50,
     # Crop water stress parameters
     "p_upper_canopy": 0.14,
@@ -51,7 +51,7 @@ rakican_maize_params = {
     "canopy_cover_per_seedling": 6.50,
     "canopy_regrowth_size": 6.50,
     "plant_density": 85900,
-    "max_canopy_cover": 0.90,
+    "max_canopy_cover": 0.90, #Srednja ocena KIS
     "canopy_growth_coefficient": 0.16312,
     "canopy_thinning_years": -9,
     "canopy_thinning_shape": -9,
@@ -66,15 +66,15 @@ rakican_maize_params = {
     "days_crop_determinancy": 1,
     "days_hi_start": 61,
     # Crop cycle parameters (Growing degree days)
-    "gdd_emergence": 38,
-    "gdd_max_rooting": 1207,
-    "gdd_senescence": 1193,
-    "gdd_maturity": 1466,
-    "gdd_flowering": 660,
-    "gdd_flowering_length": 164,
+    "gdd_emergence": 18,
+    "gdd_max_rooting": 899,
+    "gdd_senescence": 888,
+    "gdd_maturity": 1152,
+    "gdd_flowering": 440,
+    "gdd_flowering_length": 137,
     "cgc_gdd": 0.012494,
     "cdc_gdd": 0.010000,
-    "gdd_hi_start": 595,
+    "gdd_hi_start": 389,
     # Biomass and yield parameters
     "water_productivity": 33.7,
     "water_productivity_yield_formation": 100,
@@ -285,7 +285,7 @@ rakican_groundwater = GroundWater(
     params={
         'groundwater_type': 1,  # Fixed groundwater table
         'groundwater_observations': [
-            {'day': 1, 'depth': 1.8, 'ec': 0.0}
+            {'day': 1, 'depth': 2.4, 'ec': 0.0}
         ]
     }
 )

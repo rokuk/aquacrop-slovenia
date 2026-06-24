@@ -53,7 +53,7 @@ def setup_model_for_projections(working_dir, location, model, scenario, crop, so
         simulation_periods = [
             {
                 "start_date": date(year, 1, 1),
-                "end_date": date(year, 10, 10),
+                "end_date": date(year, 12, 31),
                 "planting_date": date(year, 5, 3),
                 "is_seeding_year": True,
             }
@@ -65,7 +65,7 @@ def setup_model_for_projections(working_dir, location, model, scenario, crop, so
         simulation_periods = [
             {
                 "start_date": date(year, 1, 1),
-                "end_date": date(year, 10, 10),
+                "end_date": date(year, 12, 31),
                 "planting_date": date(year, 4, 20),
                 "is_seeding_year": True,
             }
