@@ -169,7 +169,7 @@ jablje_initial_cond = InitialConditions(
         "water_layer_ec": 0.00,
         "soil_water_content_type": 0,  # For specific layers
         "soil_data": [
-            {'thickness': 4.0, 'water_content': 33.0, 'ec': 0.00}
+            {'thickness': 4.0, 'water_content': 36.3, 'ec': 0.00}
         ]
     }
 )
