@@ -6,22 +6,24 @@ import pandas as pd
 from aquacrop import Weather, Crop, Soil, AquaCrop
 
 from aquacrop_slovenia import config
-from aquacrop_slovenia.parameter_defaults_jablje import (
+from aquacrop_slovenia.projection_parameters_jablje import (
     jablje_soil_layers,
     jablje_maize_params,
     jablje_curve_number,
     jablje_readily_evaporable_water,
     jablje_optimal_management,
-    jablje_initial_cond
+    jablje_initial_cond,
+    jablje_groundwater
 )
 from aquacrop_slovenia.reading_data import get_co2_for_aquacrop, get_climate
-from aquacrop_slovenia.parameter_defaults_rakican import (
+from aquacrop_slovenia.projection_parameters_rakican import (
     rakican_soil_layers,
     rakican_curve_number,
     rakican_readily_evaporable_water,
     rakican_maize_params,
     rakican_initial_cond,
-    rakican_optimal_management
+    rakican_optimal_management,
+    rakican_groundwater
 )
 
 
@@ -82,6 +84,7 @@ def setup_model_for_projections(working_dir, location, model, scenario, crop, so
         soil=soil,
         management=management,
         initial_conditions=initial_conditions,
+        #ground_water=jablje_groundwater
         climate=weather,
         working_dir=working_dir,
         need_daily_output=False,
@@ -97,12 +100,12 @@ def run_model_projection(location, model, scenario):
     if location == "rakican":
         crop = Crop(
             name="Rakican Maize",
-            description="Rakican maize uncalibrated",
+            description="Rakican maize projections",
             params=rakican_maize_params,
         )
         soil = Soil(
             name="Rakican Soil",
-            description="Rakican silt loam soil uncalibrated",
+            description="Rakican silt loam soil projections",
             soil_layers=rakican_soil_layers,
             curve_number=rakican_curve_number,
             readily_evaporable_water=rakican_readily_evaporable_water,
@@ -110,12 +113,12 @@ def run_model_projection(location, model, scenario):
     elif location == "jablje":
         crop = Crop(
             name="Jablje Maize",
-            description="Jablje maize uncalibrated",
+            description="Jablje maize projections",
             params=jablje_maize_params,
         )
         soil = Soil(
             name="Jablje Soil",
-            description="Jablje silt loam soil uncalibrated",
+            description="Jablje silt loam soil projections",
             soil_layers=jablje_soil_layers,
             curve_number=jablje_curve_number,
             readily_evaporable_water=jablje_readily_evaporable_water,
@@ -128,6 +131,97 @@ def run_model_projection(location, model, scenario):
     try:
         simulation = setup_model_for_projections(working_dir, location, model, scenario, crop, soil)
         results = simulation.run()
+    finally:
+        shutil.rmtree(working_dir, ignore_errors=True)
+    return results["season"][["Year1", "Y(dry)"]]
+
+
+def run_historical_simulation(location: str) -> pd.DataFrame:
+    """Run AquaCrop for the calibration period using station weather data.
+
+    Returns the season DataFrame with columns Year1 and Y(dry).
+    """
+    if location == "jablje":
+        from aquacrop_slovenia.reading_data import get_station_weather
+        temperatures, eto, precip = get_station_weather(8)
+        first_year = 1993
+        exclude = {2017}
+        crop = Crop(name="Jablje Maize", description="", params=jablje_maize_params)
+        soil = Soil(
+            name="Jablje Soil",
+            description="",
+            soil_layers=jablje_soil_layers,
+            curve_number=jablje_curve_number,
+            readily_evaporable_water=jablje_readily_evaporable_water,
+        )
+        simulation_periods = [
+            {
+                "start_date": date(year, 1, 1),
+                "end_date": date(year, 12, 31),
+                "planting_date": date(year, 5, 3),
+                "is_seeding_year": True,
+            }
+            for year in range(1993, 2024)
+            if year not in exclude
+        ]
+        management = jablje_optimal_management
+        initial_conditions = jablje_initial_cond
+    elif location == "rakican":
+        from aquacrop_slovenia.reading_data import get_station_weather
+        temperatures, eto, precip = get_station_weather(355)
+        first_year = 1993
+        exclude = {1998, 2023, 2017}
+        crop = Crop(name="Rakican Maize", description="", params=rakican_maize_params)
+        soil = Soil(
+            name="Rakican Soil",
+            description="",
+            soil_layers=rakican_soil_layers,
+            curve_number=rakican_curve_number,
+            readily_evaporable_water=rakican_readily_evaporable_water,
+        )
+        simulation_periods = [
+            {
+                "start_date": date(year, 1, 1),
+                "end_date": date(year, 12, 31),
+                "planting_date": date(year, 4, 20),
+                "is_seeding_year": True,
+            }
+            for year in range(1993, 2024)
+            if year not in exclude
+        ]
+        management = rakican_optimal_management
+        initial_conditions = rakican_initial_cond
+    else:
+        raise ValueError(f"Unknown location: {location}")
+
+    co2 = get_co2_for_aquacrop("historical")
+    weather = Weather(
+        location=location,
+        temperatures=temperatures,
+        eto_values=eto,
+        rainfall_values=precip,
+        record_type=1,
+        first_day=1,
+        first_month=1,
+        first_year=first_year,
+        co2_records=co2,
+    )
+    working_dir = config.RAMDISK_DIR / f"hist_{location}"
+    try:
+        sim = AquaCrop(
+            simulation_periods=simulation_periods,
+            crop=crop,
+            soil=soil,
+            management=management,
+            initial_conditions=initial_conditions,
+            climate=weather,
+            working_dir=working_dir,
+            need_daily_output=False,
+            need_seasonal_output=True,
+            need_harvest_output=False,
+            need_evaluation_output=False,
+        )
+        results = sim.run()
     finally:
         shutil.rmtree(working_dir, ignore_errors=True)
     return results["season"][["Year1", "Y(dry)"]]

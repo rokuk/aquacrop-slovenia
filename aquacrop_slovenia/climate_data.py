@@ -254,6 +254,9 @@ def prepare_climate_data(location: str) -> None:
 
         path = config.INTERIM_CLIMATE_DIR / f"{location}_{model}_{scenario}.csv"
         df = pd.read_csv(path, index_col="time", parse_dates=True)
+        # Fill missing calendar days (e.g. Feb 29 absent in 365-day calendar models)
+        full_range = pd.date_range(df.index.min(), df.index.max(), freq="D")
+        df = df.reindex(full_range).ffill()
         temperatures = list(zip(df["tasmin"] - 273.15, df["tasmax"] - 273.15))
         eto_values = (df["evspsblpot"] * 86400).tolist()
         rainfall_values = (df["pr"] * 86400).tolist()
