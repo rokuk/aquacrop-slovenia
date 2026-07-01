@@ -70,6 +70,24 @@ def mkge_alpha(predictions, targets):
     return (np.std(predictions) / np.std(targets)) / kge_beta(predictions, targets)
 
 
+def willmott_d(predictions, targets):
+    obs_mean = np.mean(targets)
+    numerator = np.sum((targets - predictions) ** 2)
+    denominator = np.sum((np.abs(predictions - obs_mean) + np.abs(targets - obs_mean)) ** 2)
+    return 1 - numerator / denominator
+
+
+# Willmott's refined index of agreement (Willmott et al., 2012)
+def willmott_dr(predictions, targets):
+    obs_mean = np.mean(targets)
+    abs_errors = np.sum(np.abs(predictions - targets))
+    potential = 2 * np.sum(np.abs(targets - obs_mean))
+    if abs_errors <= potential:
+        return 1 - abs_errors / potential
+    else:
+        return potential / abs_errors - 1
+
+
 def print_metrics(seasonal, observed_df, modeled_col, label):
     merged = observed_df.merge(
         seasonal[["Year1", modeled_col]].rename(columns={"Year1": "year", modeled_col: "modeled"}),
@@ -87,3 +105,5 @@ def print_metrics(seasonal, observed_df, modeled_col, label):
     print(f"  KGE_beta:   {kge_beta(y_mod, y_obs):.4f}")
     print(f"  KGE_alpha:  {kge_alpha(y_mod, y_obs):.4f}")
     print(f"  mKGE_alpha: {mkge_alpha(y_mod, y_obs):.4f}")
+    print(f"  Willmott d: {willmott_d(y_mod, y_obs):.4f}")
+    print(f"  Willmott dr:{willmott_dr(y_mod, y_obs):.4f}")

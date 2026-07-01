@@ -21,6 +21,39 @@ These parameters were changed from the default Aquacrop file Maize.GDD and are a
 Growing degree days (GDD) are calculated using the default calendar days at each location. GDDs between phenological phases are averaged over the years. Those averages are used as Aquacrop parameters.
 
 ## Soil parameters
+Source: Deset let trajnih poskusov IOSDV v Sloveniji, Jablje in Rakičan 1993-2003: zbornik posveta, Žalec 12. december 2003, ISBN 961-90884-2-5
+
+We use clay, silt, sand and bulk density to estimate Ksat and theta_s using Rosetta model 3 https://doi.org/10.1016/j.jhydrol.2017.01.004.
+
+#### Jablje
+
+|               | Size Range (µm) |            | 
+|---------------|-----------------|------------|
+| Clay          | < 2.0           | 16.77 %    |
+| Silt (fine)   | 6.3–2.0         | 13.43 %    |
+| Silt (medium) | 20–6.3          | 17.47 %    |
+| Silt (coarse) | 63–20           | 24.63 %    |
+| Sand (fine)   | 200–63          | 23.22 %    |
+| Sand (medium) | 630–200         | 3.98 %     |
+| Sand (coarse) | 2000–630        | 0.51 %     |
+| Bulk density  | —               | 1.55 g/cm³ |
+
+### Rakičan
+
+|               | Size Range (µm) |            | 
+|---------------|-----------------|------------|
+| Clay          | < 2.0           | 14.67 %    |
+| Silt (fine)   | 6.3–2.0         | 5.68 %     |
+| Silt (medium) | 20–6.3          | 7.80 %     |
+| Silt (coarse) | 63–20           | 17.72 %    |
+| Sand (fine)   | 200–63          | 38.11 %    |
+| Sand (medium) | 630–200         | 15.31 %    |
+| Sand (coarse) | 2000–630        | 0.62 %     |
+| Bulk density  | —               | 1.61 g/cm³ |
+
+
+
+### Other sources
 
 V diplomi Vučko K. UL BF agro 2009 so podatki o tleh:
 FC do 135 cm 21.7 V%, PWP do 135 cm 9.3 V% za Rakičan

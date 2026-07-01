@@ -43,6 +43,7 @@ dependencies = [
     { name = "pyarrow" },
     { name = "pylint" },
     { name = "pyrefly" },
+    { name = "rosetta-soil" },
     { name = "ruff" },
     { name = "scikit-learn" },
     { name = "scipy" },
@@ -71,6 +72,7 @@ requires-dist = [
     { name = "pyarrow", specifier = ">=24.0.0" },
     { name = "pylint", specifier = ">=4.0.5" },
     { name = "pyrefly", specifier = ">=0.60.0" },
+    { name = "rosetta-soil", specifier = ">=0.3.2" },
     { name = "ruff", specifier = ">=0.15.12" },
     { name = "scikit-learn", specifier = ">=1.8.0" },
     { name = "scipy", specifier = ">=1.17.1" },
@@ -1605,6 +1607,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/43/b8/7a707d60fea4c49094e40262cc0e2ca6c768cca21587e34d3f705afec47e/requests-2.34.0.tar.gz", hash = "sha256:7d62fe92f50eb82c529b0916bb445afa1531a566fc8f35ffdc64446e771b856a", size = 142436, upload-time = "2026-05-11T19:29:51.717Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/ef/e6/e300fce5fe83c30520607a015dabd985df3251e188d234bfe9492e17a389/requests-2.34.0-py3-none-any.whl", hash = "sha256:917520a21b767485ce7c588f4ebb917c436b24a31231b44228715eaeb5a52c60", size = 73021, upload-time = "2026-05-11T19:29:49.923Z" },
+]
+
+[[package]]
+name = "rosetta-soil"
+version = "0.3.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "numpy" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/fa/ac/88d40db94ce420ee7bcab340c37aba9954dcc98282c766275fa001975605/rosetta_soil-0.3.2.tar.gz", hash = "sha256:d3490ca70f8bbaa235902d5adf53b7db559a71514c10ae8d5e58969f855c2d28", size = 2452820, upload-time = "2026-03-02T23:38:51.208Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/10/09/6fcc197f198e295500ded793cc0630f313cb5c542e6b6da2d2e22e7a3d1d/rosetta_soil-0.3.2-py3-none-any.whl", hash = "sha256:aa2b61f9ed51ecce9c1962c9172f4a55bdf8e598eeaa1e185046e73591141af2", size = 2465228, upload-time = "2026-03-02T23:38:53.691Z" },
 ]
 
 [[package]]

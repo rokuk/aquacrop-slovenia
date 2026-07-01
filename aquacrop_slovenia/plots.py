@@ -8,6 +8,7 @@ from loguru import logger
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from scipy import stats
 import xarray as xr
 
 from aquacrop_slovenia import config
@@ -363,17 +364,43 @@ def plot_yield_timeseries_residuals(
         DataFrame from get_yield(); must contain "year" and "yield" columns.
     """
     fig, ax = plt.subplots()
-    ax.plot(
-        model["Year1"],
-        model[varname] - truth["yield"],
-        marker="o",
-        markersize=4,
-        linewidth=1.2,
-        label="residuals",
-    )
+    residuals = model[varname].values - truth["yield"].values
+    ax.stem(model["Year1"], residuals)
+    ax.axhline(0, color="black", linewidth=0.8, linestyle="--")
     ax.set_xlabel("Year")
     ax.set_title(f"Modelled minus observed maize {varname}")
-    ax.legend()
+    fig.tight_layout()
+
+
+def plot_yield_residuals_histogram(
+    model: pd.DataFrame,
+    truth: pd.DataFrame,
+    varname: str,
+) -> plt.Figure:
+    fig, ax = plt.subplots()
+    residuals = model[varname].values - truth["yield"].values
+    ax.hist(residuals, bins="auto", edgecolor="white")
+    ax.axvline(0, color="black", linewidth=0.8, linestyle="--")
+    ax.set_xlabel("Residual (t ha⁻¹)")
+    ax.set_ylabel("Count")
+    ax.set_title(f"Residual histogram — maize {varname}")
+    fig.tight_layout()
+
+
+def plot_yield_residuals_qq(
+    model: pd.DataFrame,
+    truth: pd.DataFrame,
+    varname: str,
+) -> plt.Figure:
+    fig, ax = plt.subplots()
+    residuals = model[varname].values - truth["yield"].values
+    (osm, osr), (slope, intercept, _) = stats.probplot(residuals, dist="norm")
+    ax.scatter(osm, osr, s=30, zorder=3)
+    x = np.array([osm[0], osm[-1]])
+    ax.plot(x, slope * x + intercept, color="gray", linewidth=1, linestyle="--")
+    ax.set_xlabel("Theoretical quantiles")
+    ax.set_ylabel("Sample quantiles")
+    ax.set_title(f"Q-Q plot of residuals — maize {varname}")
     fig.tight_layout()
 
 
