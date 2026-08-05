@@ -166,7 +166,7 @@ def plot_grid_points(
 
 _SCENARIO_ORDER = ["hist", "rcp26", "rcp45", "rcp85"]
 _SCENARIO_LABELS = {
-    "hist": "Historical (obs)",
+    "hist": "Historical",
     "rcp26": "RCP 2.6",
     "rcp45": "RCP 4.5",
     "rcp85": "RCP 8.5",
@@ -322,6 +322,7 @@ def plot_yield_timeseries_comparison(
     model: pd.DataFrame,
     truth: pd.DataFrame,
     varname: str,
+    location: str,
 ) -> plt.Figure:
     """Plot modelled vs observed yield over time on the same axes.
 
@@ -331,6 +332,8 @@ def plot_yield_timeseries_comparison(
         results["season"] DataFrame; must contain "Year1" and varname columns.
     truth:
         DataFrame from get_yield(); must contain "year" and "yield" columns.
+    location:
+        Used as the plot title, e.g. "jablje" or "rakican".
     """
     all_years = pd.RangeIndex(
         min(model["Year1"].min(), truth["year"].min()),
@@ -344,7 +347,8 @@ def plot_yield_timeseries_comparison(
     ax.plot(all_years, truth_s, marker="s", markersize=4, linewidth=1.2, label="Observed")
     ax.set_ylim(bottom=0)
     ax.set_xlabel("Year")
-    ax.set_title(f"Modelled vs observed maize {varname}")
+    ax.set_ylabel(varname + (" [t/ha]" if (varname in ["Y(dry)", "BioMass"]) else ""))
+    ax.set_title(location)
     ax.legend()
     fig.tight_layout()
 
@@ -497,6 +501,181 @@ def plot_observed_yield(
     return figs
 
 
+def add_reference_boxplots(
+    ax: plt.Axes,
+    center: float,
+    hist_results: pd.DataFrame | None,
+    obs_yields: pd.DataFrame | None,
+    box_width: float = 0.20,
+    box_gap: float = 0.04,
+    vert: bool = True,
+) -> None:
+    """Draw measured/historical-modelled reference boxplots centred on `center`.
+
+    Used to add a "ground truth" reference group to a projections plot: the
+    station-based historical model run and/or the observed yields. Also adds
+    proxy legend entries (via zero-length `ax.plot` calls) for each box drawn;
+    call `ax.legend()` afterwards to show them.
+
+    `center`/`box_width`/`box_gap` are along the position axis (x if `vert`, else
+    y); set `vert=False` to draw the boxes horizontally, e.g. as a strip above a
+    yield-on-x-axis histogram.
+    """
+    ref_items = []
+    if obs_yields is not None:
+        ref_items.append((obs_yields["yield"].values, "gold", None, "izmerjeno"))
+    if hist_results is not None:
+        ref_items.append((hist_results["Y(dry)"].values, "#555555", "///", "AquaCrop"))
+    n_ref = len(ref_items)
+
+    for k, (data, color, hatch, label) in enumerate(ref_items):
+        x = center + (k - (n_ref - 1) / 2) * (box_width + box_gap)
+        bp = ax.boxplot([data], positions=[x], widths=box_width * 0.85, vert=vert,
+                        patch_artist=True, manage_ticks=False)
+        bp["boxes"][0].set_facecolor(color)
+        bp["boxes"][0].set_alpha(0.75)
+        if hatch:
+            bp["boxes"][0].set_hatch(hatch)
+        ec = "goldenrod" if color == "gold" else color
+        for key in ("whiskers", "caps", "fliers"):
+            for line in bp[key]:
+                line.set_color(ec)
+        for line in bp["medians"]:
+            line.set_color("black" if color == "gold" else "white")
+        ax.plot([], [], color=color, linewidth=3, alpha=0.75, label=label)
+
+
+def add_reference_violins(
+    ax: plt.Axes,
+    center: float,
+    hist_results: pd.DataFrame | None,
+    obs_yields: pd.DataFrame | None,
+    violin_width: float = 0.20,
+    box_gap: float = 0.04,
+) -> None:
+    """Draw measured/historical-modelled reference violins centred on `center`.
+
+    Same reference data and color scheme as `add_reference_boxplots`, but drawn
+    as violins so they match a violin-plot main panel. Also adds proxy legend
+    entries; call `ax.legend()` afterwards to show them.
+    """
+    ref_items = []
+    if obs_yields is not None:
+        ref_items.append((obs_yields["yield"].values, "gold", None, "measured"))
+    if hist_results is not None:
+        ref_items.append((hist_results["Y(dry)"].values, "#555555", "///", "historical (modelled)"))
+    n_ref = len(ref_items)
+
+    for k, (data, color, hatch, label) in enumerate(ref_items):
+        x = center + (k - (n_ref - 1) / 2) * (violin_width + box_gap)
+        parts = ax.violinplot(
+            [data], positions=[x], widths=violin_width * 0.9, showmedians=True, showextrema=True
+        )
+        for body in parts["bodies"]:
+            body.set_facecolor(color)
+            body.set_alpha(0.6)
+            if hatch:
+                body.set_hatch(hatch)
+        ec = "goldenrod" if color == "gold" else color
+        for key in ("cmins", "cmaxes", "cbars"):
+            parts[key].set_color(ec)
+        parts["cmedians"].set_color("black")
+        parts["cmedians"].set_linewidth(1.5)
+        ax.plot([], [], color=color, linewidth=3, alpha=0.75, label=label)
+
+
+def add_raincloud(
+    ax: plt.Axes,
+    data: np.ndarray,
+    x: float,
+    width: float,
+    color: str,
+    hatch: str | None = None,
+    alpha: float = 0.6,
+    rng: np.random.Generator | None = None,
+) -> None:
+    """Draw one raincloud — a half-violin "cloud", a thin boxplot, and jittered "rain" points.
+
+    The cloud sits to the right of `x` with its flat edge at `x`; the box sits just left
+    of the cloud; the jittered raw points sit further left still. `width` is the group's
+    full footprint along the position axis, i.e. the same `width` you'd pass to a grouped
+    `ax.boxplot`/`ax.violinplot` at the same position.
+    """
+    data = np.asarray(data)
+    if data.size == 0:
+        return
+    if rng is None:
+        rng = np.random.default_rng(0)
+
+    # Cloud: half-violin, right half only (flat edge at x). Degenerate (near-constant)
+    # data has no density to show, so skip straight to the box + rain in that case.
+    if data.size >= 2 and np.ptp(data) > 0:
+        parts = ax.violinplot(
+            [data], positions=[x], widths=width, showmedians=False, showextrema=False
+        )
+        body = parts["bodies"][0]
+        verts = body.get_paths()[0].vertices
+        verts[:, 0] = np.clip(verts[:, 0], x, None)
+        body.set_facecolor(color)
+        body.set_edgecolor(color)
+        body.set_alpha(alpha)
+        if hatch:
+            body.set_hatch(hatch)
+
+    # Box: thin, centred just left of the cloud's flat edge
+    box_x = x - width * 0.22
+    bp = ax.boxplot(
+        [data], positions=[box_x], widths=width * 0.18, patch_artist=True,
+        manage_ticks=False, showfliers=False, zorder=3,
+    )
+    bp["boxes"][0].set_facecolor("white")
+    bp["boxes"][0].set_edgecolor(color)
+    bp["boxes"][0].set_linewidth(1.2)
+    for key in ("whiskers", "caps"):
+        for line in bp[key]:
+            line.set_color(color)
+    for line in bp["medians"]:
+        line.set_color(color)
+        line.set_linewidth(1.5)
+
+    # Rain: jittered raw points, further left again
+    jitter = rng.uniform(-width * 0.18, width * 0.02, size=data.size)
+    ax.scatter(
+        x - width * 0.42 + jitter, data, color=color, alpha=min(alpha + 0.15, 0.9),
+        s=5, edgecolors="none", zorder=2,
+    )
+
+
+def add_reference_rainclouds(
+    ax: plt.Axes,
+    center: float,
+    hist_results: pd.DataFrame | None,
+    obs_yields: pd.DataFrame | None,
+    cloud_width: float = 0.35,
+    box_gap: float = 0.06,
+    rng: np.random.Generator | None = None,
+) -> None:
+    """Draw measured/historical-modelled reference rainclouds centred on `center`.
+
+    Same reference data and color scheme as `add_reference_boxplots`, but drawn via
+    `add_raincloud` so they match a raincloud-plot main panel. Also adds proxy legend
+    entries; call `ax.legend()` afterwards to show them.
+    """
+    ref_items = []
+    if obs_yields is not None:
+        ref_items.append((obs_yields["yield"].values, "gold", None, "izmerjeno"))
+    if hist_results is not None:
+        ref_items.append((hist_results["Y(dry)"].values, "#555555", "///", "AquaCrop"))
+    n_ref = len(ref_items)
+    if rng is None:
+        rng = np.random.default_rng(0)
+
+    for k, (data, color, hatch, label) in enumerate(ref_items):
+        x = center + (k - (n_ref - 1) / 2) * (cloud_width + box_gap)
+        add_raincloud(ax, data, x, cloud_width, color, hatch=hatch, rng=rng)
+        ax.plot([], [], color=color, linewidth=3, alpha=0.75, label=label)
+
+
 def plot_yield_projections_boxplot_with_hist(
     projections: dict,
     location: str,
@@ -504,11 +683,116 @@ def plot_yield_projections_boxplot_with_hist(
     obs_yields: pd.DataFrame | None = None,
     figsize: tuple[float, float] | None = None,
 ) -> plt.Figure:
-    """Boxplot of projected yield by period with historical run and observations as a separate period.
+    """Boxplot of projected yield by period, with historical run and observations in their own subplot.
 
-    The x-axis has a dedicated "Observed period" group (index 0) for the station-based
-    model run and observed yields, followed by the four 30-year projection periods.
-    One subplot per scenario; y-axis is dry yield.
+    The observed/historical-modelled reference gets a dedicated (narrower) subplot on
+    the left, titled like the scenario subplots via `_SCENARIO_LABELS["hist"]`. One
+    further subplot per scenario shows the four 30-year projection periods, one box per
+    climate model. Y-axis (dry yield) is shared across all subplots.
+
+    Parameters
+    ----------
+    hist_results:
+        Season DataFrame from run_historical_simulation() with columns Year1, Y(dry).
+    obs_yields:
+        Observed yield DataFrame from get_yield_for_comparison() with columns year, yield.
+    """
+    from aquacrop_slovenia.yield_projections import PERIODS
+
+    scenarios = sorted({sc for _, sc in projections})
+    model_names = sorted({model for model, _ in projections})
+    period_labels = list(PERIODS.keys())
+    n_models = len(model_names)
+    n_scenarios = len(scenarios)
+
+    colors = plt.rcParams["axes.prop_cycle"].by_key()["color"]
+    group_width = 0.65
+    box_width = group_width / n_models
+    ref_box_width = 0.6
+
+    has_ref = hist_results is not None or obs_yields is not None
+    n_panels = n_scenarios + (1 if has_ref else 0)
+
+    if figsize is None:
+        figsize = (0.15 * (1 if has_ref else 0) * 7 + 5 * n_scenarios, 5)
+
+    width_ratios = ([0.15] if has_ref else []) + [1] * n_scenarios
+    fig, axes = plt.subplots(
+        1, n_panels, figsize=figsize, sharey=True,
+        gridspec_kw={"width_ratios": width_ratios, "wspace": 0.08},
+    )
+    if n_panels == 1:
+        axes = [axes]
+
+    if has_ref:
+        ref_ax = axes[0]
+        add_reference_boxplots(ref_ax, 0, hist_results, obs_yields, box_width=ref_box_width)
+        ref_ax.set_xticks([0])
+        ref_ax.set_xticklabels(["Obs. period\n(1993–2023)"])
+        ref_ax.set_title(_SCENARIO_LABELS.get("hist"))
+        ref_ax.set_ylabel("Dry yield (t/ha)")
+        ref_ax.legend(fontsize=8, frameon=False)
+        scenario_axes = axes[1:]
+    else:
+        scenario_axes = axes
+        scenario_axes[0].set_ylabel("Dry yield (t/ha)")
+
+    for ax, scenario in zip(scenario_axes, scenarios):
+        # One box per climate model within each 30-year period
+        for i, model in enumerate(model_names):
+            if (model, scenario) not in projections:
+                continue
+            result = projections[(model, scenario)]
+            color = colors[i % len(colors)]
+            positions, data = [], []
+            for j, (plabel, (start, end)) in enumerate(PERIODS.items()):
+                s = result.loc[
+                    (result["Year1"] >= start) & (result["Year1"] <= end), "Y(dry)"
+                ].values
+                positions.append(j + (i - (n_models - 1) / 2) * box_width)
+                data.append(s)
+            bp = ax.boxplot(data, positions=positions, widths=box_width * 0.85,
+                            patch_artist=True, manage_ticks=False)
+            for patch in bp["boxes"]:
+                patch.set_facecolor(color)
+                patch.set_alpha(0.6)
+            for key in ("whiskers", "caps", "fliers"):
+                for line in bp[key]:
+                    line.set_color(color)
+            for line in bp["medians"]:
+                line.set_color("black")
+            ax.plot([], [], color=color, linewidth=3, label=model)
+
+        ax.set_xticks(range(len(period_labels)))
+        ax.set_xticklabels(period_labels)
+        ax.set_title(_SCENARIO_LABELS.get(scenario, scenario))
+        ax.legend(fontsize=8, frameon=False)
+
+    fig.suptitle(
+        f"AquaCrop yield projections — {location.capitalize()} — 30-year period distributions",
+        fontsize=13,
+    )
+    fig.tight_layout()
+    # tight_layout() recomputes spacing to fit the tick labels, undoing the gridspec
+    # wspace above — reapply it afterwards so the panels stay tight.
+    fig.subplots_adjust(wspace=0.08)
+    return fig
+
+
+def plot_yield_projections_raincloud_with_hist(
+    projections: dict,
+    location: str,
+    hist_results: pd.DataFrame | None = None,
+    obs_yields: pd.DataFrame | None = None,
+    figsize: tuple[float, float] | None = None,
+) -> plt.Figure:
+    """Raincloud plot of projected yield by period with historical run and observations as a separate period.
+
+    Same layout as `plot_yield_projections_boxplot_with_hist` — periods on the x-axis,
+    a dedicated "Observed period" group (index 0) for the station-based model run and
+    observed yields, then one group per climate model within each of the four 30-year
+    projection periods — but each group is drawn as a raincloud (half-violin density +
+    thin boxplot + jittered raw points, via `add_raincloud`) instead of a plain box.
 
     Parameters
     ----------
@@ -525,13 +809,21 @@ def plot_yield_projections_boxplot_with_hist(
     n_models = len(model_names)
 
     colors = plt.rcParams["axes.prop_cycle"].by_key()["color"]
-    group_width = 0.65
-    box_width = group_width / n_models
-    ref_box_width = 0.20
+    group_width = 0.6
+    cloud_width = group_width / n_models
+    ref_cloud_width = cloud_width  # measured/historical clouds match a single model's width
+    ref_box_gap = 0.06
+    period_spacing = 0.8  # < 1.0 pulls period groups closer together (group_width unchanged)
 
-    # x positions: 0 = observed period, 1..4 = projection periods
+    # x positions: 0 = observed period, 1..4 = projection periods. The observed-period
+    # group only has up to 2 clouds (vs. n_models), so its footprint — and hence the
+    # offset to the first projection period — is sized from its own item count rather
+    # than reusing group_width, keeping the gap to the first period visually consistent.
     has_ref = hist_results is not None or obs_yields is not None
-    proj_offset = 1 if has_ref else 0
+    n_ref = int(obs_yields is not None) + int(hist_results is not None)
+    ref_group_width = n_ref * ref_cloud_width + max(n_ref - 1, 0) * ref_box_gap
+    period_gap = period_spacing - group_width  # empty gap between adjacent period groups
+    proj_offset = ref_group_width / 2 + period_gap + group_width / 2 if has_ref else 0
     all_xtick_positions = []
     all_xtick_labels = []
 
@@ -540,77 +832,59 @@ def plot_yield_projections_boxplot_with_hist(
         all_xtick_labels.append("Obs. period\n(1993–2023)")
 
     for j, label in enumerate(period_labels):
-        all_xtick_positions.append(j + proj_offset)
+        all_xtick_positions.append(j * period_spacing + proj_offset)
         all_xtick_labels.append(label)
 
     if figsize is None:
-        figsize = (7 * len(scenarios), 5)
+        figsize = (12, 3.5 * len(scenarios))
 
-    fig, axes = plt.subplots(1, len(scenarios), figsize=figsize, sharey=True)
+    fig, axes = plt.subplots(len(scenarios), 1, figsize=figsize, sharex=True)
     if len(scenarios) == 1:
         axes = [axes]
+
+    rng = np.random.default_rng(0)
 
     for ax, scenario in zip(axes, scenarios):
         # Observed-period group: hist run and obs side by side
         if has_ref:
-            n_ref = sum([hist_results is not None, obs_yields is not None])
-            ref_items = []
-            if obs_yields is not None:
-                ref_items.append((obs_yields["yield"].values, "gold", None, "measured"))
-            if hist_results is not None:
-                ref_items.append((hist_results["Y(dry)"].values, "#555555", "///", "historical (modelled)"))
+            add_reference_rainclouds(
+                ax, 0, hist_results, obs_yields,
+                cloud_width=ref_cloud_width, box_gap=ref_box_gap, rng=rng,
+            )
 
-            for k, (data, color, hatch, label) in enumerate(ref_items):
-                x = (k - (n_ref - 1) / 2) * (ref_box_width + 0.04)
-                bp = ax.boxplot([data], positions=[x], widths=ref_box_width * 0.85,
-                                patch_artist=True, manage_ticks=False)
-                bp["boxes"][0].set_facecolor(color)
-                bp["boxes"][0].set_alpha(0.75)
-                if hatch:
-                    bp["boxes"][0].set_hatch(hatch)
-                ec = "goldenrod" if color == "gold" else color
-                for key in ("whiskers", "caps", "fliers"):
-                    for line in bp[key]:
-                        line.set_color(ec)
-                for line in bp["medians"]:
-                    line.set_color("black" if color == "gold" else "white")
-                ax.plot([], [], color=color, linewidth=3, alpha=0.75, label=label)
-
-        # Projection period groups: one box per climate model
+        # Projection period groups: one raincloud per climate model
         for i, model in enumerate(model_names):
             if (model, scenario) not in projections:
                 continue
             result = projections[(model, scenario)]
             color = colors[i % len(colors)]
-            positions, data = [], []
             for j, (plabel, (start, end)) in enumerate(PERIODS.items()):
                 s = result.loc[
                     (result["Year1"] >= start) & (result["Year1"] <= end), "Y(dry)"
                 ].values
-                positions.append(j + proj_offset + (i - (n_models - 1) / 2) * box_width)
-                data.append(s)
-            bp = ax.boxplot(data, positions=positions, widths=box_width * 0.85,
-                            patch_artist=True, manage_ticks=False)
-            for patch in bp["boxes"]:
-                patch.set_facecolor(color)
-                patch.set_alpha(0.6)
-            for key in ("whiskers", "caps", "fliers"):
-                for line in bp[key]:
-                    line.set_color(color)
-            for line in bp["medians"]:
-                line.set_color("black")
+                if len(s) == 0:
+                    continue
+                x = j * period_spacing + proj_offset + (i - (n_models - 1) / 2) * cloud_width
+                add_raincloud(ax, s, x, cloud_width, color, rng=rng)
             ax.plot([], [], color=color, linewidth=3, label=model)
 
         # Divider between observed period and projection periods
         if has_ref:
-            ax.axvline(0.5, color="gray", linewidth=0.8, linestyle="--", alpha=0.5)
+            divider_x = ref_group_width / 2 + period_gap / 2
+            ax.axvline(divider_x, color="gray", linewidth=0.8, linestyle="--", alpha=0.5)
 
         ax.set_xticks(all_xtick_positions)
-        ax.set_xticklabels(all_xtick_labels)
+        ax.set_ylabel("Dry yield (t ha⁻¹)")
         ax.set_title(_SCENARIO_LABELS.get(scenario, scenario))
-        ax.legend(fontsize=8)
+        # Hang the legend just outside the axes, bottom-left, so it doesn't eat into
+        # (or sit on top of) the obs./first-period raincloud. tight_layout() then
+        # grows the left margin by exactly as much as the legend needs.
+        ax.legend(fontsize=8, loc="lower left", frameon=False)
 
-    axes[0].set_ylabel("Dry yield (t ha⁻¹)")
+    # Only the bottom subplot needs x-tick labels; the rest share the same x-axis.
+    for ax in axes[:-1]:
+        ax.tick_params(labelbottom=False)
+    axes[-1].set_xticklabels(all_xtick_labels)
     fig.suptitle(
         f"AquaCrop yield projections — {location.capitalize()} — 30-year period distributions",
         fontsize=13,
@@ -622,12 +896,23 @@ def plot_yield_projections_boxplot_with_hist(
 def plot_yield_projections_by_period(
     projections: dict,
     location: str,
+    hist_results: pd.DataFrame | None = None,
+    obs_yields: pd.DataFrame | None = None,
     figsize: tuple[float, float] | None = None,
 ) -> plt.Figure:
     """Histogram/density of projected yield by 30-year period, one subplot per scenario.
 
     Periods are on the x-axis; yield is on the y-axis. The distribution shape
-    (violin = KDE density) is shown for each period, with all models pooled.
+    (violin = KDE density) is shown for each period, with all models pooled. If
+    `hist_results` and/or `obs_yields` are given, a dedicated "Observed period"
+    reference group (boxplots) is added before the projection periods.
+
+    Parameters
+    ----------
+    hist_results:
+        Season DataFrame from run_historical_simulation() with columns Year1, Y(dry).
+    obs_yields:
+        Observed yield DataFrame from get_yield_for_comparison() with columns year, yield.
     """
     from aquacrop_slovenia.yield_projections import PERIODS
 
@@ -635,6 +920,9 @@ def plot_yield_projections_by_period(
     model_names = sorted({model for model, _ in projections})
     period_labels = list(PERIODS.keys())
     n_scenarios = len(scenarios)
+
+    has_ref = hist_results is not None or obs_yields is not None
+    proj_offset = 1 if has_ref else 0
 
     if figsize is None:
         figsize = (5 * n_scenarios, 5)
@@ -651,6 +939,9 @@ def plot_yield_projections_by_period(
     }
 
     for ax, scenario in zip(axes, scenarios):
+        if has_ref:
+            add_reference_violins(ax, 0, hist_results, obs_yields, violin_width=0.5)
+
         data_by_period = []
         for label, (start, end) in PERIODS.items():
             all_yields = []
@@ -664,7 +955,7 @@ def plot_yield_projections_by_period(
                 all_yields.extend(s)
             data_by_period.append(all_yields)
 
-        positions = list(range(len(period_labels)))
+        positions = [j + proj_offset for j in range(len(period_labels))]
         parts = ax.violinplot(
             data_by_period, positions=positions, showmedians=True, showextrema=True
         )
@@ -674,13 +965,220 @@ def plot_yield_projections_by_period(
         parts["cmedians"].set_color("black")
         parts["cmedians"].set_linewidth(1.5)
 
-        ax.set_xticks(positions)
-        ax.set_xticklabels(period_labels, rotation=15, ha="right")
+        if has_ref:
+            ax.axvline(0.5, color="gray", linewidth=0.8, linestyle="--", alpha=0.5)
+
+        xtick_positions = ([0] if has_ref else []) + positions
+        xtick_labels = (["Obs. period\n(1993–2023)"] if has_ref else []) + period_labels
+        ax.set_xticks(xtick_positions)
+        ax.set_xticklabels(xtick_labels, rotation=15, ha="right")
         ax.set_title(_SCENARIO_LABELS.get(scenario, scenario))
+        if has_ref:
+            ax.legend(fontsize=8)
 
     axes[0].set_ylabel("Dry yield (t ha⁻¹)")
     fig.suptitle(
         f"AquaCrop yield projections — {location.capitalize()} — 30-year period distributions",
+        fontsize=13,
+    )
+    fig.tight_layout()
+    return fig
+
+
+def plot_yield_projections_by_model(
+    projections: dict,
+    location: str,
+    hist_results: pd.DataFrame | None = None,
+    obs_yields: pd.DataFrame | None = None,
+    figsize: tuple[float, float] | None = None,
+) -> plt.Figure:
+    """Histogram/density of projected yield by climate model, one subplot per scenario.
+
+    Models are on the x-axis; yield is on the y-axis. Within each model group, one
+    violin per 30-year period shows how that model's own distribution shifts over
+    time (as opposed to `plot_yield_projections_by_period`, which pools all models
+    together within each period). If `hist_results` and/or `obs_yields` are given,
+    a dedicated "Observed" reference group (boxplots) is added before the models.
+
+    Parameters
+    ----------
+    hist_results:
+        Season DataFrame from run_historical_simulation() with columns Year1, Y(dry).
+    obs_yields:
+        Observed yield DataFrame from get_yield_for_comparison() with columns year, yield.
+    """
+    from aquacrop_slovenia.yield_projections import PERIODS
+
+    scenarios = sorted({sc for _, sc in projections})
+    model_names = sorted({model for model, _ in projections})
+    period_labels = list(PERIODS.keys())
+    n_periods = len(period_labels)
+    n_scenarios = len(scenarios)
+
+    has_ref = hist_results is not None or obs_yields is not None
+    proj_offset = 1 if has_ref else 0
+
+    if figsize is None:
+        figsize = (5 * n_scenarios, 5)
+
+    fig, axes = plt.subplots(1, n_scenarios, figsize=figsize, sharey=True)
+    if n_scenarios == 1:
+        axes = [axes]
+
+    period_colors = {
+        "1981-2010": "steelblue",
+        "2011-2040": "darkorange",
+        "2041-2070": "seagreen",
+        "2071-2100": "firebrick",
+    }
+
+    group_width = 0.8
+    violin_width = group_width / n_periods
+
+    for ax, scenario in zip(axes, scenarios):
+        if has_ref:
+            add_reference_violins(ax, 0, hist_results, obs_yields, violin_width=group_width)
+
+        for i, model in enumerate(model_names):
+            if (model, scenario) not in projections:
+                continue
+            result = projections[(model, scenario)]
+            for j, (plabel, (start, end)) in enumerate(PERIODS.items()):
+                s = result.loc[
+                    (result["Year1"] >= start) & (result["Year1"] <= end), "Y(dry)"
+                ].values
+                if len(s) == 0:
+                    continue
+                position = i + proj_offset + (j - (n_periods - 1) / 2) * violin_width
+                parts = ax.violinplot(
+                    [s], positions=[position], widths=violin_width * 0.9,
+                    showmedians=True, showextrema=True,
+                )
+                for body in parts["bodies"]:
+                    body.set_facecolor(period_colors[plabel])
+                    body.set_alpha(0.6)
+                parts["cmedians"].set_color("black")
+                parts["cmedians"].set_linewidth(1.2)
+
+        if has_ref:
+            ax.axvline(0.5, color="gray", linewidth=0.8, linestyle="--", alpha=0.5)
+
+        xtick_positions = ([0] if has_ref else []) + [
+            i + proj_offset for i in range(len(model_names))
+        ]
+        xtick_labels = (["Observed"] if has_ref else []) + model_names
+        ax.set_xticks(xtick_positions)
+        ax.set_xticklabels(xtick_labels, rotation=15, ha="right")
+        ax.set_title(_SCENARIO_LABELS.get(scenario, scenario))
+
+        for label in period_labels:
+            ax.plot([], [], color=period_colors[label], linewidth=6, alpha=0.6, label=label)
+        ax.legend(fontsize=8)
+
+    axes[0].set_ylabel("Dry yield (t ha⁻¹)")
+    fig.suptitle(
+        f"AquaCrop yield projections — {location.capitalize()} — 30-year period distributions by model",
+        fontsize=13,
+    )
+    fig.tight_layout()
+    return fig
+
+
+def plot_yield_projections_by_model_boxplot(
+    projections: dict,
+    location: str,
+    hist_results: pd.DataFrame | None = None,
+    obs_yields: pd.DataFrame | None = None,
+    figsize: tuple[float, float] | None = None,
+) -> plt.Figure:
+    """Boxplot of projected yield by climate model, one subplot per scenario.
+
+    Same layout as `plot_yield_projections_by_model` (models on the x-axis, one box
+    per 30-year period within each model group), but drawn as boxplots instead of
+    violins. If `hist_results` and/or `obs_yields` are given, a dedicated "Observed"
+    reference group (boxplots) is added before the models.
+
+    Parameters
+    ----------
+    hist_results:
+        Season DataFrame from run_historical_simulation() with columns Year1, Y(dry).
+    obs_yields:
+        Observed yield DataFrame from get_yield_for_comparison() with columns year, yield.
+    """
+    from aquacrop_slovenia.yield_projections import PERIODS
+
+    scenarios = sorted({sc for _, sc in projections})
+    model_names = sorted({model for model, _ in projections})
+    period_labels = list(PERIODS.keys())
+    n_periods = len(period_labels)
+    n_scenarios = len(scenarios)
+
+    has_ref = hist_results is not None or obs_yields is not None
+    proj_offset = 1 if has_ref else 0
+
+    if figsize is None:
+        figsize = (5 * n_scenarios, 5)
+
+    fig, axes = plt.subplots(1, n_scenarios, figsize=figsize, sharey=True)
+    if n_scenarios == 1:
+        axes = [axes]
+
+    period_colors = {
+        "1981-2010": "steelblue",
+        "2011-2040": "darkorange",
+        "2041-2070": "seagreen",
+        "2071-2100": "firebrick",
+    }
+
+    group_width = 0.8
+    box_width = group_width / n_periods
+
+    for ax, scenario in zip(axes, scenarios):
+        if has_ref:
+            add_reference_boxplots(ax, 0, hist_results, obs_yields, box_width=group_width)
+
+        for i, model in enumerate(model_names):
+            if (model, scenario) not in projections:
+                continue
+            result = projections[(model, scenario)]
+            for j, (plabel, (start, end)) in enumerate(PERIODS.items()):
+                s = result.loc[
+                    (result["Year1"] >= start) & (result["Year1"] <= end), "Y(dry)"
+                ].values
+                if len(s) == 0:
+                    continue
+                position = i + proj_offset + (j - (n_periods - 1) / 2) * box_width
+                bp = ax.boxplot(
+                    [s], positions=[position], widths=box_width * 0.85,
+                    patch_artist=True, manage_ticks=False,
+                )
+                for patch in bp["boxes"]:
+                    patch.set_facecolor(period_colors[plabel])
+                    patch.set_alpha(0.6)
+                for key in ("whiskers", "caps", "fliers"):
+                    for line in bp[key]:
+                        line.set_color(period_colors[plabel])
+                for line in bp["medians"]:
+                    line.set_color("black")
+
+        if has_ref:
+            ax.axvline(0.5, color="gray", linewidth=0.8, linestyle="--", alpha=0.5)
+
+        xtick_positions = ([0] if has_ref else []) + [
+            i + proj_offset for i in range(len(model_names))
+        ]
+        xtick_labels = (["Observed"] if has_ref else []) + model_names
+        ax.set_xticks(xtick_positions)
+        ax.set_xticklabels(xtick_labels, rotation=15, ha="right")
+        ax.set_title(_SCENARIO_LABELS.get(scenario, scenario))
+
+        for label in period_labels:
+            ax.plot([], [], color=period_colors[label], linewidth=6, alpha=0.6, label=label)
+        ax.legend(fontsize=8)
+
+    axes[0].set_ylabel("Dry yield (t ha⁻¹)")
+    fig.suptitle(
+        f"AquaCrop yield projections — {location.capitalize()} — 30-year period distributions by model",
         fontsize=13,
     )
     fig.tight_layout()
