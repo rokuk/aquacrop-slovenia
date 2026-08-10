@@ -4,7 +4,6 @@ from pathlib import Path
 
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
-from loguru import logger
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -75,7 +74,7 @@ def plot_grid_points(
     ri, rj = np.unravel_index(int(np.argmin(dist2)), lat2d.shape)
     nearest_lat = float(lat2d[ri, rj])
     nearest_lon = float(lon2d[ri, rj])
-    logger.info(f"Nearest grid cell: lat={nearest_lat:.4f}, lon={nearest_lon:.4f}")
+    print(f"Nearest grid cell: lat={nearest_lat:.4f}, lon={nearest_lon:.4f}")
 
     fig, ax = plt.subplots(figsize=figsize, subplot_kw={"projection": _PROJECTION})
 
@@ -212,7 +211,7 @@ def load_all_timeseries(
 
     combined = pd.concat(dfs, axis=1)
     combined.index.name = "date"
-    logger.info(f"Loaded {len(dfs)} timeseries files for '{location_name}'")
+    print(f"Loaded {len(dfs)} timeseries files for '{location_name}'")
     return combined
 
 

@@ -5,7 +5,6 @@ from dataclasses import dataclass
 from pathlib import Path
 import sys
 
-from loguru import logger
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
@@ -73,7 +72,6 @@ def discover_files(climate_dir: Path) -> list[FileInfo]:
             continue
         for nc_path in sorted(subdir.glob("*.nc")):
             files.append(parse_filename(nc_path))
-    logger.info(f"Discovered {len(files)} NetCDF files in {climate_dir}")
     return files
 
 
@@ -161,7 +159,7 @@ def extract_group(
     rlat_idx, rlon_idx = find_nearest_cell(lat2d, lon2d, target_lat, target_lon)
     actual_lat = float(lat2d[rlat_idx, rlon_idx])
     actual_lon = float(lon2d[rlat_idx, rlon_idx])
-    logger.debug(
+    print(
         f"Nearest cell: lat={actual_lat:.4f}, lon={actual_lon:.4f} "
         f"(target: {target_lat:.4f}, {target_lon:.4f})"
     )
@@ -209,7 +207,6 @@ def extract_all_timeseries(target_lat: float, target_lon: float, location_name: 
     files = discover_files(config.EXTERNAL_CLIMATE_DIR)
     groups = group_files(files)
     model_mapping = build_model_mapping(groups)
-    logger.info(f"Found {len(groups)} model/scenario groups, {len(model_mapping) - 1} RCM models")
 
     # Save the name → GCM/RCM lookup table
     mapping_df = pd.DataFrame(
@@ -219,7 +216,6 @@ def extract_all_timeseries(target_lat: float, target_lon: float, location_name: 
         ]
     )
     mapping_df.to_csv(config.INTERIM_CLIMATE_DIR / "model_mapping.csv", index=False)
-    logger.info(f"Saved model_mapping.csv ({len(mapping_df)} entries)")
 
     reverse: dict[tuple[str, str], str] = {
         (gcm, rcm): name for name, (gcm, rcm) in model_mapping.items()
@@ -229,7 +225,7 @@ def extract_all_timeseries(target_lat: float, target_lon: float, location_name: 
         groups.items(), desc="Extracting timeseries", file=sys.stdout
     ):
         model_name = reverse[(gcm, rcm)]
-        logger.info(f"Processing {model_name} ({gcm} / {rcm or 'obs'}) / {scenario}")
+        print(f"Processing {model_name} ({gcm} / {rcm or 'obs'}) / {scenario}")
         df = extract_group(gfiles, target_lat, target_lon)
         if (
             model_name == "model4" and scenario == "rcp45"
@@ -243,14 +239,13 @@ def extract_all_timeseries(target_lat: float, target_lon: float, location_name: 
             location_name, model_name, scenario
         )
         df.to_csv(out_path)
-        logger.debug(f"Saved {out_path.name} ({len(df)} rows)")
 
 
 def prepare_climate_data(location: str) -> None:
     combinations = get_model_scenario_combinations(location)
 
     for model, scenario in combinations:
-        logger.info(f"Preparing climate data for {location} with {model} and {scenario}")
+        print(f"Preparing climate data for {location} with {model} and {scenario}")
 
         path = config.INTERIM_CLIMATE_DIR / f"{location}_{model}_{scenario}.csv"
         df = pd.read_csv(path, index_col="time", parse_dates=True)
@@ -264,4 +259,4 @@ def prepare_climate_data(location: str) -> None:
 
         out_path = config.PROCESSED_CLIMATE_DIR / f"{location}_{model}_{scenario}.pkl"
         pd.to_pickle(pickle_tuple, out_path)
-        logger.debug(f"Saved {out_path.name}")
+        print(f"Saved {out_path.name}")

@@ -12,9 +12,9 @@ RCP CO2 concentrations were downloaded from the [RCP database](https://tntcat.ii
 Meteorological data for the historical period was provided by the Slovenian Environmental Agency (ARSO). It was measured at the following stations:
 
 | Field name | Field latitude | Field longitude | Field altitude [m] | Meteorological station             | ARSO station ID | Latitude | Longitude | Altitude [m] |
-|------------|----------------|-----------------|--------------------|------------------------------------|-----------------|----------|-----------|--------------|
-| Jablje     | 46.141         | 14.556          | 305                | Letališče Jožeta Pučnika Ljubljana | 8               | 46.211   | 14.478    | 362          |
-| Rakičan    | 46.650         | 16.196          | 188                | Murska Sobota                      | 355             | 46.658   | 16.159    | 189          |
+|------------|----------------|----------------|--------------------|------------------------------------|-----------------|----------|-----------|--------------|
+| Jablje     | 46.144         | 14.557         | 303                | Letališče Jožeta Pučnika Ljubljana | 8               | 46.2114  | 14.4784   | 362          |
+| Rakičan    | 46.654         | 16.190         | 183                | Murska Sobota                      | 355             | 46.6521  | 16.1913   | 189          |
 
 Measured data for Tmin, Tmax, and precipitation are homogenized, while ET0 is not homogenized.
 The weather data files are named according to the ARSO station ID.
@@ -24,16 +24,16 @@ The weather data files are named according to the ARSO station ID.
 ## Climate data 
 
 Gridded climate data was downloaded from the Slovenian open data portal [OPSI](https://podatki.gov.si/) (search for "Podnebne spremembe: Projekcije"). Climate analysis and projections were prepared by the Slovenian Environmental Agency (ARSO).
-There is one file for each GCM-RCM combination, scenario, and time period. ARSO provides projections for the following combinations:
+There is one file for each variable, GCM-RCM combination, scenario, and time period. ARSO provides projections for the following combinations:
 
-| GCM          | RCM        | RCP2.6 | RCP4.5 | RCP8.5 |
-|--------------|------------|--------|--------|--------|
-| CNRM-CM5-LR  | CCLM4-8-17 |        | x      | x      |
-| MPI-ESM-LR   | CCLM4-8-17 |        | x      | x      |
-| EC-EARTH     | HIRHAM5    | x      | x      | x      |
-| IPSL-CM5A-MR | WRF331F    |        | x      | x      |
-| HadGEM2-ES   | RACMO22E   | x      | x      | x      |
-| MPI-ESM-LR   | RCA4       |        | x      | x      |
+| GCM-RCM combination                     | RCP2.6 | RCP4.5 | RCP8.5 |
+|-----------------------------------------|--------|--------|--------|
+| CNRM_CERFACS-CNRM-CM5/CLMcom-CCLM4-8-17 |        | x      | x      |
+| MPI-M-MPI-ESM-LR/CLMcom-CCLM4-8-17      |        | x      | x      |
+| ICHEC-EC-EARTH/DMI-HIRHAM5              | x      | x      | x      |
+| IPSL-IPSL-CM5A-MR/IPSL-INERIS-WRF331F   |        | x      | x      |
+| MOHC-HadGEM2-ES/KNMI-RACMO22E           | x      | x      | x      |
+| MPI-M-MPI-ESM-LR/SMHI-RCA4              |        | x      | x      |
 
 ## Map data
 

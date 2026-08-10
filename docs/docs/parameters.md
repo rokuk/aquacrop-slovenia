@@ -92,8 +92,6 @@ Odvisno od letnega časa leži raven podtalnice 2 - 3 m pod površino tal.
 
 ## Other parameters
 
-TODO! preveri GDD crop cyle length v literaturi za naš tip
-
 For soil parameters we use the default values from Aquacrop's SlitLoam file. Na KIS pravijo, da je v Jabljah slit loam.
 
 For field management we use the default Aquacrop values without mulches, no effect on runoff and perfect weed management.
