@@ -24,7 +24,9 @@ The weather data files are named according to the ARSO station ID.
 ## Climate data 
 
 Gridded climate data was downloaded from the Slovenian open data portal [OPSI](https://podatki.gov.si/) (search for "Podnebne spremembe: Projekcije"). Climate analysis and projections were prepared by the Slovenian Environmental Agency (ARSO).
-There is one file for each variable, GCM-RCM combination, scenario, and time period. ARSO provides projections for the following combinations:
+There is one file for each variable, GCM-RCM combination, scenario, and time period. The files are not included in the repository. When downloaded from OPSI, the files should be placed in the `data/external/climate` directory. Model simulations for the historical period should be placed in the `data/external/climate/hist` directory and files for future periods should be placed in their respective scenario folders (e.g., `data/external/climate/rcp45`).
+
+ARSO provides projections for the following combinations:
 
 | GCM-RCM combination                     | RCP2.6 | RCP4.5 | RCP8.5 |
 |-----------------------------------------|--------|--------|--------|
