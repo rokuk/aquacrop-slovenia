@@ -7,6 +7,8 @@ models/testing
 models/testing2
 models/testing3
 
+.claude
+
 # Virtual environment files
 .venv/
 
