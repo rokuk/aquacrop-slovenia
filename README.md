@@ -19,6 +19,10 @@ This project uses [uv](https://docs.astral.sh/uv/) to manage package dependencie
 uv sync
 ```
 
+To run the Aquacrop executable, we use the `py-aquacrop` python package. It should be installed through pypi by the command above. 
+If not, we also include a copy of the `py-aquacrop` repository in the Zenodo copy of this repository (available under the MIT license).
+`py-aquacrop` should automatically download the required Aquacrop executable when run. We use Aquacrop version 7.1.
+
 To reproduce the figures and data:
 1. Run Prepare CO2 Concentrations notebook.
 2. Run Prepare Weather Letalisce Ljubljana notebook.
@@ -27,13 +31,15 @@ To reproduce the figures and data:
 5. Run Prepare Soil Properties Estimation to obtain Ksat and theta_sat values and copy them to their respective parameter_defaults files.
 6. Run CMA-ES KFold Biomass for first round of calibration and copy the best parameters to the parameter_defaults files.
 7. Run CMA-ES KFold Grain for second round of calibration and copy the best parameters to the parameter_defaults files.
-8. Copy the resulting parameter values to respective projections_parameters files.
+8. Copy the resulting parameter values to respective parameters_projections_ files. 
 9. Run Projections Jablje notebook.
 10. Run Projections Rakican notebook.
 
 ## Final results
 
-Final calibration parameters can be found in the `models` folder.
+Final calibrated parameters used for making projections can be found in the `aquacrop_slovenia` folder, in files `parameter_projections_jablje.py` and `parameter_projections_rakican.py`.
+
+Climate projections can be found in the Projections Jablje notebook and Projections Rakican notebook.
 
 ## Project Organization
 

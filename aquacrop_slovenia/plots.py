@@ -441,6 +441,42 @@ def plot_yield_scatter(
     fig.tight_layout()
 
 
+def plot_yearly_stresses(
+    hist_results: pd.DataFrame,
+) -> plt.Figure:
+    """Bar plot of yearly water/temperature stress indicators.
+
+    Parameters
+    ----------
+    hist_results:
+        Season DataFrame from run_historical_simulation() with columns Year1,
+        TempStr, ExpStr and StoStr (% of the season affected by each stress).
+    """
+    stresses = {
+        "TempStr": ("tab:red", "Temperature stress"),
+        "ExpStr": ("tab:orange", "Canopy expansion stress"),
+        "StoStr": ("tab:blue", "Stomatal closure stress"),
+    }
+    years = hist_results["Year1"].values
+    n = len(stresses)
+    width = 0.8 / n
+
+    fig, ax = plt.subplots(figsize=(max(10, len(years) * 0.4), 5))
+    for i, (col, (color, label)) in enumerate(stresses.items()):
+        offset = (i - (n - 1) / 2) * width
+        ax.bar(years + offset, hist_results[col], width=width, color=color, label=label)
+
+    ax.set_xlabel("Year")
+    ax.set_ylabel("Stress (%)")
+    ax.set_title("Yearly crop stress indicators")
+    ax.set_xticks(years)
+    ax.tick_params(axis="x", rotation=90)
+    ax.grid(True, axis="y", linewidth=0.5, color="gray", alpha=0.5)
+    ax.legend()
+    fig.tight_layout()
+    return fig
+
+
 def plot_observed_yield(
     yield_df: pd.DataFrame,
     quantity: str,

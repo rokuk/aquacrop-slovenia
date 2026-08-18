@@ -15,9 +15,9 @@ jablje_maize_params = {
     "p_upper_canopy": 0.14,
     "p_lower_canopy": 0.72,
     "shape_canopy": 2.9,
-    "p_upper_stomata": 0.635,
+    "p_upper_stomata": 0.69,
     "shape_stomata": 6.0,
-    "p_upper_senescence": 0.577,
+    "p_upper_senescence": 0.69,
     "shape_senescence": 2.7,
     "p_upper_pollination": 0.80,
     "aeration_stress_threshold": 5,
@@ -41,8 +41,8 @@ jablje_maize_params = {
     "kc_max": 1.05,
     "kc_decline": 0.300,
     # Rooting parameters
-    "min_rooting_depth": 0.13,
-    "max_rooting_depth": 0.55,
+    "min_rooting_depth": 0.3,
+    "max_rooting_depth": 1.5,
     "root_expansion_shape": 13,
     "max_water_extraction_top": 0.045,
     "max_water_extraction_bottom": 0.011,
@@ -51,7 +51,7 @@ jablje_maize_params = {
     "canopy_cover_per_seedling": 6.50,
     "canopy_regrowth_size": 6.50,
     "plant_density": 85900,
-    "max_canopy_cover": 0.91,
+    "max_canopy_cover": 0.96,
     "canopy_growth_coefficient": 0.16312,
     "canopy_thinning_years": -9,
     "canopy_thinning_shape": -9,
@@ -79,12 +79,12 @@ jablje_maize_params = {
     "water_productivity": 33.7,
     "water_productivity_yield_formation": 100,
     "co2_response_strength": 50,
-    "harvest_index": 0.54,
+    "harvest_index": 0.48,
     "water_stress_hi_increase": 0,
     "veg_growth_impact_hi": 7.0,
     "stomatal_closure_impact_hi": 3.0,
     "max_hi_increase": 15,
-    "dry_matter_content": 76, # Na podlagi meritev v tabelah KIS FAO300 Jablje 2024
+    "dry_matter_content": 90, # Na podlagi meritev v tabelah KIS FAO300 Jablje 2024
     # Perennial crop parameters
     "is_perennial": False,
     "first_year_min_rooting": 0.00,
@@ -112,22 +112,70 @@ jablje_maize_params = {
 
 jablje_soil_layers = [
     SoilLayer(
-        thickness=4.0,
+        thickness=0.35,
         sat=46.0,
-        fc=36.3, # based on Deset let trajnih poskusov IOSDV v Sloveniji, Jablje in Rakičan
+        fc=36.3,
         wp=14.1,
-        ksat=770.0,
+        ksat=90.0,
         penetrability=100,
         gravel=0,
         cra=-0.446850,
         crb=0.904118,
-        description="silt loam",
+        description="Ap 0-35"
+    ),
+    SoilLayer(
+        thickness=0.25,
+        sat=46.0,
+        fc=36.3,
+        wp=14.1,
+        ksat=120.0,
+        penetrability=100,
+        gravel=0,
+        cra=-0.446850,
+        crb=0.904118,
+        description="Apl 35-60"
+    ),
+    SoilLayer(
+        thickness=0.25,
+        sat=46.0,
+        fc=36.3,
+        wp=14.1,
+        ksat=8600.0,
+        penetrability=100,
+        gravel=0,
+        cra=-0.446850,
+        crb=0.904118,
+        description="B1+B2 60-110"
+    ),
+    SoilLayer(
+        thickness=0.58,
+        sat=46.0,
+        fc=36.3,
+        wp=14.1,
+        ksat=510.0,
+        penetrability=100,
+        gravel=0,
+        cra=-0.446850,
+        crb=0.904118,
+        description="B3 110-148"
+    ),
+    SoilLayer(
+        thickness=1.2,
+        sat=46.0,
+        fc=36.3,
+        wp=14.1,
+        ksat=830.0,
+        penetrability=100,
+        gravel=0,
+        cra=-0.446850,
+        crb=0.904118,
+        description="BC 148-168+"
     )
 ]
 
-jablje_curve_number = 61
+jablje_curve_number = 72
 
-jablje_readily_evaporable_water = 11
+jablje_readily_evaporable_water = 12
 
 jablje_groundwater = GroundWater(
     name="DeepGroundwater",
@@ -135,7 +183,7 @@ jablje_groundwater = GroundWater(
     params={
         'groundwater_type': 1,  # Fixed groundwater table
         'groundwater_observations': [
-            {'day': 1, 'depth': 2.5, 'ec': 0.0}
+            {'day': 1, 'depth': 3, 'ec': 0.0}
         ]
     }
 )
@@ -169,7 +217,7 @@ jablje_initial_cond = InitialConditions(
         "water_layer_ec": 0.00,
         "soil_water_content_type": 0,  # For specific layers
         "soil_data": [
-            {'thickness': 4.0, 'water_content': 36.3, 'ec': 0.00}
+            {'thickness': 1.68, 'water_content': 36.3, 'ec': 0.00}
         ]
     }
 )

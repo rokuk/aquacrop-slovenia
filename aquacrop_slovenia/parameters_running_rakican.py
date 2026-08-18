@@ -15,9 +15,9 @@ rakican_maize_params = {
     "p_upper_canopy": 0.14,
     "p_lower_canopy": 0.72,
     "shape_canopy": 2.9,
-    "p_upper_stomata": 0.679,
+    "p_upper_stomata": 0.69,
     "shape_stomata": 6.0,
-    "p_upper_senescence": 0.617,
+    "p_upper_senescence": 0.69,
     "shape_senescence": 2.7,
     "p_upper_pollination": 0.80,
     "aeration_stress_threshold": 5,
@@ -41,8 +41,8 @@ rakican_maize_params = {
     "kc_max": 1.05,
     "kc_decline": 0.300,
     # Rooting parameters
-    "min_rooting_depth": 0.31,
-    "max_rooting_depth": 1.08,
+    "min_rooting_depth": 0.3,
+    "max_rooting_depth": 1.5,
     "root_expansion_shape": 13,
     "max_water_extraction_top": 0.045,
     "max_water_extraction_bottom": 0.011,
@@ -51,7 +51,7 @@ rakican_maize_params = {
     "canopy_cover_per_seedling": 6.50,
     "canopy_regrowth_size": 6.50,
     "plant_density": 85900,
-    "max_canopy_cover": 0.925,
+    "max_canopy_cover": 0.96,
     "canopy_growth_coefficient": 0.16312,
     "canopy_thinning_years": -9,
     "canopy_thinning_shape": -9,
@@ -79,12 +79,12 @@ rakican_maize_params = {
     "water_productivity": 33.7,
     "water_productivity_yield_formation": 100,
     "co2_response_strength": 50,
-    "harvest_index": 0.523,
+    "harvest_index": 0.48,
     "water_stress_hi_increase": 0,
     "veg_growth_impact_hi": 7.0,
     "stomatal_closure_impact_hi": 3.0,
     "max_hi_increase": 15,
-    "dry_matter_content": 83,  # Na podlagi meritev v tabelah KIS FAO300 Rakican 2024
+    "dry_matter_content": 90,  # Na podlagi meritev v tabelah KIS FAO300 Rakican 2024
     # Perennial crop parameters
     "is_perennial": False,
     "first_year_min_rooting": 0.00,
@@ -110,7 +110,70 @@ rakican_maize_params = {
     "end_occurrences": 0,
 }
 
-rakican_soil_layers = [ # FC in WP na podlagi zbornika, ocena gravel na podlagi opisa KIS
+rakican_soil_layers = [
+    SoilLayer(
+        thickness=0.2,
+        sat=38.0,
+        fc=21.7,
+        wp=9.3,
+        ksat=2550.0,
+        penetrability=100,
+        gravel=3,
+        cra=-0.333200,
+        crb=0.365805,
+        description="Ap1 0-20",
+    ),
+    SoilLayer(
+        thickness=0.75,
+        sat=38.0,
+        fc=21.7,
+        wp=9.3,
+        ksat=170.0,
+        penetrability=100,
+        gravel=0,
+        cra=-0.333200,
+        crb=0.365805,
+        description="Bg1 70-95",
+    ),
+    SoilLayer(
+        thickness=0.55,
+        sat=38.0,
+        fc=21.7,
+        wp=9.3,
+        ksat=1190.0,
+        penetrability=100,
+        gravel=0,
+        cra=-0.333200,
+        crb=0.365805,
+        description="Bg2 95-150",
+    ),
+    SoilLayer(
+        thickness=0.8,
+        sat=38.0,
+        fc=21.7,
+        wp=9.3,
+        ksat=7500.0,
+        penetrability=100,
+        gravel=50,
+        cra=-0.333200,
+        crb=0.365805,
+        description="I. Sp 150-230",
+    ),
+    SoilLayer(
+        thickness=0.1,
+        sat=0.5,
+        fc=0.3,
+        wp=0.1,
+        ksat=0.0,
+        penetrability=0,
+        gravel=0,
+        cra=-9.0,
+        crb=9.0,
+        description="impermeable",
+    )
+]
+
+rakican_soil_layers_zbornik = [ # FC in WP na podlagi zbornika, ocena gravel na podlagi opisa KIS
     SoilLayer(
         thickness=0.3,
         sat=38.0,

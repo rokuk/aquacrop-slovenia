@@ -114,7 +114,7 @@ jablje_soil_layers = [
     SoilLayer(
         thickness=4.0,
         sat=46.0,
-        fc=36.3, # based on Deset let trajnih poskusov IOSDV v Sloveniji, Jablje in Rakičan
+        fc=36.3,
         wp=14.1,
         ksat=770.0,
         penetrability=100,

@@ -6,7 +6,7 @@ import pandas as pd
 from aquacrop import Weather, Crop, Soil, AquaCrop
 
 from aquacrop_slovenia import config
-from aquacrop_slovenia.projection_parameters_jablje import (
+from aquacrop_slovenia.parameters_projections_jablje import (
     jablje_soil_layers,
     jablje_maize_params,
     jablje_curve_number,
@@ -16,7 +16,7 @@ from aquacrop_slovenia.projection_parameters_jablje import (
     jablje_groundwater
 )
 from aquacrop_slovenia.reading_data import get_co2_for_aquacrop, get_climate
-from aquacrop_slovenia.projection_parameters_rakican import (
+from aquacrop_slovenia.parameters_projections_rakican import (
     rakican_soil_layers,
     rakican_curve_number,
     rakican_readily_evaporable_water,
@@ -127,7 +127,7 @@ def run_model_projection(location, model, scenario):
         print("incorrect location")
         raise Exception
 
-    working_dir = config.RAMDISK_DIR / f"proj_{location}_{model}_{scenario}"
+    working_dir = config.MODEL_RUNNING_DIR / f"proj_{location}_{model}_{scenario}"
     try:
         simulation = setup_model_for_projections(working_dir, location, model, scenario, crop, soil)
         results = simulation.run()
@@ -139,7 +139,8 @@ def run_model_projection(location, model, scenario):
 def run_historical_simulation(location: str) -> pd.DataFrame:
     """Run AquaCrop for the calibration period using station weather data.
 
-    Returns the season DataFrame with columns Year1 and Y(dry).
+    Returns the season DataFrame with columns Year1, Y(dry), and the yearly stress
+    indicators TempStr, ExpStr and StoStr (% of the season, 0 = no stress).
     """
     if location == "jablje":
         from aquacrop_slovenia.reading_data import get_station_weather
@@ -206,7 +207,7 @@ def run_historical_simulation(location: str) -> pd.DataFrame:
         first_year=first_year,
         co2_records=co2,
     )
-    working_dir = config.RAMDISK_DIR / f"hist_{location}"
+    working_dir = config.MODEL_RUNNING_DIR / f"hist_{location}"
     try:
         sim = AquaCrop(
             simulation_periods=simulation_periods,
@@ -224,7 +225,7 @@ def run_historical_simulation(location: str) -> pd.DataFrame:
         results = sim.run()
     finally:
         shutil.rmtree(working_dir, ignore_errors=True)
-    return results["season"][["Year1", "Y(dry)"]]
+    return results["season"][["Year1", "Y(dry)", "TempStr", "ExpStr", "StoStr"]]
 
 
 def get_model_scenario_combinations(location: str) -> list[tuple[str, str]]:
