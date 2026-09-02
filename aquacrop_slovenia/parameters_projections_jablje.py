@@ -1,5 +1,7 @@
 from aquacrop import SoilLayer, FieldManagement, InitialConditions, GroundWater
 
+# Parameter version 1.0
+
 jablje_maize_params = {
     # Basic classifications
     "crop_type": 2,  # fruit/grain crop
@@ -140,7 +142,7 @@ jablje_groundwater = GroundWater(
     }
 )
 
-jablje_optimal_management = FieldManagement(
+jablje_management = FieldManagement(
     name="Optimal Field Management",
     description="Optimal field management with no fertility stress, runoff adjustment for row crops",
     params={

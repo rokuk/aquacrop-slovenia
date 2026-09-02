@@ -1244,3 +1244,35 @@ def plot_gdd_and_yield(
     ax1.set_xlabel("Year")
     plt.title(title)
     plt.tight_layout()
+
+
+def plot_optimisation_convergence(
+    convergence_log: dict,
+    title: str = "Optimisation convergence",
+    ylabel: str = "Objective value (best-so-far)",
+    logy: bool = False,
+) -> plt.Figure:
+    """Plot best-so-far objective value per generation for one or more optimisation runs.
+
+    Parameters
+    ----------
+    convergence_log:
+        Mapping of run label -> list/array of best-fun values, one per generation
+        (e.g. as collected by a scipy `differential_evolution` callback).
+    logy:
+        Use a log scale for the y-axis (useful when runs differ by orders of magnitude).
+    """
+    fig, ax = plt.subplots(figsize=(8, 5))
+    for label, values in convergence_log.items():
+        values = np.asarray(values, dtype=float)
+        ax.plot(np.arange(1, len(values) + 1), values, marker="o", markersize=3, linewidth=1.2, label=label)
+
+    ax.set_xlabel("Generation")
+    ax.set_ylabel(ylabel)
+    if logy:
+        ax.set_yscale("log")
+    ax.set_title(title)
+    ax.grid(True, linewidth=0.5, color="gray", alpha=0.4)
+    ax.legend()
+    fig.tight_layout()
+    return fig

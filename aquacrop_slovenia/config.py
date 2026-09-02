@@ -1,5 +1,6 @@
 from pathlib import Path
 
+AQUACROP_VERSION = "7.1"
 ROOT_DIR: Path = Path(__file__).resolve().parent.parent
 DATA_DIR: Path = ROOT_DIR / "data"
 EXTERNAL_DIR: Path = DATA_DIR / "external"

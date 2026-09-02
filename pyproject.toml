@@ -1,13 +1,13 @@
 [project]
 name = "aquacrop-slovenia"
 version = "0.1.0"
-description = "Add your description here"
+description = "Code to calibrate Aquacrop for two sites in Slovenia. Calibrated parameters are used to make yield projections under different climate scenarios."
 authors = [
   { name = "Rok Kuk" },
 ]
 license = { file = "LICENSE" }
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.14"
 dependencies = [
     "cma>=3.4.0",
     "cartopy>=0.23.0",
@@ -29,7 +29,7 @@ dependencies = [
     "ruff>=0.15.12",
     "scikit-learn>=1.8.0",
     "scipy>=1.17.1",
-    "scipy-stubs~=1.17.1",
+    "scipy-stubs~=1.18.0",
     "setuptools>=82.0.1",
     "tqdm>=4.67.3",
     "xarray>=2024.1.0",
@@ -47,3 +47,6 @@ extend-select = ["I"]  # Add import sorting
 [tool.ruff.lint.isort]
 known-first-party = ["aquacrop_slovenia"]
 force-sort-within-sections = true
+
+[dependency-groups]
+dev = []

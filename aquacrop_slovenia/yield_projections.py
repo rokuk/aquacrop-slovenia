@@ -11,7 +11,7 @@ from aquacrop_slovenia.parameters_projections_jablje import (
     jablje_maize_params,
     jablje_curve_number,
     jablje_readily_evaporable_water,
-    jablje_optimal_management,
+    jablje_management,
     jablje_initial_cond,
     jablje_groundwater
 )
@@ -22,7 +22,7 @@ from aquacrop_slovenia.parameters_projections_rakican import (
     rakican_readily_evaporable_water,
     rakican_maize_params,
     rakican_initial_cond,
-    rakican_optimal_management,
+    rakican_management,
     rakican_groundwater
 )
 
@@ -51,7 +51,7 @@ def setup_model_for_projections(working_dir, location, model, scenario, crop, so
 
     if location == "jablje":
         initial_conditions = jablje_initial_cond
-        management = jablje_optimal_management
+        management = jablje_management
         simulation_periods = [
             {
                 "start_date": date(year, 1, 1),
@@ -63,7 +63,7 @@ def setup_model_for_projections(working_dir, location, model, scenario, crop, so
         ]
     elif location == "rakican":
         initial_conditions = rakican_initial_cond
-        management = rakican_optimal_management
+        management = rakican_management
         simulation_periods = [
             {
                 "start_date": date(year, 1, 1),
@@ -136,10 +136,25 @@ def run_model_projection(location, model, scenario):
     return results["season"][["Year1", "Y(dry)"]]
 
 
-def run_historical_simulation(location: str) -> pd.DataFrame:
+def run_historical_simulation(
+    location: str, working_dir=None, cleanup: bool = True
+) -> pd.DataFrame:
     """Run AquaCrop for the calibration period using station weather data.
 
-    Returns the season DataFrame with columns Year1, Y(dry), and the yearly stress
+    Parameters
+    ----------
+    location:
+        "jablje" or "rakican".
+    working_dir:
+        Directory pyaquacrop generates its input/output files in. Defaults to
+        `config.MODEL_RUNNING_DIR / f"hist_{location}"`.
+    cleanup:
+        If True (default), the working directory is removed after the run. Set to
+        False to keep the generated pyaquacrop input/output files around.
+
+    Returns
+    -------
+    The season DataFrame with columns Year1, Y(dry), and the yearly stress
     indicators TempStr, ExpStr and StoStr (% of the season, 0 = no stress).
     """
     if location == "jablje":
@@ -165,7 +180,7 @@ def run_historical_simulation(location: str) -> pd.DataFrame:
             for year in range(1993, 2024)
             if year not in exclude
         ]
-        management = jablje_optimal_management
+        management = jablje_management
         initial_conditions = jablje_initial_cond
     elif location == "rakican":
         from aquacrop_slovenia.reading_data import get_station_weather
@@ -190,7 +205,7 @@ def run_historical_simulation(location: str) -> pd.DataFrame:
             for year in range(1993, 2024)
             if year not in exclude
         ]
-        management = rakican_optimal_management
+        management = rakican_management
         initial_conditions = rakican_initial_cond
     else:
         raise ValueError(f"Unknown location: {location}")
@@ -207,7 +222,7 @@ def run_historical_simulation(location: str) -> pd.DataFrame:
         first_year=first_year,
         co2_records=co2,
     )
-    working_dir = config.MODEL_RUNNING_DIR / f"hist_{location}"
+    working_dir = working_dir or config.MODEL_RUNNING_DIR / f"hist_{location}"
     try:
         sim = AquaCrop(
             simulation_periods=simulation_periods,
@@ -224,7 +239,8 @@ def run_historical_simulation(location: str) -> pd.DataFrame:
         )
         results = sim.run()
     finally:
-        shutil.rmtree(working_dir, ignore_errors=True)
+        if cleanup:
+            shutil.rmtree(working_dir, ignore_errors=True)
     return results["season"][["Year1", "Y(dry)", "TempStr", "ExpStr", "StoStr"]]
 
 

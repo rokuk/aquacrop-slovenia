@@ -1,5 +1,7 @@
 from aquacrop import SoilLayer, FieldManagement, InitialConditions, GroundWater
 
+# Parameter version 2.0
+
 jablje_maize_params = {
     # Basic classifications
     "crop_type": 2,  # fruit/grain crop
@@ -9,7 +11,7 @@ jablje_maize_params = {
     # Temperature parameters
     "base_temp": 10.0,
     "upper_temp": 30.0,
-    "gdd_cycle_length": 1058,
+    "gdd_cycle_length": 1184,
     "dormancy_eto_threshold": 50,
     # Crop water stress parameters
     "p_upper_canopy": 0.14,
@@ -42,7 +44,7 @@ jablje_maize_params = {
     "kc_decline": 0.300,
     # Rooting parameters
     "min_rooting_depth": 0.3,
-    "max_rooting_depth": 1.5,
+    "max_rooting_depth": 0.5,
     "root_expansion_shape": 13,
     "max_water_extraction_top": 0.045,
     "max_water_extraction_bottom": 0.011,
@@ -66,15 +68,15 @@ jablje_maize_params = {
     "days_crop_determinancy": 1,
     "days_hi_start": 61,
     # Crop cycle parameters (Growing degree days)
-    "gdd_emergence": 22,
-    "gdd_max_rooting": 779,
-    "gdd_senescence": 946,
-    "gdd_maturity": 1095,
-    "gdd_flowering": 483,
-    "gdd_flowering_length": 165,
-    "cgc_gdd": 0.0199,
-    "cdc_gdd": 0.0132,
-    "gdd_hi_start": 356,
+    "gdd_emergence": 12,
+    "gdd_max_rooting": 1121,
+    "gdd_senescence": 1198,
+    "gdd_maturity": 1184,
+    "gdd_flowering": 496,
+    "gdd_flowering_length": 89,
+    "cgc_gdd": 0.012494,
+    "cdc_gdd": 0.010000,
+    "gdd_hi_start": 401,
     # Biomass and yield parameters
     "water_productivity": 33.7,
     "water_productivity_yield_formation": 100,
@@ -84,7 +86,7 @@ jablje_maize_params = {
     "veg_growth_impact_hi": 7.0,
     "stomatal_closure_impact_hi": 3.0,
     "max_hi_increase": 15,
-    "dry_matter_content": 90, # Na podlagi meritev v tabelah KIS FAO300 Jablje 2024
+    "dry_matter_content": 90,
     # Perennial crop parameters
     "is_perennial": False,
     "first_year_min_rooting": 0.00,
@@ -110,72 +112,72 @@ jablje_maize_params = {
     "end_occurrences": 0,
 }
 
-jablje_soil_layers = [
+jablje_soil_layers = [ # sat, fc, wp, ksat and gravel are based on measurments, capillary rise parameters cra and crb were determined using Aquacrop GUI, automatically calculated based on entered ksat and texture
     SoilLayer(
         thickness=0.35,
-        sat=46.0,
-        fc=36.3,
-        wp=14.1,
-        ksat=90.0,
+        sat=38.3,
+        fc=35.1,
+        wp=13.2,
+        ksat=92.0,
         penetrability=100,
         gravel=0,
-        cra=-0.446850,
-        crb=0.904118,
+        cra=-0.490320,
+        crb=0.028511,
         description="Ap 0-35"
     ),
     SoilLayer(
         thickness=0.25,
-        sat=46.0,
-        fc=36.3,
-        wp=14.1,
-        ksat=120.0,
+        sat=41.1,
+        fc=37.1,
+        wp=15.2,
+        ksat=116.0,
         penetrability=100,
         gravel=0,
-        cra=-0.446850,
-        crb=0.904118,
+        cra=-0.488160,
+        crb=0.139265,
         description="Apl 35-60"
     ),
     SoilLayer(
-        thickness=0.25,
-        sat=46.0,
-        fc=36.3,
-        wp=14.1,
-        ksat=8600.0,
+        thickness=0.50,
+        sat=44.5,
+        fc=41.7,
+        wp=19.5,
+        ksat=5, # here we use modelled ksat, since the measured value is huge
         penetrability=100,
-        gravel=0,
-        cra=-0.446850,
-        crb=0.904118,
+        gravel=1,
+        cra=-0.498150,
+        crb=-1.363011,
         description="B1+B2 60-110"
     ),
     SoilLayer(
-        thickness=0.58,
-        sat=46.0,
-        fc=36.3,
-        wp=14.1,
-        ksat=510.0,
+        thickness=0.38,
+        sat=44.2,
+        fc=40.4,
+        wp=21.3,
+        ksat=513.0,
         penetrability=100,
         gravel=0,
-        cra=-0.446850,
-        crb=0.904118,
+        cra=-0.588220,
+        crb=-0.023409,
         description="B3 110-148"
     ),
     SoilLayer(
-        thickness=1.2,
-        sat=46.0,
-        fc=36.3,
-        wp=14.1,
-        ksat=830.0,
+        thickness=1.52,
+        sat=43.9,
+        fc=41.4,
+        wp=22.9,
+        ksat=829.0,
         penetrability=100,
         gravel=0,
-        cra=-0.446850,
-        crb=0.904118,
+        cra=-0.600860,
+        crb=0.260814,
         description="BC 148-168+"
     )
 ]
 
-jablje_curve_number = 72
+jablje_curve_number = 72 # Determined by entering the above soil horizon properties into Aquacrop GUI, then using the lookup table
 
-jablje_readily_evaporable_water = 12
+jablje_readily_evaporable_water = 11 # Determined by entering the above soil horizon properties into Aquacrop GUI, then using the lookup table
 
 jablje_groundwater = GroundWater(
     name="DeepGroundwater",
@@ -183,12 +185,12 @@ jablje_groundwater = GroundWater(
     params={
         'groundwater_type': 1,  # Fixed groundwater table
         'groundwater_observations': [
-            {'day': 1, 'depth': 3, 'ec': 0.0}
+            {'day': 1, 'depth': 2.7, 'ec': 0.0}
         ]
     }
 )
 
-jablje_optimal_management = FieldManagement(
+jablje_management = FieldManagement(
     name="Optimal Field Management",
     description="Optimal field management with no fertility stress, runoff adjustment for row crops",
     params={
@@ -217,7 +219,11 @@ jablje_initial_cond = InitialConditions(
         "water_layer_ec": 0.00,
         "soil_water_content_type": 0,  # For specific layers
         "soil_data": [
-            {'thickness': 1.68, 'water_content': 36.3, 'ec': 0.00}
+            {'thickness': 0.35, 'water_content': 35.1, 'ec': 0.00}, # set to field capacity
+            {'thickness': 0.25, 'water_content': 37.1, 'ec': 0.00},
+            {'thickness': 0.50, 'water_content': 41.5, 'ec': 0.00},
+            {'thickness': 0.38, 'water_content': 40.8, 'ec': 0.00},
+            {'thickness': 1.52, 'water_content': 41.4, 'ec': 0.00}
         ]
     }
 )
