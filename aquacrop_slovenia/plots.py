@@ -342,13 +342,20 @@ def plot_yield_timeseries_comparison(
     truth_s = truth.set_index("year")["yield"].reindex(all_years)
 
     fig, ax = plt.subplots()
-    ax.plot(all_years, model_s, marker="o", markersize=4, linewidth=1.2, label="Model")
-    ax.plot(all_years, truth_s, marker="s", markersize=4, linewidth=1.2, label="Observed")
+    ax.plot(all_years, model_s, marker="o", markersize=4, linewidth=1.2, label="model")
+    ax.plot(all_years, truth_s, marker="s", markersize=4, linewidth=1.2, label="meritve")
     ax.set_ylim(bottom=0)
-    ax.set_xlabel("Year")
-    ax.set_ylabel(varname + (" [t/ha]" if (varname in ["Y(dry)", "BioMass"]) else ""))
-    ax.set_title(location)
-    ax.legend()
+    ax.set_xlabel("leto")
+    if varname == "Y(dry)":
+        ylabel = "pridelek Y [t/ha]"
+    elif varname == "BioMass":
+        ylabel = "biomasa B [t/ha]"
+    else:
+        ylabel = varname
+    ax.set_ylabel(ylabel)
+    ax.set_title("Jablje" if location == "jablje" else "Rakičan")
+    ax.legend(loc="lower left")
+    ax.grid(linewidth=0.5, color="gray", alpha=0.5)
     fig.tight_layout()
 
 
@@ -763,10 +770,10 @@ def plot_yield_projections_boxplot_with_hist(
         ref_ax = axes[0]
         add_reference_boxplots(ref_ax, 0, hist_results, obs_yields, box_width=ref_box_width)
         ref_ax.set_xticks([0])
-        ref_ax.set_xticklabels(["Obs. period\n(1993–2023)"])
-        ref_ax.set_title(_SCENARIO_LABELS.get("hist"))
-        ref_ax.set_ylabel("Dry yield (t/ha)")
-        ref_ax.legend(fontsize=8, frameon=False)
+        ref_ax.set_xticklabels(["1993–2023"])
+        ref_ax.set_title("preteklo\nobdobje")
+        ref_ax.set_ylabel("pridelek (t/ha)")
+        #ref_ax.legend(fontsize=8, frameon=False)
         scenario_axes = axes[1:]
     else:
         scenario_axes = axes
@@ -801,10 +808,11 @@ def plot_yield_projections_boxplot_with_hist(
         ax.set_xticks(range(len(period_labels)))
         ax.set_xticklabels(period_labels)
         ax.set_title(_SCENARIO_LABELS.get(scenario, scenario))
-        ax.legend(fontsize=8, frameon=False)
+        # ax.legend(fontsize=8, frameon=False)
 
+    lokacija = "Jablje" if location == "jablje" else "Rakičan"
     fig.suptitle(
-        f"AquaCrop yield projections — {location.capitalize()} — 30-year period distributions",
+        f"Projekcije — {lokacija} — 30-letne porazdelitve",
         fontsize=13,
     )
     fig.tight_layout()

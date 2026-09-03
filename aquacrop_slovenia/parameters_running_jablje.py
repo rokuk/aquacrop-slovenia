@@ -44,7 +44,7 @@ jablje_maize_params = {
     "kc_decline": 0.300,
     # Rooting parameters
     "min_rooting_depth": 0.3,
-    "max_rooting_depth": 0.52,
+    "max_rooting_depth": 0.47,
     "root_expansion_shape": 13,
     "max_water_extraction_top": 0.045,
     "max_water_extraction_bottom": 0.011,
@@ -53,7 +53,7 @@ jablje_maize_params = {
     "canopy_cover_per_seedling": 6.50,
     "canopy_regrowth_size": 6.50,
     "plant_density": 85900,
-    "max_canopy_cover": 0.94,
+    "max_canopy_cover": 0.88,
     "canopy_growth_coefficient": 0.16312,
     "canopy_thinning_years": -9,
     "canopy_thinning_shape": -9,
@@ -68,20 +68,20 @@ jablje_maize_params = {
     "days_crop_determinancy": 1,
     "days_hi_start": 61,
     # Crop cycle parameters (Growing degree days)
-    "gdd_emergence": 8,
-    "gdd_max_rooting": 1148,
-    "gdd_senescence": 1078,
-    "gdd_maturity": 1239,
-    "gdd_flowering": 550,
-    "gdd_flowering_length": 155,
+    "gdd_emergence": 20,
+    "gdd_max_rooting": 839,
+    "gdd_senescence": 1046,
+    "gdd_maturity": 1190,
+    "gdd_flowering": 531,
+    "gdd_flowering_length": 147,
     "cgc_gdd": 0.012494,
     "cdc_gdd": 0.010000,
-    "gdd_hi_start": 401,
+    "gdd_hi_start": 410,
     # Biomass and yield parameters
     "water_productivity": 33.7,
     "water_productivity_yield_formation": 100,
     "co2_response_strength": 50,
-    "harvest_index": 0.52,
+    "harvest_index": 0.563,
     "water_stress_hi_increase": 0,
     "veg_growth_impact_hi": 7.0,
     "stomatal_closure_impact_hi": 3.0,
@@ -219,11 +219,11 @@ jablje_initial_cond = InitialConditions(
         "water_layer_ec": 0.00,
         "soil_water_content_type": 0,  # For specific layers
         "soil_data": [
-            {'thickness': 0.35, 'water_content': 35.1, 'ec': 0.00}, # set to field capacity
-            {'thickness': 0.25, 'water_content': 37.1, 'ec': 0.00},
-            {'thickness': 0.50, 'water_content': 41.7, 'ec': 0.00},
-            {'thickness': 0.38, 'water_content': 40.4, 'ec': 0.00},
-            {'thickness': 0.2, 'water_content': 41.4, 'ec': 0.00}
+            {'thickness': 0.35, 'water_content': 32.0, 'ec': 0.00}, # set to field capacity
+            {'thickness': 0.25, 'water_content': 33.1, 'ec': 0.00},
+            {'thickness': 0.50, 'water_content': 37.8, 'ec': 0.00},
+            {'thickness': 0.38, 'water_content': 38.6, 'ec': 0.00},
+            {'thickness': 0.2, 'water_content': 39.2, 'ec': 0.00}
         ]
     }
 )

@@ -118,7 +118,7 @@ rakican_soil_layers = [
         sat=38.0,
         fc=21.7,
         wp=9.3,
-        ksat=2550.0,
+        ksat=1370.0,
         penetrability=100,
         gravel=3,
         cra=-0.333200,
@@ -126,7 +126,7 @@ rakican_soil_layers = [
         description="Ap1 0-20",
     ),
     SoilLayer(
-        thickness=0.75,
+        thickness=0.1,
         sat=38.0,
         fc=21.7,
         wp=9.3,
@@ -135,10 +135,10 @@ rakican_soil_layers = [
         gravel=0,
         cra=-0.333200,
         crb=0.365805,
-        description="Bg1 70-95",
+        description="Ap2 20-30",
     ),
     SoilLayer(
-        thickness=0.55,
+        thickness=1.2,
         sat=38.0,
         fc=21.7,
         wp=9.3,
@@ -147,7 +147,7 @@ rakican_soil_layers = [
         gravel=0,
         cra=-0.333200,
         crb=0.365805,
-        description="Bg2 95-150",
+        description="Bg 95-150",
     ),
     SoilLayer(
         thickness=0.8,
@@ -159,19 +159,7 @@ rakican_soil_layers = [
         gravel=50,
         cra=-0.333200,
         crb=0.365805,
-        description="I. Sp 150-230",
-    ),
-    SoilLayer(
-        thickness=0.1,
-        sat=0.5,
-        fc=0.3,
-        wp=0.1,
-        ksat=0.0,
-        penetrability=0,
-        gravel=0,
-        cra=-9.0,
-        crb=9.0,
-        description="impermeable",
+        description="I 150-230",
     )
 ]
 
@@ -185,7 +173,7 @@ rakican_groundwater = GroundWater(
     params={
         'groundwater_type': 1,  # Fixed groundwater table
         'groundwater_observations': [
-            {'day': 1, 'depth': 2.4, 'ec': 0.0}
+            {'day': 1, 'depth': 2.7, 'ec': 0.0}
         ]
     }
 )
@@ -219,9 +207,10 @@ rakican_initial_cond = InitialConditions(
         "water_layer_ec": 0.00,
         "soil_water_content_type": 0,  # For specific layers
         "soil_data": [
-            {'thickness': 1.0, 'water_content': 21.7, 'ec': 0.00},
-            {'thickness': 0.5, 'water_content': 21.7, 'ec': 0.00},
-            {'thickness': 0.5, 'water_content': 21.7, 'ec': 0.00},
+            {'thickness': 0.2, 'water_content': 21.7, 'ec': 0.00},
+            {'thickness': 0.1, 'water_content': 21.7, 'ec': 0.00},
+            {'thickness': 1.2, 'water_content': 21.7, 'ec': 0.00},
+            {'thickness': 0.8, 'water_content': 21.7, 'ec': 0.00},
         ]
     }
 )
