@@ -44,7 +44,7 @@ jablje_maize_params = {
     "kc_decline": 0.300,
     # Rooting parameters
     "min_rooting_depth": 0.3,
-    "max_rooting_depth": 0.5,
+    "max_rooting_depth": 0.52,
     "root_expansion_shape": 13,
     "max_water_extraction_top": 0.045,
     "max_water_extraction_bottom": 0.011,
@@ -53,7 +53,7 @@ jablje_maize_params = {
     "canopy_cover_per_seedling": 6.50,
     "canopy_regrowth_size": 6.50,
     "plant_density": 85900,
-    "max_canopy_cover": 0.96,
+    "max_canopy_cover": 0.94,
     "canopy_growth_coefficient": 0.16312,
     "canopy_thinning_years": -9,
     "canopy_thinning_shape": -9,
@@ -68,12 +68,12 @@ jablje_maize_params = {
     "days_crop_determinancy": 1,
     "days_hi_start": 61,
     # Crop cycle parameters (Growing degree days)
-    "gdd_emergence": 12,
-    "gdd_max_rooting": 1121,
-    "gdd_senescence": 1198,
-    "gdd_maturity": 1184,
-    "gdd_flowering": 496,
-    "gdd_flowering_length": 89,
+    "gdd_emergence": 8,
+    "gdd_max_rooting": 1148,
+    "gdd_senescence": 1078,
+    "gdd_maturity": 1239,
+    "gdd_flowering": 550,
+    "gdd_flowering_length": 155,
     "cgc_gdd": 0.012494,
     "cdc_gdd": 0.010000,
     "gdd_hi_start": 401,
@@ -81,7 +81,7 @@ jablje_maize_params = {
     "water_productivity": 33.7,
     "water_productivity_yield_formation": 100,
     "co2_response_strength": 50,
-    "harvest_index": 0.48,
+    "harvest_index": 0.52,
     "water_stress_hi_increase": 0,
     "veg_growth_impact_hi": 7.0,
     "stomatal_closure_impact_hi": 3.0,
@@ -116,7 +116,7 @@ jablje_soil_layers = [ # sat, fc, wp, ksat and gravel are based on measurments, 
     SoilLayer(
         thickness=0.35,
         sat=38.3,
-        fc=35.1,
+        fc=32.2,
         wp=13.2,
         ksat=92.0,
         penetrability=100,
@@ -128,7 +128,7 @@ jablje_soil_layers = [ # sat, fc, wp, ksat and gravel are based on measurments, 
     SoilLayer(
         thickness=0.25,
         sat=41.1,
-        fc=37.1,
+        fc=33.1,
         wp=15.2,
         ksat=116.0,
         penetrability=100,
@@ -140,19 +140,19 @@ jablje_soil_layers = [ # sat, fc, wp, ksat and gravel are based on measurments, 
     SoilLayer(
         thickness=0.50,
         sat=44.5,
-        fc=41.7,
+        fc=37.8,
         wp=19.5,
-        ksat=5, # here we use modelled ksat, since the measured value is huge
+        ksat=8600,
         penetrability=100,
         gravel=1,
-        cra=-0.498150,
-        crb=-1.363011,
+        cra=0.275400,
+        crb=2.196637,
         description="B1+B2 60-110"
     ),
     SoilLayer(
         thickness=0.38,
         sat=44.2,
-        fc=40.4,
+        fc=38.6,
         wp=21.3,
         ksat=513.0,
         penetrability=100,
@@ -162,9 +162,9 @@ jablje_soil_layers = [ # sat, fc, wp, ksat and gravel are based on measurments, 
         description="B3 110-148"
     ),
     SoilLayer(
-        thickness=1.52,
+        thickness=0.2,
         sat=43.9,
-        fc=41.4,
+        fc=39.2,
         wp=22.9,
         ksat=829.0,
         penetrability=100,
@@ -177,7 +177,7 @@ jablje_soil_layers = [ # sat, fc, wp, ksat and gravel are based on measurments, 
 
 jablje_curve_number = 72 # Determined by entering the above soil horizon properties into Aquacrop GUI, then using the lookup table
 
-jablje_readily_evaporable_water = 11 # Determined by entering the above soil horizon properties into Aquacrop GUI, then using the lookup table
+jablje_readily_evaporable_water = 10 # Determined by entering the above soil horizon properties into Aquacrop GUI, then using the lookup table
 
 jablje_groundwater = GroundWater(
     name="DeepGroundwater",
@@ -221,9 +221,9 @@ jablje_initial_cond = InitialConditions(
         "soil_data": [
             {'thickness': 0.35, 'water_content': 35.1, 'ec': 0.00}, # set to field capacity
             {'thickness': 0.25, 'water_content': 37.1, 'ec': 0.00},
-            {'thickness': 0.50, 'water_content': 41.5, 'ec': 0.00},
-            {'thickness': 0.38, 'water_content': 40.8, 'ec': 0.00},
-            {'thickness': 1.52, 'water_content': 41.4, 'ec': 0.00}
+            {'thickness': 0.50, 'water_content': 41.7, 'ec': 0.00},
+            {'thickness': 0.38, 'water_content': 40.4, 'ec': 0.00},
+            {'thickness': 0.2, 'water_content': 41.4, 'ec': 0.00}
         ]
     }
 )

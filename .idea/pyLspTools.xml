@@ -24,4 +24,7 @@
     <option name="documentation" value="true" />
     <option name="inlayHints" value="true" />
   </component>
+  <component name="RuffConfiguration">
+    <option name="enabled" value="true" />
+  </component>
 </project>
