@@ -1,0 +1,1318 @@
+AquaCrop simulation for RakicanMaize.CRO
+      7.1       : AquaCrop Version (August 2023)
+      1         : Year number of cultivation (Seeding/planting year)
+  33604         : First day of simulation period - 01 January 1993
+  33968         : Last day of simulation period - 31 December 1993
+  33713         : First day of cropping period - 20 April 1993
+  33968         : Last day of cropping period - 31 December 1993
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   FieldCapacityInitialRakican.SW0
+   './DATA/'
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      2         : Year number of cultivation (Seeding/planting year)
+  33969         : First day of simulation period - 01 January 1994
+  34333         : Last day of simulation period - 31 December 1994
+  34078         : First day of cropping period - 20 April 1994
+  34333         : Last day of cropping period - 31 December 1994
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      3         : Year number of cultivation (Seeding/planting year)
+  34334         : First day of simulation period - 01 January 1995
+  34698         : Last day of simulation period - 31 December 1995
+  34443         : First day of cropping period - 20 April 1995
+  34698         : Last day of cropping period - 31 December 1995
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      4         : Year number of cultivation (Seeding/planting year)
+  34699         : First day of simulation period - 01 January 1996
+  35064         : Last day of simulation period - 31 December 1996
+  34809         : First day of cropping period - 20 April 1996
+  35064         : Last day of cropping period - 31 December 1996
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      5         : Year number of cultivation (Seeding/planting year)
+  35065         : First day of simulation period - 01 January 1997
+  35429         : Last day of simulation period - 31 December 1997
+  35174         : First day of cropping period - 20 April 1997
+  35429         : Last day of cropping period - 31 December 1997
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      6         : Year number of cultivation (Seeding/planting year)
+  35795         : First day of simulation period - 01 January 1999
+  36159         : Last day of simulation period - 31 December 1999
+  35904         : First day of cropping period - 20 April 1999
+  36159         : Last day of cropping period - 31 December 1999
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      7         : Year number of cultivation (Seeding/planting year)
+  36160         : First day of simulation period - 01 January 2000
+  36525         : Last day of simulation period - 31 December 2000
+  36270         : First day of cropping period - 20 April 2000
+  36525         : Last day of cropping period - 31 December 2000
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      8         : Year number of cultivation (Seeding/planting year)
+  36526         : First day of simulation period - 01 January 2001
+  36890         : Last day of simulation period - 31 December 2001
+  36635         : First day of cropping period - 20 April 2001
+  36890         : Last day of cropping period - 31 December 2001
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      9         : Year number of cultivation (Seeding/planting year)
+  36891         : First day of simulation period - 01 January 2002
+  37255         : Last day of simulation period - 31 December 2002
+  37000         : First day of cropping period - 20 April 2002
+  37255         : Last day of cropping period - 31 December 2002
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      10         : Year number of cultivation (Seeding/planting year)
+  37256         : First day of simulation period - 01 January 2003
+  37620         : Last day of simulation period - 31 December 2003
+  37365         : First day of cropping period - 20 April 2003
+  37620         : Last day of cropping period - 31 December 2003
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      11         : Year number of cultivation (Seeding/planting year)
+  37621         : First day of simulation period - 01 January 2004
+  37986         : Last day of simulation period - 31 December 2004
+  37731         : First day of cropping period - 20 April 2004
+  37986         : Last day of cropping period - 31 December 2004
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      12         : Year number of cultivation (Seeding/planting year)
+  37987         : First day of simulation period - 01 January 2005
+  38351         : Last day of simulation period - 31 December 2005
+  38096         : First day of cropping period - 20 April 2005
+  38351         : Last day of cropping period - 31 December 2005
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      13         : Year number of cultivation (Seeding/planting year)
+  38352         : First day of simulation period - 01 January 2006
+  38716         : Last day of simulation period - 31 December 2006
+  38461         : First day of cropping period - 20 April 2006
+  38716         : Last day of cropping period - 31 December 2006
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      14         : Year number of cultivation (Seeding/planting year)
+  38717         : First day of simulation period - 01 January 2007
+  39081         : Last day of simulation period - 31 December 2007
+  38826         : First day of cropping period - 20 April 2007
+  39081         : Last day of cropping period - 31 December 2007
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      15         : Year number of cultivation (Seeding/planting year)
+  39082         : First day of simulation period - 01 January 2008
+  39447         : Last day of simulation period - 31 December 2008
+  39192         : First day of cropping period - 20 April 2008
+  39447         : Last day of cropping period - 31 December 2008
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      16         : Year number of cultivation (Seeding/planting year)
+  39448         : First day of simulation period - 01 January 2009
+  39812         : Last day of simulation period - 31 December 2009
+  39557         : First day of cropping period - 20 April 2009
+  39812         : Last day of cropping period - 31 December 2009
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      17         : Year number of cultivation (Seeding/planting year)
+  39813         : First day of simulation period - 01 January 2010
+  40177         : Last day of simulation period - 31 December 2010
+  39922         : First day of cropping period - 20 April 2010
+  40177         : Last day of cropping period - 31 December 2010
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      18         : Year number of cultivation (Seeding/planting year)
+  40178         : First day of simulation period - 01 January 2011
+  40542         : Last day of simulation period - 31 December 2011
+  40287         : First day of cropping period - 20 April 2011
+  40542         : Last day of cropping period - 31 December 2011
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      19         : Year number of cultivation (Seeding/planting year)
+  40543         : First day of simulation period - 01 January 2012
+  40908         : Last day of simulation period - 31 December 2012
+  40653         : First day of cropping period - 20 April 2012
+  40908         : Last day of cropping period - 31 December 2012
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      20         : Year number of cultivation (Seeding/planting year)
+  40909         : First day of simulation period - 01 January 2013
+  41273         : Last day of simulation period - 31 December 2013
+  41018         : First day of cropping period - 20 April 2013
+  41273         : Last day of cropping period - 31 December 2013
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      21         : Year number of cultivation (Seeding/planting year)
+  41274         : First day of simulation period - 01 January 2014
+  41638         : Last day of simulation period - 31 December 2014
+  41383         : First day of cropping period - 20 April 2014
+  41638         : Last day of cropping period - 31 December 2014
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      22         : Year number of cultivation (Seeding/planting year)
+  41639         : First day of simulation period - 01 January 2015
+  42003         : Last day of simulation period - 31 December 2015
+  41748         : First day of cropping period - 20 April 2015
+  42003         : Last day of cropping period - 31 December 2015
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      23         : Year number of cultivation (Seeding/planting year)
+  42004         : First day of simulation period - 01 January 2016
+  42369         : Last day of simulation period - 31 December 2016
+  42114         : First day of cropping period - 20 April 2016
+  42369         : Last day of cropping period - 31 December 2016
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      24         : Year number of cultivation (Seeding/planting year)
+  42735         : First day of simulation period - 01 January 2018
+  43099         : Last day of simulation period - 31 December 2018
+  42844         : First day of cropping period - 20 April 2018
+  43099         : Last day of cropping period - 31 December 2018
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      25         : Year number of cultivation (Seeding/planting year)
+  43100         : First day of simulation period - 01 January 2019
+  43464         : Last day of simulation period - 31 December 2019
+  43209         : First day of cropping period - 20 April 2019
+  43464         : Last day of cropping period - 31 December 2019
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      26         : Year number of cultivation (Seeding/planting year)
+  43465         : First day of simulation period - 01 January 2020
+  43830         : Last day of simulation period - 31 December 2020
+  43575         : First day of cropping period - 20 April 2020
+  43830         : Last day of cropping period - 31 December 2020
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      27         : Year number of cultivation (Seeding/planting year)
+  43831         : First day of simulation period - 01 January 2021
+  44195         : Last day of simulation period - 31 December 2021
+  43940         : First day of cropping period - 20 April 2021
+  44195         : Last day of cropping period - 31 December 2021
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)
+      28         : Year number of cultivation (Seeding/planting year)
+  44196         : First day of simulation period - 01 January 2022
+  44560         : Last day of simulation period - 31 December 2022
+  44305         : First day of cropping period - 20 April 2022
+  44560         : Last day of cropping period - 31 December 2022
+-- 1. Climate (CLI) file
+   rakican.CLI
+   './DATA/'
+   1.1 Temperature (Tnx or TMP) file
+   rakican.Tnx
+   './DATA/'
+   1.2 Reference ET (ETo) file
+   rakican.ETo
+   './DATA/'
+   1.3 Rain (PLU) file
+   rakican.PLU
+   './DATA/'
+   1.4 Atmospheric CO2 concentration (CO2) file
+   MaunaLoa.CO2
+   './SIMUL/'
+-- 2. Calendar (CAL) file
+   (None)
+   './DATA/'
+-- 3. Crop (CRO) file
+   RakicanMaize.CRO
+   './DATA/'
+-- 4. Irrigation management (IRR) file
+   (None)
+   (None)
+-- 5. Field management (MAN) file
+   OptimalFieldManagement.MAN
+   './DATA/'
+-- 6. Soil profile (SOL) file
+   RakicanSoil.SOL
+   './DATA/'
+-- 7. Groundwater table (GWT) file
+   (None)
+   (None)
+-- 8. Initial conditions (SW0) file
+   KeepSWC
+   Keep soil water profile of previous run
+-- 9. Off-season conditions (OFF) file
+   (None)
+   (None)
+-- 10. Field data (OBS) file
+   (None)
+   (None)

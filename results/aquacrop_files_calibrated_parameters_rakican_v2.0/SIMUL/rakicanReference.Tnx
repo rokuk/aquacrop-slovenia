@@ -1,0 +1,20 @@
+Reference : rakican
+     3  : Monthly records (1=daily, 2=10-daily and 3=monthly data)
+     1  : First day of record (1, 11 or 21 for 10-day or 1 for months)
+     1  : First month of record
+  1901  : First year of record (1901 if not linked to a specific year)
+
+  Tmin (C)   TMax (C) 
+  =======================
+     -3.51      3.94
+     -2.59      7.29
+      0.72     11.98
+      5.00     17.15
+      9.80     21.70
+     13.56     25.73
+     14.95     27.60
+     14.64     27.06
+     10.52     21.84
+      6.22     16.63
+      2.27      9.71
+     -2.40      4.37

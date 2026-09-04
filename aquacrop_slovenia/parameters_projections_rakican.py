@@ -1,25 +1,25 @@
 from aquacrop import SoilLayer, GroundWater, FieldManagement, InitialConditions
 
-# Parameter version 1.0
+# Parameter version 2.0
 
 rakican_maize_params = {
     # Basic classifications
-    "crop_type": 2,  # forage crop
+    "crop_type": 2,  # fruit/grain crop
     "is_sown": True,
     "cycle_determination": 0,  # by growing degree-days
     "adjust_for_eto": True,
     # Temperature parameters
     "base_temp": 10.0,
     "upper_temp": 30.0,
-    "gdd_cycle_length": 1152,
+    "gdd_cycle_length": 1184,
     "dormancy_eto_threshold": 50,
     # Crop water stress parameters
     "p_upper_canopy": 0.14,
     "p_lower_canopy": 0.72,
     "shape_canopy": 2.9,
-    "p_upper_stomata": 0.679,
+    "p_upper_stomata": 0.69,
     "shape_stomata": 6.0,
-    "p_upper_senescence": 0.617,
+    "p_upper_senescence": 0.69,
     "shape_senescence": 2.7,
     "p_upper_pollination": 0.80,
     "aeration_stress_threshold": 5,
@@ -43,8 +43,8 @@ rakican_maize_params = {
     "kc_max": 1.05,
     "kc_decline": 0.300,
     # Rooting parameters
-    "min_rooting_depth": 0.31,
-    "max_rooting_depth": 1.08,
+    "min_rooting_depth": 0.3,
+    "max_rooting_depth": 0.54,
     "root_expansion_shape": 13,
     "max_water_extraction_top": 0.045,
     "max_water_extraction_bottom": 0.011,
@@ -53,7 +53,7 @@ rakican_maize_params = {
     "canopy_cover_per_seedling": 6.50,
     "canopy_regrowth_size": 6.50,
     "plant_density": 85900,
-    "max_canopy_cover": 0.925,
+    "max_canopy_cover": 0.97,
     "canopy_growth_coefficient": 0.16312,
     "canopy_thinning_years": -9,
     "canopy_thinning_shape": -9,
@@ -68,25 +68,25 @@ rakican_maize_params = {
     "days_crop_determinancy": 1,
     "days_hi_start": 61,
     # Crop cycle parameters (Growing degree days)
-    "gdd_emergence": 30,
-    "gdd_max_rooting": 897,
-    "gdd_senescence": 943,
-    "gdd_maturity": 1065,
-    "gdd_flowering": 530,
-    "gdd_flowering_length": 186,
-    "cgc_gdd": 0.01571,
-    "cdc_gdd": 0.01323,
-    "gdd_hi_start": 434,
+    "gdd_emergence": 7,
+    "gdd_max_rooting": 997,
+    "gdd_senescence": 910,
+    "gdd_maturity": 1192,
+    "gdd_flowering": 502,
+    "gdd_flowering_length": 101,
+    "cgc_gdd": 0.012494,
+    "cdc_gdd": 0.010000,
+    "gdd_hi_start": 426,
     # Biomass and yield parameters
     "water_productivity": 33.7,
     "water_productivity_yield_formation": 100,
     "co2_response_strength": 50,
-    "harvest_index": 0.523,
+    "harvest_index": 0.628,
     "water_stress_hi_increase": 0,
     "veg_growth_impact_hi": 7.0,
     "stomatal_closure_impact_hi": 3.0,
     "max_hi_increase": 15,
-    "dry_matter_content": 83,  # Na podlagi meritev v tabelah KIS FAO300 Rakican 2024
+    "dry_matter_content": 90,
     # Perennial crop parameters
     "is_perennial": False,
     "first_year_min_rooting": 0.00,
@@ -112,72 +112,60 @@ rakican_maize_params = {
     "end_occurrences": 0,
 }
 
-rakican_soil_layers = [ # FC in WP na podlagi zbornika, ocena gravel na podlagi opisa KIS
+rakican_soil_layers = [
     SoilLayer(
-        thickness=0.3,
-        sat=38.0,
-        fc=21.7,
-        wp=9.3,
-        ksat=760.0,
+        thickness=0.2,
+        sat=42.0,
+        fc=29.4,
+        wp=11.8,
+        ksat=1370.0,
         penetrability=100,
-        gravel=0,
-        cra=-0.333200,
-        crb=0.365805,
-        description="loamy sand",
-    ),
-    SoilLayer(
-        thickness=0.3,
-        sat=38.0,
-        fc=21.7,
-        wp=9.3,
-        ksat=760.0,
-        penetrability=100,
-        gravel=10,
-        cra=-0.333200,
-        crb=0.365805,
-        description="loamy sand",
-    ),
-    SoilLayer(
-        thickness=0.3,
-        sat=38.0,
-        fc=21.7,
-        wp=9.3,
-        ksat=760.0,
-        penetrability=100,
-        gravel=30,
-        cra=-0.333200,
-        crb=0.365805,
-        description="loamy sand",
-    ),
-    SoilLayer(
-        thickness=0.5,
-        sat=38.0,
-        fc=21.7,
-        wp=9.3,
-        ksat=760.0,
-        penetrability=100,
-        gravel=50,
-        cra=-0.333200,
-        crb=0.365805,
-        description="loamy sand",
+        gravel=3,
+        cra=-0.375300,
+        crb=1.318942,
+        description="Ap1 0-20",
     ),
     SoilLayer(
         thickness=0.1,
-        sat=0.5,
-        fc=0.3,
-        wp=0.1,
-        ksat=0.0,
-        penetrability=0,
+        sat=44.7,
+        fc=29.1,
+        wp=11.2,
+        ksat=170.0,
+        penetrability=100,
         gravel=0,
-        cra=-9.0,
-        crb=9.0,
-        description="impermeable",
+        cra=-0.483300,
+        crb=0.321884,
+        description="Ap2 20-30",
+    ),
+    SoilLayer(
+        thickness=1.2,
+        sat=47.0,
+        fc=26.1,
+        wp=13.8,
+        ksat=1190.0,
+        penetrability=100,
+        gravel=0,
+        cra=-0.391500,
+        crb=1.251640,
+        description="Bg 95-150",
+    ),
+    SoilLayer(
+        thickness=1.5,
+        sat=42.1,
+        fc=13.2,
+        wp=2.7,
+        ksat=7500.0,
+        penetrability=100,
+        gravel=60,
+        cra=-0.386200,
+        crb=0.662114,
+        description="I 150-230",
     )
 ]
 
 rakican_curve_number = 46
 
-rakican_readily_evaporable_water = 7
+rakican_readily_evaporable_water = 9
 
 rakican_groundwater = GroundWater(
     name="DeepGroundwater",
@@ -185,7 +173,7 @@ rakican_groundwater = GroundWater(
     params={
         'groundwater_type': 1,  # Fixed groundwater table
         'groundwater_observations': [
-            {'day': 1, 'depth': 2.4, 'ec': 0.0}
+            {'day': 1, 'depth': 2.7, 'ec': 0.0}
         ]
     }
 )
@@ -219,9 +207,10 @@ rakican_initial_cond = InitialConditions(
         "water_layer_ec": 0.00,
         "soil_water_content_type": 0,  # For specific layers
         "soil_data": [
-            {'thickness': 1.0, 'water_content': 21.7, 'ec': 0.00},
-            {'thickness': 0.5, 'water_content': 21.7, 'ec': 0.00},
-            {'thickness': 0.5, 'water_content': 21.7, 'ec': 0.00},
+            {'thickness': 0.2, 'water_content': 29.4, 'ec': 0.00},
+            {'thickness': 0.1, 'water_content': 29.1, 'ec': 0.00},
+            {'thickness': 1.2, 'water_content': 26.1, 'ec': 0.00},
+            {'thickness': 1.5, 'water_content': 13.2, 'ec': 0.00},
         ]
     }
 )
