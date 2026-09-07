@@ -132,7 +132,7 @@ Soil properties in the `data/soil` folder were measured by the authors in the So
 
 ## Map data
 
-To produce the maps we used data from the Surveying and Mapping Authority of the Republic of Slovenia [GURS](https://ipi.eprostor.gov.si/jgp/data). We used the following datasets:
+Not included due to size. To produce the maps we used data from the Surveying and Mapping Authority of the Republic of Slovenia [GURS](https://ipi.eprostor.gov.si/jgp/data). We used the following datasets:
 - National border record
 - Digital elevation model (DEM25)
 which are licensed under [CC BY 4.0 International](http://creativecommons.org/licenses/by/4.0/).
