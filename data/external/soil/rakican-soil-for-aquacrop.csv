@@ -1,0 +1,15 @@
+﻿Cailbration of Aquacrop for two Slovenian sites;;;;;
+https://doi.org/10.5281/zenodo.21829886;;;;;
+;;;;;
+SOIL PROPERTIES USED IN CALIBRATION OF AQUACROP;;;;;
+;;;;;
+Location;Rakičan (KIS maize field experiment site);;;;
+Date of sampling;31.07.2026;;;;
+Analysis;University of Ljubljana, Biotechnical Faculty, Department of Agronomy, Soil Physics Lab;;;;
+Contact;Rok Kuk (rok.kuk@bf.uni-lj.si);;;;
+;;;;;
+Horizon [cm];Ksat 10degC [cm/day];gravel (>2 mm) [%];SAT [%];FC [%];PWP [%]
+0-20;137;3;42;29.4;11.8
+20-30;17;0;44.7;29.1;11.2
+30-150;119;0;47;26.1;13.8
+150-230+;750;60;42.1;13.2;2.7

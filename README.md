@@ -124,7 +124,7 @@ We use all combinations.
 
 ## Yield data
 
-#TODO
+Not included, contact KIS (Kmetijski Inštitut Slovenije).
 
 ## Soil properties
 
