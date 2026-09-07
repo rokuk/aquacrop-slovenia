@@ -1,7 +1,5 @@
 # aquacrop-slovenia
 
-## THIS REPOSITORY IS A WORK IN PROGRESS UNTIL 31.8.2026 !!!
-
 Data, figures, and code for a study of maize yield changes in Slovenia under different climate scenarios.  We calibrate Aquacrop for two field experiment sites in Slovenia based on 30 years of measurements of maize yield and biomass. We use the calibrated model to make projections of yield for future climate.
 
 This repository was produced by a team from University of Ljubljana, Biotechnical Faculty, Department of Agronomy, and the Agricultural Institute of Slovenia. For the list of authors, see the [Zenodo repository](https://doi.org/10.5281/zenodo.21829886).
@@ -22,22 +20,11 @@ This project uses [uv](https://docs.astral.sh/uv/) to manage package dependencie
 ```bash
 uv sync
 ```
-
 To run the Aquacrop executable, we use the `py-aquacrop` python package. It should be installed through pypi by the command above. 
 If not, we also include a copy of the `py-aquacrop` repository in the Zenodo copy of this repository (available under the MIT license).
 `py-aquacrop` should automatically download the required Aquacrop executable when run. We use Aquacrop version 7.1.
 
-To reproduce the figures and data:
-1. Run Prepare CO2 Concentrations notebook.
-2. Run Prepare Weather Letalisce Ljubljana notebook.
-3. Run Prepare Weather Murska Sobota notebook.
-4. Run Prepare Yield Data notebook.
-5. Run Prepare Soil Properties Estimation to obtain Ksat and theta_sat values and copy them to their respective parameter_defaults files.
-6. Run CMA-ES KFold Biomass for first round of calibration and copy the best parameters to the parameter_defaults files.
-7. Run CMA-ES KFold Grain for second round of calibration and copy the best parameters to the parameter_defaults files.
-8. Copy the resulting parameter values to respective parameters_projections_ files. 
-9. Run Projections Jablje notebook.
-10. Run Projections Rakican notebook.
+Files of maize yield are not included in this repository. Notebooks in the `data_preparation` folders should be run first. Calibration is then performed by the notebooks in the `calibration` folder. Projections are made using notebooks in the `projections` folder.
 
 ## Final results
 
@@ -65,8 +52,8 @@ Yield projection figures can be found in the Projections Jablje notebook and Pro
 ├── notebooks          <- Jupyter notebooks, grouped by stage:
 │   ├── data_preparation      <- Extract climate/weather CSVs, prepare CO2 and yield data.
 │   ├── parameter_estimations <- Soil property and GDD estimation.
-│   ├── calibration            <- CMA-ES K-fold calibration (biomass and grain).
-│   ├── exploration            <- Optimization experiments, sensitivity analysis, daily simulations.
+│   ├── calibration            <- Two-stage CMA-ES calibration (biomass, then grain), leave-one-year-out and RMSE-objective validation, and export of calibrated parameters.
+│   ├── exploration            <- Grid search and parameter sensitivity experiments, daily and yearly simulation runs.
 │   └── climate_projections    <- Run and analyze yield projections to 2100.
 │
 ├── pyproject.toml     <- Project configuration file with package metadata for
@@ -87,6 +74,7 @@ Yield projection figures can be found in the Projections Jablje notebook and Pro
     ├── yield_projections.py               <- Run yield projections and compute period statistics
     ├── reading_data.py                    <- Load station weather, climate, CO2, and observed yield data
     ├── diagnostics.py                     <- GDD computation and NSE/KGE/mKGE metrics
+    ├── patches.py                         <- Patches for py-aquacrop
     ├── plots.py                           <- Code to create visualizations
     ├── parameters_running_jablje.py       <- Parameters for Jablje used when running the model and as defaults in calibration
     ├── parameters_running_rakican.py      <- Parameters for Rakičan used when running the model and as defaults in calibration
@@ -140,9 +128,7 @@ We use all combinations.
 
 ## Soil properties
 
-Soil properties in the `data/soil` folder were measured by the authors the Soil Physics Lab of University of Ljubljana, Biotechnical Faculty, Department of Agronomy. The data is available under [CC BY 4.0 International](http://creativecommons.org/licenses/by/4.0/) license.
-
-
+Soil properties in the `data/soil` folder were measured by the authors in the Soil Physics Lab of University of Ljubljana, Biotechnical Faculty, Department of Agronomy. The data is available under [CC BY 4.0 International](http://creativecommons.org/licenses/by/4.0/) license.
 
 ## Map data
 
