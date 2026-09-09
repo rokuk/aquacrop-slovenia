@@ -1228,6 +1228,106 @@ def plot_yield_projections_by_model_boxplot(
     return fig
 
 
+def plot_yield_projections_pooled_by_period(
+    projections: dict,
+    location: str,
+    hist_results: pd.DataFrame | None = None,
+    obs_yields: pd.DataFrame | None = None,
+    figsize: tuple[float, float] | None = None,
+) -> plt.Figure:
+    """Boxplot of projected yield by 30-year period, all models pooled, one box per scenario.
+
+    Unlike `plot_yield_projections_by_period` (one subplot per scenario), this puts
+    every scenario on the same axes so the periods and scenarios can be compared
+    directly: periods are on the x-axis, and within each period group there is one
+    box per scenario, with every climate model's yields pooled together into that
+    box. If `hist_results` and/or `obs_yields` are given, a dedicated "Observed
+    period" reference group (boxplots) is added before the projection periods.
+
+    Parameters
+    ----------
+    hist_results:
+        Season DataFrame from run_historical_simulation() with columns Year1, Y(dry).
+    obs_yields:
+        Observed yield DataFrame from get_yield_for_comparison() with columns year, yield.
+    """
+    from aquacrop_slovenia.yield_projections import PERIODS
+
+    scenarios = sorted({sc for _, sc in projections})
+    model_names = sorted({model for model, _ in projections})
+    period_labels = list(PERIODS.keys())
+    n_periods = len(period_labels)
+    n_scenarios = len(scenarios)
+
+    scenario_colors = {"rcp26": "steelblue", "rcp45": "darkorange", "rcp85": "firebrick"}
+
+    has_ref = hist_results is not None or obs_yields is not None
+    proj_offset = 1 if has_ref else 0
+
+    group_width = 0.8
+    box_width = group_width / n_scenarios
+
+    if figsize is None:
+        figsize = (2.2 * (n_periods + proj_offset) + 2, 5)
+
+    fig, ax = plt.subplots(figsize=figsize)
+
+    if has_ref:
+        add_reference_boxplots(ax, 0, hist_results, obs_yields, box_width=group_width)
+
+    for i, scenario in enumerate(scenarios):
+        color = scenario_colors.get(scenario, "gray")
+        for j, (label, (start, end)) in enumerate(PERIODS.items()):
+            all_yields = []
+            for model in model_names:
+                if (model, scenario) not in projections:
+                    continue
+                result = projections[(model, scenario)]
+                s = result.loc[
+                    (result["Year1"] >= start) & (result["Year1"] <= end), "Y(dry)"
+                ].values
+                all_yields.extend(s)
+            if not all_yields:
+                continue
+            position = j + proj_offset + (i - (n_scenarios - 1) / 2) * box_width
+            bp = ax.boxplot(
+                [all_yields], positions=[position], widths=box_width * 0.85,
+                patch_artist=True, manage_ticks=False,
+            )
+            for patch in bp["boxes"]:
+                patch.set_facecolor(color)
+                patch.set_alpha(0.6)
+            for key in ("whiskers", "caps", "fliers"):
+                for line in bp[key]:
+                    line.set_color(color)
+            for line in bp["medians"]:
+                line.set_color("black")
+
+    if has_ref:
+        ax.axvline(0.5, color="gray", linewidth=0.8, linestyle="--", alpha=0.5)
+
+    xtick_positions = ([0] if has_ref else []) + [j + proj_offset for j in range(n_periods)]
+    xtick_labels = (["Obs. period\n(1993–2023)"] if has_ref else []) + period_labels
+    ax.set_xticks(xtick_positions)
+    ax.set_xticklabels(xtick_labels, rotation=15, ha="right")
+
+    for scenario in scenarios:
+        ax.plot(
+            [], [], color=scenario_colors.get(scenario, "gray"), linewidth=6, alpha=0.6,
+            label=_SCENARIO_LABELS.get(scenario, scenario),
+        )
+    ax.legend(fontsize=8)
+
+    ax.set_ylabel("Dry yield (t ha⁻¹)")
+    fig.suptitle(
+        f"AquaCrop yield projections — {location.capitalize()} — "
+        "30-year period distributions, all models pooled",
+        fontsize=13,
+    )
+    fig.tight_layout()
+    return fig
+
+
 def plot_gdd_and_yield(
     gdd_by_year: pd.Series, season_df: pd.DataFrame, title: str = "Annual GDD and Maize Dry Yield"
 ):

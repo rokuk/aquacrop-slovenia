@@ -1,6 +1,7 @@
 from aquacrop import SoilLayer, FieldManagement, InitialConditions, GroundWater
 
 # Parameter version 2.0
+
 jablje_maize_params = {
     # Basic classifications
     "crop_type": 2,  # fruit/grain crop

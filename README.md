@@ -31,7 +31,9 @@ Files of maize yield are not included in this repository. Notebooks in the `data
 Final calibrated parameters used for making projections can be found in the `aquacrop_slovenia` folder, in files `parameter_projections_jablje.py` and `parameter_projections_rakican.py`.
 Parameter files suitable for use in the Aquacrop GUI can be found in the `results` folder.
 
-Yield projection figures can be found in the Projections Jablje notebook and Projections Rakican notebook. Yield projections timeseries from running Aquacrop with climate projections and summary statistics can be found in the `results` folder.
+Comparison between measured and modelled yield can be found in the `calibration` notebooks and in the `exploration` notebooks.
+
+Yield projection figures can be found in the Projections Jablje notebook and Projections Rakican notebook.
 
 ## Project Organization
 
